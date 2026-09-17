@@ -124,7 +124,8 @@ function Gallery3D({ category, videos, onBack }) {
         ref={trackRef}
         style={{
           position: 'relative',
-          width: '340px', height: '600px', // Slightly larger container
+          width: 'min(85vw, 340px)', 
+          height: 'min(75vh, 600px)', // Dynamically scale down on small phones
           transformStyle: 'preserve-3d',
           transform: `translateZ(${-radius}px)`
         }}
@@ -202,10 +203,7 @@ export default function Portfolio() {
           <motion.div
             key="list"
             exit={{ opacity: 0, filter: 'blur(10px)', transition: { duration: 0.5 } }}
-            style={{
-              padding: 'clamp(8rem, 15vh, 12rem) 2.5rem 5rem',
-              maxWidth: '1200px', margin: '0 auto'
-            }}
+            className="px-6 md:px-10 pb-20 pt-[clamp(6rem,15vh,12rem)] max-w-[1200px] mx-auto"
           >
             <p style={{
               fontSize: '0.68rem', letterSpacing: '0.16em',
@@ -257,15 +255,8 @@ export default function Portfolio() {
               {portfolioData.map((data) => (
                 <div 
                   key={data.category}
-                  className="cat-item"
+                  className="cat-item group py-6 md:py-8 border-b border-[#ECE6D8] cursor-pointer flex flex-col md:flex-row md:items-center justify-between"
                   onClick={() => setActiveCategory(data.category)}
-                  style={{
-                    padding: '2rem 0',
-                    borderBottom: '1px solid #ECE6D8',
-                    cursor: 'pointer',
-                    display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-                    group: 'true'
-                  }}
                   onMouseEnter={(e) => {
                     gsap.to(e.currentTarget.querySelector('.cat-title'), { x: 20, color: '#7D2027', duration: 0.4, ease: 'power3.out' })
                     gsap.to(e.currentTarget.querySelector('.cat-count'), { opacity: 1, x: -10, duration: 0.4 })
@@ -276,7 +267,7 @@ export default function Portfolio() {
                   }}
                 >
                   <h2 className="cat-title" style={{
-                    fontSize: 'clamp(2rem, 4vw, 3.5rem)',
+                    fontSize: 'clamp(2rem, 6vw, 3.5rem)',
                     fontWeight: 600, letterSpacing: '-0.03em', color: '#1d1d1f',
                     margin: 0, transition: 'color 0.4s'
                   }}>

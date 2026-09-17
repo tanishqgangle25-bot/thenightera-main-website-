@@ -137,30 +137,24 @@ function ServiceCard3D({ s, i }) {
         <motion.div 
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
+          className={`w-full h-full rounded-[30px] md:rounded-[40px] bg-white/85 backdrop-blur-[30px] shadow-[0_50px_100px_rgba(0,0,0,0.08),inset_0_0_0_1px_rgba(255,255,255,1)] flex flex-col md:flex-row${i % 2 === 0 ? '' : '-reverse'}`}
           style={{ 
             rotateX: mouseRotateX,
             rotateY: mouseRotateY,
-            width: '100%',
-            height: '100%',
-            borderRadius: '40px',
-            background: 'rgba(255,255,255,0.85)',
-            backdropFilter: 'blur(30px)',
-            boxShadow: '0 50px 100px rgba(0,0,0,0.08), inset 0 0 0 1px rgba(255,255,255,1)',
-            display: 'flex',
-            flexDirection: i % 2 === 0 ? 'row' : 'row-reverse',
             transformStyle: 'preserve-3d',
-            cursor: 'crosshair'
+            cursor: 'crosshair',
+            overflow: 'hidden'
           }}
         >
           {/* Text Layer - pops out */}
-          <div style={{ flex: 1, padding: '5rem', display: 'flex', flexDirection: 'column', justifyContent: 'center', transform: 'translateZ(60px)' }}>
+          <div className="flex-1 p-8 md:p-20 flex flex-col justify-center" style={{ transform: 'translateZ(60px)' }}>
             <p style={{ fontSize: '0.85rem', fontFamily: 'monospace', color: '#A39670', marginBottom: '1.5rem', letterSpacing: '0.1em' }}>0{i+1} / 02</p>
             <h3 style={{ fontSize: 'clamp(2.5rem, 4vw, 4rem)', fontWeight: 800, letterSpacing: '-0.04em', color: '#1d1d1f', lineHeight: 1.0, marginBottom: '2rem' }}>{s.title}</h3>
             <p style={{ fontSize: '1.15rem', color: '#4D4828', lineHeight: 1.7, maxWidth: '450px' }}>{s.sub}</p>
           </div>
 
           {/* Image Layer - pops out even further */}
-          <div style={{ flex: 1, position: 'relative', transform: 'translateZ(100px) scale(0.9)', borderRadius: '30px', overflow: 'hidden', margin: '2rem' }}>
+          <div className="flex-1 relative m-4 md:m-8 rounded-[20px] md:rounded-[30px] overflow-hidden" style={{ transform: 'translateZ(100px) scale(0.95)' }}>
             <img src={s.img} alt={s.title} style={{ width: '100%', height: '100%', objectFit: 'cover', boxShadow: '0 30px 60px rgba(0,0,0,0.15)' }} draggable={false} />
           </div>
         </motion.div>
@@ -325,18 +319,18 @@ function StatsSection() {
   ]
 
   return (
-    <section style={{ background: '#ffffff', padding: '10rem 0', borderTop: '1px solid #E5E5EA' }}>
+    <section className="bg-white py-20 md:py-40 border-t border-[#E5E5EA]">
       <div className="container">
         <FadeUp>
           <p style={{ fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#A39670', fontWeight: 500, textAlign: 'center', marginBottom: '5rem' }}>The scale</p>
         </FadeUp>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0', borderTop: '1px solid #E5E5EA', borderLeft: '1px solid #E5E5EA' }}>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-0 border-t border-l border-[#E5E5EA]">
           {stats.map((s, i) => (
             <motion.div key={s.label}
               initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}
               viewport={{ once: true }} transition={{ delay: i * 0.1, duration: 0.6 }}
-              style={{ borderRight: '1px solid #E5E5EA', borderBottom: '1px solid #E5E5EA', padding: '3rem 2.5rem' }}>
-              <div style={{ fontSize: 'clamp(2.8rem, 5vw, 4.5rem)', fontWeight: 900, letterSpacing: '-0.05em', color: '#1d1d1f', lineHeight: 1 }}>
+              style={{ borderRight: '1px solid #E5E5EA', borderBottom: '1px solid #E5E5EA', padding: '2rem 1.5rem' }}>
+              <div style={{ fontSize: 'clamp(2.2rem, 5vw, 4.5rem)', fontWeight: 900, letterSpacing: '-0.05em', color: '#1d1d1f', lineHeight: 1 }}>
                 <CountUp end={s.num} suffix={s.suffix} />
               </div>
               <p style={{ fontSize: '0.875rem', fontWeight: 600, color: '#1d1d1f', marginTop: '1rem', letterSpacing: '-0.01em' }}>{s.label}</p>
@@ -380,7 +374,7 @@ function ProcessSection() {
   ]
 
   return (
-    <section style={{ background: '#ECE6D8', padding: '9rem 0' }}>
+    <section className="bg-[#ECE6D8] py-20 md:py-36">
       <div className="container">
         <FadeUp>
           <p style={{ fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#A39670', fontWeight: 500, marginBottom: '0.75rem' }}>How it works</p>
@@ -388,12 +382,13 @@ function ProcessSection() {
             Simple process.<br />Real results.
           </h2>
         </FadeUp>
-        <div ref={ref} style={{ display: 'grid', gridTemplateColumns: '1fr 3fr', gap: '0 4rem', position: 'relative' }}>
-          <div style={{ position: 'absolute', left: '0', top: 0, bottom: 0, width: '1px', background: '#D9C4B1' }}>
+        <div ref={ref} className="flex flex-col md:grid md:grid-cols-[1fr_3fr] gap-8 md:gap-16 relative">
+          {/* Timeline bar hidden on mobile for cleaner layout */}
+          <div className="hidden md:block absolute left-0 top-0 bottom-0 w-[1px] bg-[#D9C4B1]">
             <div ref={lineRef} style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: '#7D2027', transformOrigin: 'top', transform: 'scaleY(0)' }} />
           </div>
-          <div /> 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '4rem' }}>
+          <div className="hidden md:block" /> 
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem' }}>
             {steps.map((s, i) => (
               <div key={s.num} className="proc-step" style={{ opacity: 0 }}>
                 <p style={{ fontSize: '0.65rem', fontFamily: 'monospace', color: '#7D2027', opacity: 0.6, marginBottom: '0.75rem', letterSpacing: '0.1em' }}>{s.num} / 04</p>
@@ -462,19 +457,19 @@ function ClientsSection() {
     { name: '1.7M Network', cat: 'Collab' },
   ]
   return (
-    <section style={{ background: '#1d1d1f', padding: '7rem 0' }}>
+    <section className="bg-[#1d1d1f] py-20 md:py-28">
       <div className="container">
         <FadeUp>
           <p style={{ fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', fontWeight: 500, textAlign: 'center', marginBottom: '3.5rem' }}>Trusted by brands across Indore & beyond</p>
         </FadeUp>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '1px', background: 'rgba(255,255,255,0.07)' }}>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-[1px] bg-white/5">
           {clients.map((c, i) => (
             <motion.div key={c.name}
               initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}
               viewport={{ once: true }} transition={{ delay: i * 0.06, duration: 0.5 }}
-              style={{ background: '#1d1d1f', padding: '2.5rem 2rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', gap: '0.4rem' }}>
-              <p style={{ fontSize: '1rem', fontWeight: 700, color: '#ffffff', letterSpacing: '-0.02em' }}>{c.name}</p>
-              <p style={{ fontSize: '0.65rem', color: 'rgba(255,255,255,0.3)', letterSpacing: '0.15em', textTransform: 'uppercase' }}>{c.cat}</p>
+              style={{ background: '#1d1d1f', padding: '2.5rem 1rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', gap: '0.4rem' }}>
+              <p style={{ fontSize: '0.9rem', fontWeight: 700, color: '#ffffff', letterSpacing: '-0.02em' }}>{c.name}</p>
+              <p style={{ fontSize: '0.6rem', color: 'rgba(255,255,255,0.3)', letterSpacing: '0.15em', textTransform: 'uppercase' }}>{c.cat}</p>
             </motion.div>
           ))}
         </div>

@@ -431,9 +431,9 @@ export default function JellyfishDrift() {
           }}
         >
           {PHRASES.map((p, i) => (
-            <span
+              <span
               key={p}
-              className="jelly-phrase"
+              className="jelly-phrase text-[16vw] md:text-[28vh]"
               style={{
                 position: "absolute",
                 inset: 0,
@@ -441,7 +441,6 @@ export default function JellyfishDrift() {
                 placeItems: "center",
                 fontFamily: DISPLAY,
                 fontWeight: 900,
-                fontSize: "28vh",
                 lineHeight: 1,
                 letterSpacing: "-0.05em",
                 whiteSpace: "nowrap",
@@ -508,13 +507,12 @@ export default function JellyfishDrift() {
       ))}
 
       <div
+        className="w-[90vw] md:w-[min(58vh,70vw)] h-[60vh] md:h-[78vh]"
         style={{
           position: "absolute",
           left: "50%",
           top: "44%",
           transform: "translate(-50%, -50%)",
-          width: "min(58vh, 70vw)",
-          height: "78vh",
           zIndex: 20,
           pointerEvents: "none",
         }}
@@ -523,13 +521,13 @@ export default function JellyfishDrift() {
       </div>
 
       <div
+        className="hidden md:block w-[min(22vw,30vh)]"
         style={{
           position: "absolute",
           right: "4vw",
           top: "50%",
           transform: "translateY(-50%)",
           zIndex: 38,
-          width: "min(22vw, 30vh)",
           textAlign: "right",
           pointerEvents: "none",
           animation: `jelly-manifesto ${LOOP}s ease-in-out 0s infinite`,
@@ -556,13 +554,13 @@ export default function JellyfishDrift() {
       <SideRuler side="right" />
 
       <div
+        className="w-[90vw] md:w-[60vw]"
         style={{
           position: "absolute",
           bottom: "3.4vh",
           left: "50%",
           transform: "translateX(-50%)",
           zIndex: 40,
-          width: "60vw",
           textAlign: "center",
           height: "3.4vh",
         }}
@@ -572,14 +570,14 @@ export default function JellyfishDrift() {
           "SEAMLESS DESIGN. PREMIUM MOTION. EXPERIENCES THAT MATTER.",
           "WE DON'T JUST MARKET — WE BUILD LASTING CONNECTIONS.",
         ].map((c, i) => (
-          <p
+            <p
             key={i}
+            className="text-[0.6rem] md:text-[1.15vh]"
             style={{
               position: "absolute",
               left: 0,
               right: 0,
               margin: 0,
-              fontSize: "1.15vh",
               fontWeight: 700,
               letterSpacing: "0.16em",
               lineHeight: 1.5,

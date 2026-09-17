@@ -423,13 +423,13 @@ function TestimonialReveal() {
   }, [])
 
   return (
-    <section style={{ background: '#ffffff', padding: '11rem 0', borderTop: '1px solid #E5E5EA' }}>
+    <section className="bg-white py-20 md:py-44 border-t border-[#E5E5EA]">
       <div className="container">
         <div style={{ maxWidth: '960px' }}>
           <p style={{ fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#A39670', fontWeight: 500, marginBottom: '3rem' }}>What clients say</p>
-          <p ref={ref} style={{ fontSize: 'clamp(1.6rem, 3.5vw, 3rem)', fontWeight: 600, letterSpacing: '-0.035em', color: '#1d1d1f', lineHeight: 1.35 }}>
-            {`"thenightera transformed how our business is perceived. Within months, we had stronger brand equity, higher-value customers, and social content that actually stopped people mid-scroll."`.split(' ').map((w, i) => (
-              <span key={i} className="tw" style={{ display: 'inline-block', marginRight: '0.28em', opacity: 0.07 }}>{w}</span>
+          <p ref={ref} style={{ fontSize: 'clamp(1.4rem, 4vw, 3rem)', fontWeight: 600, letterSpacing: '-0.02em', color: '#1d1d1f', lineHeight: 1.4 }}>
+            {`"thenightera transformed how our business is perceived. Within months, we had stronger brand equity, higher-value customers, and social content that actually stopped people mid-scroll."`.split(' ').map((w, i, arr) => (
+              <span key={i}><span className="tw" style={{ opacity: 0.07 }}>{w}</span>{i !== arr.length - 1 ? ' ' : ''}</span>
             ))}
           </p>
           <div style={{ marginTop: '3rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>

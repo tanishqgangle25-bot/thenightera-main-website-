@@ -1,0 +1,32 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+public/portfolio/AI Video/2.mp4
+public/portfolio/AI Video/3.mp4
+public/portfolio/Cafes & Restaurant edits/3.mp4
+public/portfolio/Cafes & Restaurant edits/5.mp4
+public/portfolio/Cafes & Restaurant edits/atlantic cafe edited video.mp4
+public/portfolio/Real State/6.mp4
+public/portfolio/VFX Editing/1.mp4

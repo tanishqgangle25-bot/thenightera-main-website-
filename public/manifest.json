@@ -1,0 +1,20 @@
+{
+  "name": "thenightera",
+  "short_name": "thenightera",
+  "description": "Best Marketing Agency in Indore — Social Media Management, Web Development & PR. We build brands that earn attention.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ECE6D8",
+  "orientation": "portrait-primary",
+  "lang": "en-IN",
+  "categories": ["business", "marketing", "design"],
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

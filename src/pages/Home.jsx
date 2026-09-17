@@ -131,7 +131,10 @@ function ServiceCard3D({ s, i }) {
     <div ref={ref} style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', perspective: '2000px' }}>
       
       {/* Scroll Fly-In Layer */}
-      <motion.div style={{ rotateX, z, opacity, width: '85vw', maxWidth: '1200px', height: '70vh', transformStyle: 'preserve-3d' }}>
+      <motion.div 
+        className="w-[90vw] md:w-[85vw] max-w-[1200px] h-[82vh] md:h-[70vh]"
+        style={{ rotateX, z, opacity, transformStyle: 'preserve-3d' }}
+      >
         
         {/* Mouse Parallax Layer */}
         <motion.div 
@@ -147,15 +150,15 @@ function ServiceCard3D({ s, i }) {
           }}
         >
           {/* Text Layer - pops out */}
-          <div className="flex-1 p-8 md:p-20 flex flex-col justify-center" style={{ transform: 'translateZ(60px)' }}>
-            <p style={{ fontSize: '0.85rem', fontFamily: 'monospace', color: '#A39670', marginBottom: '1.5rem', letterSpacing: '0.1em' }}>0{i+1} / 02</p>
-            <h3 style={{ fontSize: 'clamp(2.5rem, 4vw, 4rem)', fontWeight: 800, letterSpacing: '-0.04em', color: '#1d1d1f', lineHeight: 1.0, marginBottom: '2rem' }}>{s.title}</h3>
-            <p style={{ fontSize: '1.15rem', color: '#4D4828', lineHeight: 1.7, maxWidth: '450px' }}>{s.sub}</p>
+          <div className="p-6 md:p-20 flex flex-col justify-center shrink-0" style={{ transform: 'translateZ(60px)' }}>
+            <p style={{ fontSize: '0.85rem', fontFamily: 'monospace', color: '#A39670', marginBottom: '1rem', letterSpacing: '0.1em' }}>0{i+1} / 02</p>
+            <h3 style={{ fontSize: 'clamp(2.5rem, 4vw, 4rem)', fontWeight: 800, letterSpacing: '-0.04em', color: '#1d1d1f', lineHeight: 1.0, marginBottom: '1rem' }}>{s.title}</h3>
+            <p style={{ fontSize: '1rem', color: '#4D4828', lineHeight: 1.6, maxWidth: '450px' }}>{s.sub}</p>
           </div>
 
           {/* Image Layer - pops out even further */}
-          <div className="flex-1 relative m-4 md:m-8 rounded-[20px] md:rounded-[30px] overflow-hidden" style={{ transform: 'translateZ(100px) scale(0.95)' }}>
-            <img src={s.img} alt={s.title} style={{ width: '100%', height: '100%', objectFit: 'cover', boxShadow: '0 30px 60px rgba(0,0,0,0.15)' }} draggable={false} />
+          <div className="flex-1 relative mx-4 mb-4 md:m-8 rounded-[20px] md:rounded-[30px] overflow-hidden" style={{ transform: 'translateZ(100px) scale(0.95)' }}>
+            <img src={s.img} alt={s.title} className="w-full h-full object-cover md:object-cover object-top" style={{ boxShadow: '0 30px 60px rgba(0,0,0,0.15)' }} draggable={false} />
           </div>
         </motion.div>
 

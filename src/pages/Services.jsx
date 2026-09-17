@@ -136,16 +136,7 @@ function ServicePanel({ s, index }) {
       }} />
 
       {/* Content wrapper */}
-      <div style={{
-        position: 'relative', zIndex: 2,
-        maxWidth: '1200px', margin: '0 auto',
-        padding: 'clamp(5rem,12vh,9rem) 2.5rem',
-        width: '100%',
-        display: 'grid',
-        gridTemplateColumns: '1fr 1fr',
-        gap: 'clamp(3rem, 8vw, 7rem)',
-        alignItems: 'center',
-      }}>
+      <div className="relative z-[2] max-w-[1200px] mx-auto px-6 md:px-10 py-16 md:py-[clamp(5rem,12vh,9rem)] w-full grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-[clamp(3rem,8vw,7rem)] items-center">
 
         {/* LEFT: Text Content */}
         <div>

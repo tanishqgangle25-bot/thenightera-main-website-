@@ -39,14 +39,7 @@ function ScrubQuote({ t, i }) {
   }, [])
 
   return (
-    <div ref={ref} style={{
-      padding: '4rem 0',
-      borderBottom: '1px solid #ECE6D8',
-      display: 'grid',
-      gridTemplateColumns: '220px 1fr',
-      gap: '4rem',
-      alignItems: 'flex-start',
-    }}>
+    <div ref={ref} className="py-10 md:py-16 border-b border-[#ECE6D8] grid grid-cols-1 md:grid-cols-[220px_1fr] gap-6 md:gap-16 items-start">
       {/* Attribution */}
       <div style={{ paddingTop: '0.4rem' }}>
         <p style={{ fontSize: '0.9rem', fontWeight: 600, color: '#1d1d1f' }}>{t.name}</p>
@@ -60,10 +53,8 @@ function ScrubQuote({ t, i }) {
           fontWeight: 500, lineHeight: 1.5,
           letterSpacing: '-0.02em', color: '#1d1d1f',
         }}>
-          "{t.quote.split(' ').map((w, j) => (
-            <span key={j} className="qw" style={{ display: 'inline-block', marginRight: '0.28em' }}>
-              {w}
-            </span>
+          "{t.quote.split(' ').map((w, j, arr) => (
+            <span key={j}><span className="qw" style={{ opacity: 0.08 }}>{w}</span>{j !== arr.length - 1 ? ' ' : ''}</span>
           ))}"
         </p>
       </blockquote>

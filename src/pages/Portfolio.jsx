@@ -62,6 +62,23 @@ function Gallery3D({ category, videos, onBack }) {
     })
   }, [activeIndex, theta])
 
+  // Handle Touch Swipes for Mobile
+  const [touchStart, setTouchStart] = useState(null)
+  const [touchEnd, setTouchEnd] = useState(null)
+  const minSwipeDistance = 40 
+
+  const handleTouchStart = (e) => {
+    setTouchEnd(null)
+    setTouchStart(e.targetTouches[0].clientY)
+  }
+  const handleTouchMove = (e) => setTouchEnd(e.targetTouches[0].clientY)
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return
+    const distance = touchStart - touchEnd
+    if (distance > minSwipeDistance) setActiveIndex(prev => (prev + 1) % total) // Swipe Up
+    if (distance < -minSwipeDistance) setActiveIndex(prev => (prev - 1 + total) % total) // Swipe Down
+  }
+
   // Handle wheel scrolling
   useEffect(() => {
     const handleWheel = (e) => {
@@ -83,6 +100,9 @@ function Gallery3D({ category, videos, onBack }) {
   return (
     <motion.div
       ref={containerRef}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -136,7 +156,7 @@ function Gallery3D({ category, videos, onBack }) {
             onClick={() => setActiveIndex(i)}
             style={{
               position: 'absolute', inset: 0,
-              background: '#0a0a0a', // Darker background to blend letterboxing
+              background: '#0a0a0a', 
               borderRadius: '16px',
               overflow: 'hidden',
               cursor: 'pointer',
@@ -145,6 +165,13 @@ function Gallery3D({ category, videos, onBack }) {
               display: 'flex', alignItems: 'center', justifyContent: 'center'
             }}
           >
+            {/* Loading Skeleton */}
+            <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none opacity-50">
+               <div className="w-6 h-6 border-2 border-white/20 border-t-white/80 rounded-full animate-spin mb-3" />
+               <span className="text-[0.6rem] tracking-[0.2em] uppercase text-white/50">Loading Video...</span>
+            </div>
+            
+            {/* Video Player */}
             <video
               ref={el => videoRefs.current[i] = el}
               src={vidSrc}
@@ -156,7 +183,9 @@ function Gallery3D({ category, videos, onBack }) {
               aria-label={`Video showcasing ${category} work`}
               style={{
                 width: '100%', height: '100%',
-                objectFit: 'contain' // Ensures full ratio without cropping
+                objectFit: 'contain', 
+                position: 'relative',
+                zIndex: 10
               }}
             />
           </div>
@@ -167,9 +196,9 @@ function Gallery3D({ category, videos, onBack }) {
       <div style={{
         position: 'absolute', bottom: '3rem',
         color: '#ECE6D8', fontSize: '0.7rem', letterSpacing: '0.2em', textTransform: 'uppercase',
-        opacity: 0.5
+        opacity: 0.5, textAlign: 'center'
       }}>
-        Scroll to rotate
+        Scroll or Swipe to rotate
       </div>
     </motion.div>
   )

@@ -225,7 +225,7 @@ function VaultArchGallery() {
         <motion.div 
           style={{ 
             position: 'absolute', 
-            bottom: '-70vh', // Push the center of the wheel far below the screen
+            bottom: 'calc(-1 * min(70vh, 90vw))', // Responsive bottom push
             width: '0px', 
             height: '0px', 
             rotate: wheelRotation,
@@ -242,7 +242,7 @@ function VaultArchGallery() {
                 key={i} 
                 style={{ 
                   position: 'absolute', 
-                  transform: `rotate(${angle}deg) translateY(-130vh)`,
+                  transform: `rotate(${angle}deg) translateY(calc(-1 * min(110vh, 140vw)))`,
                   transformOrigin: 'bottom center',
                 }}
               >

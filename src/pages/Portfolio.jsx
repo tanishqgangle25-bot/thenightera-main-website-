@@ -249,36 +249,55 @@ export default function Portfolio() {
               Visual<br/>Playground.
             </h1>
 
-            <a 
-              href="https://drive.google.com/drive/folders/1_yH9ofbtMNfJeeMkE9u9LgWWinoh4hSh" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.75rem',
-                padding: '1rem 1.5rem',
-                marginBottom: '4rem',
-                background: '#1d1d1f',
-                color: '#fff',
-                borderRadius: '100px',
-                textDecoration: 'none',
-                fontSize: '0.85rem',
-                fontWeight: 600,
-                letterSpacing: '0.05em',
-                textTransform: 'uppercase',
-                transition: 'background 0.3s ease'
-              }}
-              onMouseEnter={(e) => e.currentTarget.style.background = '#7D2027'}
-              onMouseLeave={(e) => e.currentTarget.style.background = '#1d1d1f'}
-            >
-              <span>View Heavy VFX / AI Videos</span>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                <polyline points="15 3 21 3 21 9"></polyline>
-                <line x1="10" y1="14" x2="21" y2="3"></line>
-              </svg>
-            </a>
+            <div className="flex flex-col md:flex-row gap-4 mb-16">
+              <a 
+                href="https://drive.google.com/drive/folders/1hX4afQ-7O19Du79x8JipGl3XH4gi_Y4P" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                style={{
+                  display: 'inline-flex', alignItems: 'center', gap: '0.75rem',
+                  padding: '1.1rem 1.8rem',
+                  background: 'linear-gradient(135deg, #1d1d1f, #3a3a3c)',
+                  color: '#ECE6D8',
+                  borderRadius: '100px',
+                  textDecoration: 'none',
+                  fontSize: '0.9rem', fontWeight: 700, letterSpacing: '0.05em', textTransform: 'uppercase',
+                  boxShadow: '0 15px 30px rgba(0,0,0,0.25), inset 0 1px 1px rgba(255,255,255,0.15)',
+                  transform: 'translateZ(0)',
+                  transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                  justifyContent: 'center'
+                }}
+                onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = '0 25px 40px rgba(0,0,0,0.35), inset 0 1px 1px rgba(255,255,255,0.15)'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 15px 30px rgba(0,0,0,0.25), inset 0 1px 1px rgba(255,255,255,0.15)'; }}
+              >
+                <span>View Our Whole Vault</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path>
+                </svg>
+              </a>
+
+              <a 
+                href="https://drive.google.com/drive/folders/1_yH9ofbtMNfJeeMkE9u9LgWWinoh4hSh" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                style={{
+                  display: 'inline-flex', alignItems: 'center', gap: '0.75rem',
+                  padding: '1.1rem 1.8rem',
+                  background: 'transparent',
+                  color: '#1d1d1f',
+                  border: '1px solid rgba(29,29,31,0.2)',
+                  borderRadius: '100px',
+                  textDecoration: 'none',
+                  fontSize: '0.85rem', fontWeight: 600, letterSpacing: '0.05em', textTransform: 'uppercase',
+                  transition: 'background 0.3s ease, color 0.3s ease',
+                  justifyContent: 'center'
+                }}
+                onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(29,29,31,0.05)'; e.currentTarget.style.border = '1px solid rgba(29,29,31,0.4)'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.border = '1px solid rgba(29,29,31,0.2)'; }}
+              >
+                <span>Heavy VFX / AI Videos</span>
+              </a>
+            </div>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
               {portfolioData.map((data) => (

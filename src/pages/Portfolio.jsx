@@ -69,14 +69,14 @@ function Gallery3D({ category, videos, onBack }) {
 
   const handleTouchStart = (e) => {
     setTouchEnd(null)
-    setTouchStart(e.targetTouches[0].clientY)
+    setTouchStart(e.targetTouches[0].clientX)
   }
-  const handleTouchMove = (e) => setTouchEnd(e.targetTouches[0].clientY)
+  const handleTouchMove = (e) => setTouchEnd(e.targetTouches[0].clientX)
   const handleTouchEnd = () => {
     if (!touchStart || !touchEnd) return
     const distance = touchStart - touchEnd
-    if (distance > minSwipeDistance) setActiveIndex(prev => (prev + 1) % total) // Swipe Up
-    if (distance < -minSwipeDistance) setActiveIndex(prev => (prev - 1 + total) % total) // Swipe Down
+    if (distance > minSwipeDistance) setActiveIndex(prev => (prev + 1) % total) // Swipe Left (Next)
+    if (distance < -minSwipeDistance) setActiveIndex(prev => (prev - 1 + total) % total) // Swipe Right (Prev)
   }
 
   // Handle wheel scrolling
@@ -175,10 +175,10 @@ function Gallery3D({ category, videos, onBack }) {
             <video
               ref={el => videoRefs.current[i] = el}
               src={vidSrc}
-              loop
               muted
               playsInline
               preload="metadata"
+              onEnded={() => setActiveIndex(prev => (prev + 1) % total)}
               title={`Portfolio work for ${category}`}
               aria-label={`Video showcasing ${category} work`}
               style={{
@@ -194,11 +194,12 @@ function Gallery3D({ category, videos, onBack }) {
 
       {/* Scroll Hint */}
       <div style={{
-        position: 'absolute', bottom: '3rem',
-        color: '#ECE6D8', fontSize: '0.7rem', letterSpacing: '0.2em', textTransform: 'uppercase',
-        opacity: 0.5, textAlign: 'center'
+        position: 'absolute', bottom: '2.5rem',
+        color: '#ECE6D8', fontSize: '0.75rem', letterSpacing: '0.2em', textTransform: 'uppercase',
+        opacity: 0.6, textAlign: 'center', width: '100%', padding: '0 1rem'
       }}>
-        Scroll or Swipe to rotate
+        <span className="hidden md:inline">Scroll to rotate</span>
+        <span className="inline md:hidden font-semibold">Swipe to see next Vault Video</span>
       </div>
     </motion.div>
   )

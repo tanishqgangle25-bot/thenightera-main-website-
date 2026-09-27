@@ -133,13 +133,12 @@ export default function Pricing() {
       title: "Starter",
       price: "₹25,000",
       priceDescription: "Starting from",
-      desc: "Perfect for emerging brands needing a professional digital presence.",
+      desc: "For emerging brands establishing a refined digital presence.",
       features: [
-        "6 premium reels & 1 shoot day",
+        "6 signature reels & 1 shoot day",
         "8 Social media posters",
-        "1 Influencer Collab & 1 Model",
         "Content strategy & Monthly calendar",
-        "Story posting & brand themes",
+        "Story design & brand themes",
         "Captions & Color grading",
         "AI-powered content research"
       ],
@@ -151,13 +150,13 @@ export default function Pricing() {
       title: "Growth",
       price: "₹50,000",
       priceDescription: "Starting from",
-      desc: "Our most popular package to scale your brand and command authority.",
+      desc: "Scale your brand and command authority. Our most popular package.",
       isHighlighted: true,
       features: [
-        "12 premium reels & 2 shoot days",
+        "12 signature reels & 2 shoot days",
         "16 Social media posters",
         "1 Influencer Collab & 1 Model",
-        "Story posting & brand themes",
+        "Story design & brand themes",
         "Professional photography & Ad creatives",
         "Social media management & Monthly analytics",
         "Priority delivery",
@@ -171,9 +170,9 @@ export default function Pricing() {
       title: "Elite",
       price: "₹90,000+",
       priceDescription: "Starting from",
-      desc: "The ultimate luxury package. We become your dedicated in-house content team.",
+      desc: "Your dedicated in-house content team. Everything handled, nothing missed.",
       features: [
-        "20 premium reels & Unlimited shoot days",
+        "20 signature reels & up to 6 shoot days",
         "25 Social media posters",
         "Calma access included",
         "Full content team & Brand strategy",
@@ -191,10 +190,10 @@ export default function Pricing() {
   return (
     <div style={{ minHeight: '100dvh', background: '#f5f5f7' }}>
       <SEOHead
-        title="Pricing — Affordable Marketing Packages in Indore"
-        description="Transparent pricing from thenightera — the best marketing agency in Indore. Social media management from ₹25K/mo, web development, PR strategy. No hidden fees. Book a free call."
+        title="Premium Social Media Marketing Packages | thenightera"
+        description="Transparent pricing from thenightera. Social media management from ₹25K/mo, web development, PR strategy. No hidden fees. Book a free call."
         path="/pricing"
-        keywords="marketing pricing indore, social media management cost indore, affordable marketing agency, web development pricing indore, SMM packages indore"
+        keywords="premium marketing packages, social media management, marketing agency, web development pricing, SMM packages"
       />
       <PageHeader
         label="Pricing Plans"
@@ -210,6 +209,13 @@ export default function Pricing() {
             </FadeUp>
           ))}
         </div>
+
+        {/* Retainer Disclaimer */}
+        <FadeUp delay={0.25}>
+          <p style={{ textAlign: 'center', fontSize: '0.8rem', color: '#86868b', marginTop: '2rem', letterSpacing: '0.03em' }}>
+            Ad spend not included. Minimum 3-month commitment on all retainers.
+          </p>
+        </FadeUp>
 
         {/* Unique Request Card */}
         <FadeUp delay={0.3}>

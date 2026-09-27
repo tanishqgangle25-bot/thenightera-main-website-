@@ -39,6 +39,10 @@ const imageVariants = {
 }
 
 function PricingCard({ title, price, priceDescription, desc, features, isHighlighted, imageSrc, imageAlt, useSparkles }) {
+  const [expanded, setExpanded] = useState(false)
+  const visibleCount = 3
+  const hasMore = features.length > visibleCount
+
   return (
     <motion.div
       variants={cardVariants}
@@ -89,18 +93,67 @@ function PricingCard({ title, price, priceDescription, desc, features, isHighlig
         {/* Card Description */}
         <p style={{ fontSize: '0.9rem', color: '#86868b', lineHeight: 1.5, minHeight: '60px', marginTop: '0.5rem' }}>{desc}</p>
 
-        {/* Feature List (Flat list like screenshot) */}
+        {/* Feature List — Collapsible */}
         <div style={{ marginTop: '1.5rem' }}>
           <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            {features.map((f, i) => (
+            {features.slice(0, visibleCount).map((f, i) => (
               <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', fontSize: '0.9rem', color: '#1d1d1f', lineHeight: 1.4 }}>
                 <div style={{ marginTop: '2px', color: isHighlighted ? '#7D2027' : '#1d1d1f' }}>
-                  {useSparkles || f.includes('Calma') || f.includes('Unlimited') ? <Sparkles size={16} /> : <Diamond size={16} />}
+                  {useSparkles || f.includes('Calma') ? <Sparkles size={16} /> : <Diamond size={16} />}
                 </div>
                 <span>{f}</span>
               </li>
             ))}
           </ul>
+
+          <AnimatePresence>
+            {expanded && (
+              <motion.ul
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '1rem', overflow: 'hidden' }}
+              >
+                {features.slice(visibleCount).map((f, i) => (
+                  <motion.li
+                    key={i}
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 8 }}
+                    transition={{ delay: i * 0.04 }}
+                    style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', fontSize: '0.9rem', color: '#1d1d1f', lineHeight: 1.4 }}
+                  >
+                    <div style={{ marginTop: '2px', color: isHighlighted ? '#7D2027' : '#1d1d1f' }}>
+                      {useSparkles || f.includes('Calma') ? <Sparkles size={16} /> : <Diamond size={16} />}
+                    </div>
+                    <span>{f}</span>
+                  </motion.li>
+                ))}
+              </motion.ul>
+            )}
+          </AnimatePresence>
+
+          {hasMore && (
+            <button
+              onClick={() => setExpanded(!expanded)}
+              style={{
+                background: 'none', border: 'none', cursor: 'pointer',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                width: '100%', marginTop: '1rem', padding: '0.4rem 0',
+                color: '#86868b', transition: 'color 0.2s'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.color = '#1d1d1f'}
+              onMouseLeave={(e) => e.currentTarget.style.color = '#86868b'}
+            >
+              <motion.div
+                animate={{ rotate: expanded ? 180 : 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                <ChevronDown size={20} />
+              </motion.div>
+            </button>
+          )}
         </div>
       </div>
       
@@ -155,7 +208,7 @@ export default function Pricing() {
       features: [
         "12 signature reels & 2 shoot days",
         "16 Social media posters",
-        "1 Influencer Collab & 1 Model",
+        "Creator partnership & on-camera talent",
         "Story design & brand themes",
         "Professional photography & Ad creatives",
         "Social media management & Monthly analytics",
@@ -176,7 +229,7 @@ export default function Pricing() {
         "25 Social media posters",
         "Calma access included",
         "Full content team & Brand strategy",
-        "Influencer coordination & Model included",
+        "Creator partnerships & styled talent",
         "Paid ads creatives & Website support",
         "Monthly strategy meetings",
         "Trend prediction & performance reports"

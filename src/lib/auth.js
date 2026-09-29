@@ -57,6 +57,20 @@ export async function getCurrentSession() {
   return data.session
 }
 
+export async function getAuthProviders() {
+  if (!isAuthConfigured) return { google: false, phone: false, email: false }
+  const response = await fetch(`${supabaseUrl}/auth/v1/settings`, {
+    headers: { apikey: supabasePublishableKey },
+  })
+  if (!response.ok) throw new Error('Could not check available sign-in methods.')
+  const settings = await response.json()
+  return {
+    google: Boolean(settings.external?.google),
+    phone: Boolean(settings.external?.phone),
+    email: Boolean(settings.external?.email),
+  }
+}
+
 export function onAuthStateChange(callback) {
   if (!supabase) return () => {}
   const { data } = supabase.auth.onAuthStateChange((_event, session) => callback(session))

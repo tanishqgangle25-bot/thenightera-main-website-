@@ -3,6 +3,7 @@ import { ArrowRight, LogOut, ShieldCheck } from 'lucide-react'
 import SEOHead from '../components/SEOHead'
 import {
   getCurrentSession,
+  getAuthProviders,
   isAuthConfigured,
   onAuthStateChange,
   requestPhoneOtp,
@@ -30,6 +31,7 @@ export default function Login() {
   const [awaitingOtp, setAwaitingOtp] = useState(false)
   const [session, setSession] = useState(null)
   const [checkingSession, setCheckingSession] = useState(true)
+  const [providers, setProviders] = useState({ google: false, phone: false, email: true })
   const [status, setStatus] = useState({ type: '', message: '' })
   const [submitting, setSubmitting] = useState(false)
 
@@ -42,6 +44,10 @@ export default function Login() {
       .catch(error => { if (active) setStatus({ type: 'error', message: error.message }) })
       .finally(() => { if (active) setCheckingSession(false) })
 
+    getAuthProviders()
+      .then(available => { if (active) setProviders(available) })
+      .catch(() => {})
+
     const unsubscribe = onAuthStateChange(current => setSession(current))
     return () => { active = false; unsubscribe() }
   }, [])
@@ -51,6 +57,10 @@ export default function Login() {
   const handleGoogle = async () => {
     setStatus({ type: '', message: '' })
     if (!isAuthConfigured) return showMissingConfig()
+    if (!providers.google) {
+      setStatus({ type: 'info', message: 'Google sign-in is being configured. Use email login for now.' })
+      return
+    }
     setSubmitting(true)
     try {
       await signInWithGoogle()
@@ -67,6 +77,10 @@ export default function Login() {
       return
     }
     if (!isAuthConfigured) return showMissingConfig()
+    if (!providers.phone) {
+      setStatus({ type: 'info', message: 'Mobile OTP is being configured. Use email login for now.' })
+      return
+    }
 
     setSubmitting(true)
     setStatus({ type: '', message: '' })

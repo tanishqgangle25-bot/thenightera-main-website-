@@ -12,6 +12,8 @@ function Gallery3D({ category, videos, onBack }) {
   const containerRef = useRef(null)
   const trackRef = useRef(null)
   const [activeIndex, setActiveIndex] = useState(0)
+  const [isMobile, setIsMobile] = useState(() => window.matchMedia('(max-width: 767px)').matches)
+  const [mediaState, setMediaState] = useState({})
   const videoRefs = useRef([])
   
   const total = videos.length
@@ -20,11 +22,24 @@ function Gallery3D({ category, videos, onBack }) {
   // Angle per item
   const theta = 360 / total
 
+  useEffect(() => {
+    const media = window.matchMedia('(max-width: 767px)')
+    const onChange = (event) => setIsMobile(event.matches)
+    media.addEventListener('change', onChange)
+    return () => media.removeEventListener('change', onChange)
+  }, [])
+
   // Setup initial 3D positions
   useEffect(() => {
     if (!trackRef.current) return
     const cards = trackRef.current.children
     
+    if (isMobile) {
+      gsap.set(trackRef.current, { rotationY: 0, transformStyle: 'flat' })
+      gsap.set(cards, { clearProps: 'transform,transformOrigin,rotationY,z' })
+      return
+    }
+
     gsap.set(trackRef.current, { transformStyle: 'preserve-3d' })
     
     for (let i = 0; i < cards.length; i++) {
@@ -35,32 +50,44 @@ function Gallery3D({ category, videos, onBack }) {
         transformOrigin: `50% 50% ${-radius}px`
       })
     }
-  }, [total, radius, theta])
+  }, [total, radius, theta, isMobile])
 
   // Rotate track when activeIndex changes
   useEffect(() => {
     if (!trackRef.current) return
-    const angle = activeIndex * theta
-    
-    gsap.to(trackRef.current, {
-      rotationY: angle,
-      duration: 1.2,
-      ease: 'power3.out',
-      overwrite: 'auto'
-    })
+    if (!isMobile) {
+      const angle = activeIndex * theta
+      gsap.to(trackRef.current, {
+        rotationY: angle,
+        duration: 0.8,
+        ease: 'power3.out',
+        overwrite: 'auto'
+      })
+    }
 
     // Handle video playback: only play the active video
     videoRefs.current.forEach((vid, i) => {
       if (!vid) return
       if (i === activeIndex) {
-        vid.play().catch(() => {})
-        gsap.to(vid.parentElement, { opacity: 1, scale: 1, duration: 0.5 })
+        if (vid.readyState >= 2) vid.play().catch(() => {})
+        else vid.load()
+        if (!isMobile) gsap.to(vid.parentElement, { opacity: 1, scale: 1, duration: 0.35 })
       } else {
         vid.pause()
-        gsap.to(vid.parentElement, { opacity: 0.4, scale: 0.85, duration: 0.5 })
+        if (!isMobile) gsap.to(vid.parentElement, { opacity: 0.4, scale: 0.85, duration: 0.35 })
       }
     })
-  }, [activeIndex, theta])
+  }, [activeIndex, theta, isMobile])
+
+  const isNearActive = (index) => {
+    if (isMobile) return index === activeIndex
+    const distance = Math.abs(index - activeIndex)
+    return distance <= 1 || distance >= total - 1
+  }
+
+  const updateMediaState = (src, state) => {
+    setMediaState(current => current[src] === state ? current : { ...current, [src]: state })
+  }
 
   // Handle Touch Swipes for Mobile
   const [touchStart, setTouchStart] = useState(null)
@@ -145,9 +172,9 @@ function Gallery3D({ category, videos, onBack }) {
         style={{
           position: 'relative',
           width: 'min(85vw, 340px)', 
-          height: 'min(75vh, 600px)', // Dynamically scale down on small phones
-          transformStyle: 'preserve-3d',
-          transform: `translateZ(${-radius}px)`
+          height: isMobile ? 'min(68vh, 580px)' : 'min(75vh, 600px)',
+          transformStyle: isMobile ? 'flat' : 'preserve-3d',
+          transform: isMobile ? 'none' : `translateZ(${-radius}px)`
         }}
       >
         {videos.map((vidSrc, i) => (
@@ -155,29 +182,42 @@ function Gallery3D({ category, videos, onBack }) {
             key={i}
             onClick={() => setActiveIndex(i)}
             style={{
-              position: 'absolute', inset: 0,
+              position: isMobile ? 'relative' : 'absolute', inset: 0,
+              display: isMobile && i !== activeIndex ? 'none' : 'flex',
               background: '#0a0a0a', 
               borderRadius: '16px',
               overflow: 'hidden',
               cursor: 'pointer',
               boxShadow: '0 30px 60px rgba(0,0,0,0.4)',
               border: '1px solid rgba(255,255,255,0.05)',
-              display: 'flex', alignItems: 'center', justifyContent: 'center'
+              alignItems: 'center', justifyContent: 'center'
             }}
           >
             {/* Loading Skeleton */}
-            <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none opacity-50">
+            {isNearActive(i) && mediaState[vidSrc] !== 'ready' && mediaState[vidSrc] !== 'error' && <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none opacity-50">
                <div className="w-6 h-6 border-2 border-white/20 border-t-white/80 rounded-full animate-spin mb-3" />
                <span className="text-[0.6rem] tracking-[0.2em] uppercase text-white/50">Loading Video...</span>
-            </div>
+            </div>}
+
+            {mediaState[vidSrc] === 'error' && <div className="absolute inset-0 z-20 flex flex-col items-center justify-center gap-3 px-8 text-center text-white/70">
+              <span className="text-sm">This video could not play.</span>
+              <button type="button" onClick={() => { updateMediaState(vidSrc, 'loading'); videoRefs.current[i]?.load() }} className="rounded-full border border-white/30 px-4 py-2 text-xs uppercase tracking-wider">Try again</button>
+            </div>}
             
             {/* Video Player */}
-            <video
+            {isNearActive(i) && <video
               ref={el => videoRefs.current[i] = el}
               src={vidSrc}
               muted
               playsInline
-              preload="metadata"
+              autoPlay={i === activeIndex}
+              controls={i === activeIndex}
+              preload={i === activeIndex ? 'auto' : 'metadata'}
+              onCanPlay={() => {
+                updateMediaState(vidSrc, 'ready')
+                if (i === activeIndex) videoRefs.current[i]?.play().catch(() => {})
+              }}
+              onError={() => updateMediaState(vidSrc, 'error')}
               onEnded={() => setActiveIndex(prev => (prev + 1) % total)}
               title={`Portfolio work for ${category}`}
               aria-label={`Video showcasing ${category} work`}
@@ -187,19 +227,22 @@ function Gallery3D({ category, videos, onBack }) {
                 position: 'relative',
                 zIndex: 10
               }}
-            />
+            />}
           </div>
         ))}
       </div>
 
-      {/* Scroll Hint */}
+      {/* Gallery controls */}
       <div style={{
         position: 'absolute', bottom: '2.5rem',
-        color: '#ECE6D8', fontSize: '0.75rem', letterSpacing: '0.2em', textTransform: 'uppercase',
-        opacity: 0.6, textAlign: 'center', width: '100%', padding: '0 1rem'
+        color: '#ECE6D8', fontSize: '0.75rem', letterSpacing: '0.12em', textTransform: 'uppercase',
+        textAlign: 'center', width: '100%', padding: '0 1rem',
+        display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem'
       }}>
-        <span className="hidden md:inline">Scroll to rotate</span>
-        <span className="inline md:hidden font-semibold">Swipe to see next Vault Video</span>
+        <button type="button" aria-label="Previous video" onClick={() => setActiveIndex(prev => (prev - 1 + total) % total)} className="rounded-full border border-white/25 px-4 py-2 text-white/80">← Prev</button>
+        <span className="hidden md:inline opacity-60">Scroll to rotate</span>
+        <span className="inline md:hidden opacity-60">Swipe</span>
+        <button type="button" aria-label="Next video" onClick={() => setActiveIndex(prev => (prev + 1) % total)} className="rounded-full border border-white/25 px-4 py-2 text-white/80">Next →</button>
       </div>
     </motion.div>
   )

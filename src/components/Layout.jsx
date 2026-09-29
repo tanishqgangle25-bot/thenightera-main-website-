@@ -13,6 +13,7 @@ const links = [
   { label: 'faq',          to: '/faq' },
   { label: 'pricing',      to: '/pricing' },
   { label: 'contact',      to: '/contact' },
+  { label: 'login',        to: '/login' },
 ]
 
 /* ─── Animated NavLink with underline slide ─── */

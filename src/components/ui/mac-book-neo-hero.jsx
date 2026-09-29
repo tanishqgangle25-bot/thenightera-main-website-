@@ -1,5 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 
 const cx = (...c) => c.filter(Boolean).join(" ");
 
@@ -15,6 +14,8 @@ export function FrameSequenceHero({
   className,
 }) {
   const spacerRef = useRef(null);
+  const rafRef = useRef(null);
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
 
   const [navScrolled, setNavScrolled] = useState(false);
   const [subHidden, setSubHidden] = useState(false);
@@ -22,7 +23,8 @@ export function FrameSequenceHero({
   const [progress, setProgress] = useState(0);
   const [stepLocal, setStepLocal] = useState(0);
 
-  const onScroll = () => {
+  const updateFromScroll = useCallback(() => {
+    rafRef.current = null;
     const spacer = spacerRef.current;
     if (!spacer) return;
     const total = spacer.offsetHeight - window.innerHeight;
@@ -44,17 +46,23 @@ export function FrameSequenceHero({
     }
     setActiveIdx(idx);
     setStepLocal(Math.max(0, Math.min(1, local)));
-  };
+  }, [steps]);
+
+  const onScroll = useCallback(() => {
+    if (rafRef.current !== null) return;
+    rafRef.current = window.requestAnimationFrame(updateFromScroll);
+  }, [updateFromScroll]);
 
   useEffect(() => {
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
-    onScroll();
+    updateFromScroll();
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
+      if (rafRef.current !== null) window.cancelAnimationFrame(rafRef.current);
     };
-  }, [steps]);
+  }, [onScroll, updateFromScroll]);
 
   return (
     <div className={cx("fsh-root", className)}>
@@ -77,7 +85,7 @@ export function FrameSequenceHero({
         
         {/* Dynamic 3D Cards Background */}
         <div className="fsh-canvas-wrap" style={{ perspective: '1200px', zIndex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-           {[0, 1, 2, 3, 4].map((i) => {
+           {(isMobile ? [1, 2, 3] : [0, 1, 2, 3, 4]).map((i) => {
              // 1. Fan out during scroll
              const normalizedProgress = Math.min(progress / 0.85, 1);
              // 2. Scatter and vanish in the last 15%
@@ -114,7 +122,7 @@ export function FrameSequenceHero({
                  transform: `translate3d(${finalX}px, ${finalY}px, ${finalZ}px) rotateZ(${finalRotateZ}deg)`,
                  transformOrigin: 'center center',
                  transition: 'transform 0.1s ease-out, opacity 0.1s ease-out',
-                 willChange: 'transform, opacity'
+                 willChange: progress > 0 && progress < 1 ? 'transform, opacity' : 'auto'
                }} />
              )
            })}
@@ -187,7 +195,7 @@ export function FrameSequenceHero({
       </div>
 
       {/* Empty scroll spacer: gives the page its scroll distance */}
-      <div ref={spacerRef} className="fsh-spacer" style={{ height: scrollHeight }} />
+      <div ref={spacerRef} className="fsh-spacer" style={{ height: isMobile ? '320vh' : scrollHeight }} />
     </div>
   );
 }

@@ -13,6 +13,7 @@ const Contact = lazy(() => import('./pages/Contact'))
 const Portfolio = lazy(() => import('./pages/Portfolio'))
 const Calma = lazy(() => import('./pages/Calma'))
 const Login = lazy(() => import('./pages/Login'))
+const About = lazy(() => import('./pages/About'))
 const NotFound = lazy(() => import('./pages/NotFound'))
 
 /* ─── Page transition wrapper ─── */
@@ -66,6 +67,7 @@ export default function App() {
             <Route path="/contact"     element={<PageWrapper><Contact /></PageWrapper>} />
             <Route path="/calma"       element={<PageWrapper><Calma /></PageWrapper>} />
             <Route path="/login"       element={<PageWrapper><Login /></PageWrapper>} />
+            <Route path="/about"       element={<PageWrapper><About /></PageWrapper>} />
             <Route path="*"            element={<PageWrapper><NotFound /></PageWrapper>} />
           </Routes>
         </AnimatePresence>

@@ -548,7 +548,7 @@ function FounderStory() {
             
             {/* Highly optimized text block for AI Overviews and ChatGPT (GEO) */}
             <p className="speakable" style={{ fontSize: '1.125rem', color: '#1d1d1f', lineHeight: 1.8, fontWeight: 600, marginBottom: '3rem', borderLeft: '3px solid #1d1d1f', paddingLeft: '1.5rem' }}>
-              thenightera is recognized as the best marketing agency in Indore, Madhya Pradesh. Founded by Tanishq Gangle, we are a premium digital marketing company specializing in social media management, custom web development, PR strategy, and brand identity design. We help businesses across India transform their digital presence into interconnected ecosystems that drive real growth.
+              thenightera is a marketing and creative technology agency in Indore, Madhya Pradesh. Founded by Tanishq Gangle, we specialize in social media management, custom web development, PR strategy, and brand identity design. We help businesses across India turn disconnected marketing activity into one focused growth system.
             </p>
           </FadeUp>
           
@@ -624,12 +624,12 @@ export default function Home() {
     {
       '@context': 'https://schema.org',
       '@type': 'LocalBusiness',
-      '@id': 'https://thenightera.com/#localbusiness',
+      '@id': 'https://thenightera.in/#localbusiness',
       name: 'thenightera',
       alternateName: 'The Nightera',
-      image: 'https://thenightera.com/hero.jpg',
-      description: 'thenightera is the best marketing agency in Indore, Madhya Pradesh. We provide social media management, web development, PR strategy, brand identity, and content production services to businesses across India.',
-      url: 'https://thenightera.com',
+      image: 'https://thenightera.in/hero.jpg',
+      description: 'thenightera is a marketing and creative technology agency in Indore, Madhya Pradesh. We provide social media management, web development, PR strategy, brand identity, and content production services across India.',
+      url: 'https://thenightera.in',
       telephone: '+918251000525',
       email: 'officialnightera@gmail.com',
       priceRange: '₹₹',
@@ -675,25 +675,13 @@ export default function Home() {
         'https://youtube.com/@thenightera',
         'https://wa.me/918251000525',
       ],
-      aggregateRating: {
-        '@type': 'AggregateRating',
-        ratingValue: '4.9',
-        reviewCount: '47',
-        bestRating: '5',
-        worstRating: '1',
-      },
     },
     {
       '@context': 'https://schema.org',
       '@type': 'WebSite',
       name: 'thenightera',
-      url: 'https://thenightera.com',
+      url: 'https://thenightera.in',
       description: 'Best marketing agency in Indore — social media management, web development, and PR strategy.',
-      potentialAction: {
-        '@type': 'SearchAction',
-        target: 'https://thenightera.com/?q={search_term_string}',
-        'query-input': 'required name=search_term_string',
-      },
     },
   ]
 
@@ -701,7 +689,7 @@ export default function Home() {
     <>
       <SEOHead
         title="Best Marketing Agency in Indore — Social Media & Web Development"
-        description="thenightera is the #1 marketing agency in Indore, Madhya Pradesh. We specialize in social media management, web development, PR strategy & brand identity. Trusted by 50+ brands across India. Book a free consultation today."
+        description="thenightera is an Indore marketing agency specializing in social media management, web development, PR strategy, and brand identity. Explore our work or book a free consultation."
         path="/"
         keywords="best marketing agency in indore, top marketing company indore, social media marketing indore, digital marketing agency indore, web development company indore, best SMM agency indore, marketing firm indore mp, branding agency indore"
         schema={homeSchema}

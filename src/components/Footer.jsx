@@ -23,6 +23,7 @@ export default function Footer() {
         </p>
         <div style={{ display: 'flex', gap: '1.5rem' }}>
           {[
+            { label: 'About', href: '/about' },
             { label: 'Email', href: 'https://mail.google.com/mail/?view=cm&fs=1&to=officialnightera@gmail.com' },
             { label: 'WhatsApp', href: 'https://wa.me/918251000525' },
             { label: 'Instagram', href: 'https://instagram.com/thenightera' },

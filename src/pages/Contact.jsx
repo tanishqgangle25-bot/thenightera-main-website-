@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Mail, MessageCircle, MapPin } from 'lucide-react';
 import { motion } from 'framer-motion';
 import SEOHead from '../components/SEOHead';
+import { track } from '@vercel/analytics';
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', brand: '', message: '' });
@@ -27,6 +28,7 @@ export default function Contact() {
       const data = await res.json();
       
       if (data.success) {
+        track('Contact Form Submitted');
         setSent(true);
       } else {
         alert("Kuch error aaya hai email bhejne me. Please try again.");
@@ -93,6 +95,7 @@ export default function Contact() {
               initial={{ scale: 1 }}
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.2 }}
+              onClick={() => track('Contact Channel Clicked', { channel: card.label })}
               style={{
                 background: '#ffffff',
                 borderRadius: '18px',

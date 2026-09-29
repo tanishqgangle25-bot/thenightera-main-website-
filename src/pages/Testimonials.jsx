@@ -67,16 +67,9 @@ export default function Testimonials() {
   const reviewSchema = {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
-    '@id': 'https://thenightera.com/#localbusiness',
+    '@id': 'https://thenightera.in/#localbusiness',
     name: 'thenightera',
-    url: 'https://thenightera.com',
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.9',
-      reviewCount: String(TESTIMONIALS.length),
-      bestRating: '5',
-      worstRating: '1',
-    },
+    url: 'https://thenightera.in',
     review: TESTIMONIALS.map(t => ({
       '@type': 'Review',
       author: { '@type': 'Organization', name: t.name },

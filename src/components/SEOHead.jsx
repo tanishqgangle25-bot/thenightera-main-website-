@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async'
 
 const SITE_NAME = 'thenightera'
-const BASE_URL = 'https://thenightera.com'
+const BASE_URL = 'https://thenightera.in'
 const DEFAULT_OG_IMAGE = `${BASE_URL}/hero.jpg`
 
 // Real business data — update these if anything changes
@@ -58,6 +58,7 @@ export default function SEOHead({
   const organizationSchema = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
+    '@id': `${BASE_URL}/#organization`,
     name: 'thenightera',
     alternateName: 'The Nightera',
     url: BASE_URL,
@@ -67,9 +68,10 @@ export default function SEOHead({
       width: 512,
       height: 512,
     },
+    legalName: 'thenightera',
     image: `${BASE_URL}/hero.jpg`,
     description:
-      'thenightera is the best marketing agency in Indore, Madhya Pradesh, India. We specialize in social media management, web development, PR strategy, and brand identity for businesses across India.',
+      'thenightera is a marketing and creative technology agency in Indore, Madhya Pradesh. We provide social media management, web development, PR strategy, and brand identity for businesses across India.',
     foundingDate: '2024',
     founder: {
       '@type': 'Person',

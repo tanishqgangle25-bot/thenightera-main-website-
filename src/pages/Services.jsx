@@ -509,7 +509,7 @@ export default function Services() {
       provider: {
         '@type': 'LocalBusiness',
         name: 'thenightera',
-        url: 'https://thenightera.com',
+        url: 'https://thenightera.in',
       },
       areaServed: { '@type': 'City', name: 'Indore' },
       description: 'Complete social media management including content calendar, reel production, PR placements, community engagement. Best SMM agency in Indore.',
@@ -521,7 +521,7 @@ export default function Services() {
       provider: {
         '@type': 'LocalBusiness',
         name: 'thenightera',
-        url: 'https://thenightera.com',
+        url: 'https://thenightera.in',
       },
       areaServed: { '@type': 'City', name: 'Indore' },
       description: 'Custom React & Next.js web development with mobile-first design, SEO optimization, and performance analytics. Best web development company in Indore.',

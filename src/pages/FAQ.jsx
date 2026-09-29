@@ -5,7 +5,7 @@ import SEOHead from '../components/SEOHead'
 
 const FAQS = [
   { q: 'What kind of brands do you work with?', a: 'We work with creators, D2C brands, startups, and established businesses across India. If you are serious about building a brand that earns attention, we are the right partner.' },
-  { q: 'Why is thenightera the best marketing agency in Indore?', a: 'thenightera combines social media management, web development, and PR strategy into one ecosystem. We don\'t just create content — we build intelligent brand systems. Based in Indore, we have helped 50+ brands grow their presence across India.' },
+  { q: 'What makes thenightera different from other marketing agencies in Indore?', a: 'thenightera combines social media management, web development, PR strategy, brand identity, and AI automation in one connected team. This keeps positioning consistent and makes campaigns, websites, and content work toward the same commercial goal.' },
   { q: 'How long does a project take?', a: 'Brand identity projects typically take 3–4 weeks. Full ecosystem builds (brand + web + SMM) are 6–10 weeks.' },
   { q: 'Do you work on a retainer or project basis?', a: 'Both. One-time project work for brand identity and web builds. Monthly retainers for ongoing social media management and PR.' },
   { q: 'What social media management services do you offer in Indore?', a: 'We offer complete social media management including monthly content calendars, reel scripting and production, professional editing, community engagement, influencer collaborations, and strategic PR placements. We manage Instagram, LinkedIn, YouTube, and more.' },

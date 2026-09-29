@@ -4,10 +4,7 @@ Disallow: /api/
 Disallow: /_assets/
 
 # Sitemaps
-Sitemap: https://thenightera.com/sitemap.xml
-
-# Crawl-delay (optional, be polite)
-Crawl-delay: 1
+Sitemap: https://thenightera.in/sitemap.xml
 
 # Google-specific
 User-agent: Googlebot
@@ -15,4 +12,23 @@ Allow: /
 
 # Bing
 User-agent: Bingbot
+Allow: /
+
+# AI search and answer engines
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
 Allow: /

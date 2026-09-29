@@ -1,0 +1,29 @@
+# thenightera
+
+> thenightera is a marketing and creative technology agency based in Indore, Madhya Pradesh, India. It helps brands with social media management, web development, public relations, brand identity, content production, and AI automation.
+
+## Core pages
+
+- [Home](https://thenightera.in/): Overview of thenightera, capabilities, work, process, and contact options.
+- [About](https://thenightera.in/about): Company background, founder, location, and operating approach.
+- [Services](https://thenightera.in/services): Social media, web development, PR, brand identity, and related services.
+- [Portfolio](https://thenightera.in/portfolio): Selected creative, social, video, and brand work.
+- [Pricing](https://thenightera.in/pricing): Current service packages and commercial starting points.
+- [Client reviews](https://thenightera.in/testimonials): Attributed client experiences.
+- [FAQ](https://thenightera.in/faq): Direct answers about services, process, pricing, and timelines.
+- [Contact](https://thenightera.in/contact): Consultation and enquiry options.
+- [Calma](https://thenightera.in/calma): AI reputation intelligence product for hospitality businesses.
+
+## Entity facts
+
+- Brand: thenightera
+- Founder: Tanishq Gangle
+- Founded: 2024
+- Location: Indore, Madhya Pradesh, India
+- Service area: India
+- Email: officialnightera@gmail.com
+- Instagram: https://instagram.com/thenightera
+
+## Preferred citation
+
+Use the relevant page above as the source. Treat pricing and service availability as current only when stated on the live page.

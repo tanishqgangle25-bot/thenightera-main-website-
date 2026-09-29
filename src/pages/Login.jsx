@@ -1,7 +1,16 @@
-import { useState } from 'react'
-import { ArrowRight, ShieldCheck } from 'lucide-react'
+import { useEffect, useState } from 'react'
+import { ArrowRight, LogOut, ShieldCheck } from 'lucide-react'
 import SEOHead from '../components/SEOHead'
-import { continueWithGoogle, isAuthConfigured, requestPhoneOtp } from '../lib/auth'
+import {
+  getCurrentSession,
+  isAuthConfigured,
+  onAuthStateChange,
+  requestPhoneOtp,
+  signInWithEmail,
+  signInWithGoogle,
+  signOut,
+  verifyPhoneOtp,
+} from '../lib/auth'
 
 function GoogleMark() {
   return (
@@ -15,19 +24,40 @@ function GoogleMark() {
 }
 
 export default function Login() {
+  const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
+  const [otp, setOtp] = useState('')
+  const [awaitingOtp, setAwaitingOtp] = useState(false)
+  const [session, setSession] = useState(null)
+  const [checkingSession, setCheckingSession] = useState(true)
   const [status, setStatus] = useState({ type: '', message: '' })
   const [submitting, setSubmitting] = useState(false)
 
   const normalizedPhone = phone.replace(/\D/g, '').slice(-10)
 
-  const showPendingConnection = () => {
-    setStatus({ type: 'info', message: 'Login is ready. Authentication connection is being completed.' })
-  }
+  useEffect(() => {
+    let active = true
+    getCurrentSession()
+      .then(current => { if (active) setSession(current) })
+      .catch(error => { if (active) setStatus({ type: 'error', message: error.message }) })
+      .finally(() => { if (active) setCheckingSession(false) })
 
-  const handleGoogle = () => {
+    const unsubscribe = onAuthStateChange(current => setSession(current))
+    return () => { active = false; unsubscribe() }
+  }, [])
+
+  const showMissingConfig = () => setStatus({ type: 'info', message: 'Supabase environment variables are not configured for this deployment yet.' })
+
+  const handleGoogle = async () => {
     setStatus({ type: '', message: '' })
-    if (!continueWithGoogle()) showPendingConnection()
+    if (!isAuthConfigured) return showMissingConfig()
+    setSubmitting(true)
+    try {
+      await signInWithGoogle()
+    } catch (error) {
+      setStatus({ type: 'error', message: error.message })
+      setSubmitting(false)
+    }
   }
 
   const handlePhone = async (event) => {
@@ -36,17 +66,14 @@ export default function Login() {
       setStatus({ type: 'error', message: 'Enter a valid 10-digit mobile number.' })
       return
     }
-
-    if (!isAuthConfigured()) {
-      showPendingConnection()
-      return
-    }
+    if (!isAuthConfigured) return showMissingConfig()
 
     setSubmitting(true)
     setStatus({ type: '', message: '' })
     try {
       await requestPhoneOtp(`+91${normalizedPhone}`)
-      setStatus({ type: 'success', message: 'OTP sent. Check your phone to continue.' })
+      setAwaitingOtp(true)
+      setStatus({ type: 'success', message: 'OTP sent. Enter the 6-digit code.' })
     } catch (error) {
       setStatus({ type: 'error', message: error.message })
     } finally {
@@ -54,14 +81,71 @@ export default function Login() {
     }
   }
 
+  const handleEmail = async (event) => {
+    event.preventDefault()
+    if (!/^\S+@\S+\.\S+$/.test(email)) {
+      setStatus({ type: 'error', message: 'Enter a valid email address.' })
+      return
+    }
+    if (!isAuthConfigured) return showMissingConfig()
+
+    setSubmitting(true)
+    setStatus({ type: '', message: '' })
+    try {
+      await signInWithEmail(email.trim())
+      setStatus({ type: 'success', message: 'Secure sign-in link sent. Check your email.' })
+    } catch (error) {
+      setStatus({ type: 'error', message: error.message })
+    } finally {
+      setSubmitting(false)
+    }
+  }
+
+  const handleOtp = async (event) => {
+    event.preventDefault()
+    const token = otp.replace(/\D/g, '')
+    if (token.length !== 6) {
+      setStatus({ type: 'error', message: 'Enter the 6-digit OTP.' })
+      return
+    }
+
+    setSubmitting(true)
+    setStatus({ type: '', message: '' })
+    try {
+      const { session: nextSession } = await verifyPhoneOtp(`+91${normalizedPhone}`, token)
+      setSession(nextSession)
+      setStatus({ type: 'success', message: 'Signed in successfully.' })
+    } catch (error) {
+      setStatus({ type: 'error', message: error.message })
+    } finally {
+      setSubmitting(false)
+    }
+  }
+
+  const handleSignOut = async () => {
+    setSubmitting(true)
+    try {
+      await signOut()
+      setSession(null)
+      setAwaitingOtp(false)
+      setOtp('')
+      setStatus({ type: '', message: '' })
+    } catch (error) {
+      setStatus({ type: 'error', message: error.message })
+    } finally {
+      setSubmitting(false)
+    }
+  }
+
+  const statusClass = status.type === 'error'
+    ? 'bg-red-50 text-red-700'
+    : status.type === 'success'
+      ? 'bg-emerald-50 text-emerald-700'
+      : 'bg-amber-50 text-amber-800'
+
   return (
     <div className="min-h-[calc(100dvh-52px)] bg-[#FAF7F2] px-5 py-12 md:py-20">
-      <SEOHead
-        title="Client Login"
-        description="Sign in to your thenightera client account using Google or your mobile number."
-        path="/login"
-        noIndex
-      />
+      <SEOHead title="Client Login" description="Sign in to your thenightera client account using Google or your mobile number." path="/login" noIndex />
 
       <div className="mx-auto grid max-w-5xl overflow-hidden rounded-[28px] border border-black/10 bg-white shadow-[0_30px_90px_rgba(29,29,31,0.10)] md:grid-cols-[1.05fr_0.95fr]">
         <section className="relative hidden min-h-[620px] overflow-hidden bg-[#1d1d1f] p-12 text-white md:flex md:flex-col md:justify-between">
@@ -76,57 +160,67 @@ export default function Login() {
         </section>
 
         <section className="flex min-h-[560px] flex-col justify-center p-7 sm:p-12 md:p-14">
-          <div className="mb-10 md:hidden">
-            <p className="text-sm font-semibold text-[#372713]">thenightera</p>
-          </div>
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#A39670]">Welcome back</p>
-          <h2 className="mt-3 text-4xl font-semibold tracking-[-0.045em] text-[#1d1d1f]">Sign in</h2>
-          <p className="mt-3 text-sm leading-6 text-[#6e6e73]">Use Google or receive a secure one-time code on your phone.</p>
+          <div className="mb-10 md:hidden"><p className="text-sm font-semibold text-[#372713]">thenightera</p></div>
 
-          <button
-            type="button"
-            onClick={handleGoogle}
-            className="mt-9 flex min-h-12 w-full items-center justify-center gap-3 rounded-full border border-black/15 bg-white px-5 text-sm font-semibold text-[#1d1d1f] transition hover:border-black/30 hover:bg-black/[0.02] focus:outline-none focus:ring-2 focus:ring-[#7D2027]/30"
-          >
-            <GoogleMark /> Continue with Google
-          </button>
-
-          <div className="my-7 flex items-center gap-4 text-[11px] uppercase tracking-[0.18em] text-black/35">
-            <span className="h-px flex-1 bg-black/10" /> or use mobile <span className="h-px flex-1 bg-black/10" />
-          </div>
-
-          <form onSubmit={handlePhone}>
-            <label htmlFor="phone" className="mb-2 block text-sm font-medium text-[#1d1d1f]">Mobile number</label>
-            <div className="flex min-h-12 overflow-hidden rounded-2xl border border-black/15 bg-[#FAFAF8] focus-within:border-[#7D2027]/50 focus-within:ring-2 focus-within:ring-[#7D2027]/10">
-              <span className="flex items-center border-r border-black/10 px-4 text-sm text-[#6e6e73]">+91</span>
-              <input
-                id="phone"
-                type="tel"
-                inputMode="numeric"
-                autoComplete="tel-national"
-                value={phone}
-                onChange={(event) => setPhone(event.target.value)}
-                placeholder="98765 43210"
-                className="min-w-0 flex-1 bg-transparent px-4 text-base text-[#1d1d1f] outline-none placeholder:text-black/25"
-              />
+          {checkingSession ? (
+            <p className="text-sm text-[#6e6e73]">Checking secure session…</p>
+          ) : session ? (
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#A39670]">Signed in</p>
+              <h2 className="mt-3 text-4xl font-semibold tracking-[-0.045em] text-[#1d1d1f]">Welcome back.</h2>
+              <p className="mt-4 break-all text-sm leading-6 text-[#6e6e73]">{session.user.email || session.user.phone || 'Authenticated client'}</p>
+              <button type="button" onClick={handleSignOut} disabled={submitting} className="mt-8 flex min-h-12 w-full items-center justify-center gap-2 rounded-full border border-black/15 bg-white px-5 text-sm font-semibold text-[#1d1d1f] transition hover:bg-black/[0.03] disabled:opacity-60">
+                <LogOut size={16} /> Sign out
+              </button>
             </div>
+          ) : (
+            <>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#A39670]">Welcome back</p>
+              <h2 className="mt-3 text-4xl font-semibold tracking-[-0.045em] text-[#1d1d1f]">Sign in</h2>
+              <p className="mt-3 text-sm leading-6 text-[#6e6e73]">Use Google, email, or receive a secure one-time code on your phone.</p>
 
-            <button
-              type="submit"
-              disabled={submitting}
-              className="mt-4 flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-[#1d1d1f] px-5 text-sm font-semibold text-white transition hover:bg-black disabled:cursor-wait disabled:opacity-60 focus:outline-none focus:ring-2 focus:ring-[#7D2027]/30"
-            >
-              {submitting ? 'Sending…' : 'Continue with phone'} <ArrowRight size={16} aria-hidden="true" />
-            </button>
-          </form>
+              <button type="button" onClick={handleGoogle} disabled={submitting} className="mt-9 flex min-h-12 w-full items-center justify-center gap-3 rounded-full border border-black/15 bg-white px-5 text-sm font-semibold text-[#1d1d1f] transition hover:border-black/30 hover:bg-black/[0.02] disabled:opacity-60 focus:outline-none focus:ring-2 focus:ring-[#7D2027]/30">
+                <GoogleMark /> Continue with Google
+              </button>
 
-          {status.message && (
-            <p role="status" className={`mt-4 rounded-xl px-4 py-3 text-sm ${status.type === 'error' ? 'bg-red-50 text-red-700' : status.type === 'success' ? 'bg-emerald-50 text-emerald-700' : 'bg-amber-50 text-amber-800'}`}>
-              {status.message}
-            </p>
+              <div className="my-6 flex items-center gap-4 text-[11px] uppercase tracking-[0.18em] text-black/35"><span className="h-px flex-1 bg-black/10" /> or use email <span className="h-px flex-1 bg-black/10" /></div>
+
+              <form onSubmit={handleEmail}>
+                <label htmlFor="email" className="mb-2 block text-sm font-medium text-[#1d1d1f]">Email address</label>
+                <input id="email" type="email" autoComplete="email" value={email} onChange={(event) => setEmail(event.target.value)} placeholder="you@gmail.com" className="min-h-12 w-full rounded-2xl border border-black/15 bg-[#FAFAF8] px-4 text-base text-[#1d1d1f] outline-none placeholder:text-black/25 focus:border-[#7D2027]/50 focus:ring-2 focus:ring-[#7D2027]/10" />
+                <button type="submit" disabled={submitting} className="mt-4 flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-[#1d1d1f] px-5 text-sm font-semibold text-white transition hover:bg-black disabled:cursor-wait disabled:opacity-60 focus:outline-none focus:ring-2 focus:ring-[#7D2027]/30">
+                  {submitting ? 'Sending…' : 'Email me a sign-in link'} <ArrowRight size={16} />
+                </button>
+              </form>
+
+              <div className="my-6 flex items-center gap-4 text-[11px] uppercase tracking-[0.18em] text-black/35"><span className="h-px flex-1 bg-black/10" /> or use mobile <span className="h-px flex-1 bg-black/10" /></div>
+
+              {!awaitingOtp ? (
+                <form onSubmit={handlePhone}>
+                  <label htmlFor="phone" className="mb-2 block text-sm font-medium text-[#1d1d1f]">Mobile number</label>
+                  <div className="flex min-h-12 overflow-hidden rounded-2xl border border-black/15 bg-[#FAFAF8] focus-within:border-[#7D2027]/50 focus-within:ring-2 focus-within:ring-[#7D2027]/10">
+                    <span className="flex items-center border-r border-black/10 px-4 text-sm text-[#6e6e73]">+91</span>
+                    <input id="phone" type="tel" inputMode="numeric" autoComplete="tel-national" value={phone} onChange={(event) => setPhone(event.target.value)} placeholder="98765 43210" className="min-w-0 flex-1 bg-transparent px-4 text-base text-[#1d1d1f] outline-none placeholder:text-black/25" />
+                  </div>
+                  <button type="submit" disabled={submitting} className="mt-4 flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-[#1d1d1f] px-5 text-sm font-semibold text-white transition hover:bg-black disabled:cursor-wait disabled:opacity-60 focus:outline-none focus:ring-2 focus:ring-[#7D2027]/30">
+                    {submitting ? 'Sending…' : 'Continue with phone'} <ArrowRight size={16} />
+                  </button>
+                </form>
+              ) : (
+                <form onSubmit={handleOtp}>
+                  <label htmlFor="otp" className="mb-2 block text-sm font-medium text-[#1d1d1f]">One-time code</label>
+                  <input id="otp" type="text" inputMode="numeric" autoComplete="one-time-code" maxLength={6} value={otp} onChange={(event) => setOtp(event.target.value.replace(/\D/g, '').slice(0, 6))} placeholder="••••••" className="min-h-12 w-full rounded-2xl border border-black/15 bg-[#FAFAF8] px-4 text-center text-xl tracking-[0.35em] text-[#1d1d1f] outline-none focus:border-[#7D2027]/50 focus:ring-2 focus:ring-[#7D2027]/10" />
+                  <button type="submit" disabled={submitting} className="mt-4 flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-[#1d1d1f] px-5 text-sm font-semibold text-white transition hover:bg-black disabled:cursor-wait disabled:opacity-60">
+                    {submitting ? 'Verifying…' : 'Verify and sign in'} <ArrowRight size={16} />
+                  </button>
+                  <button type="button" onClick={() => { setAwaitingOtp(false); setOtp(''); setStatus({ type: '', message: '' }) }} className="mt-3 w-full text-sm text-[#6e6e73] hover:text-[#1d1d1f]">Use another number</button>
+                </form>
+              )}
+
+              {status.message && <p role="status" className={`mt-4 rounded-xl px-4 py-3 text-sm ${statusClass}`}>{status.message}</p>}
+              <p className="mt-8 flex items-center justify-center gap-2 text-xs text-[#86868b]"><ShieldCheck size={14} /> Secure access for thenightera clients.</p>
+            </>
           )}
-
-          <p className="mt-8 flex items-center justify-center gap-2 text-xs text-[#86868b]"><ShieldCheck size={14} /> Secure access for thenightera clients.</p>
         </section>
       </div>
     </div>

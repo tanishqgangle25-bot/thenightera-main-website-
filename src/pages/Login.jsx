@@ -6,11 +6,9 @@ import {
   getAuthProviders,
   isAuthConfigured,
   onAuthStateChange,
-  requestPhoneOtp,
   signInWithEmail,
   signInWithGoogle,
   signOut,
-  verifyPhoneOtp,
 } from '../lib/auth'
 
 function GoogleMark() {
@@ -26,16 +24,11 @@ function GoogleMark() {
 
 export default function Login() {
   const [email, setEmail] = useState('')
-  const [phone, setPhone] = useState('')
-  const [otp, setOtp] = useState('')
-  const [awaitingOtp, setAwaitingOtp] = useState(false)
   const [session, setSession] = useState(null)
   const [checkingSession, setCheckingSession] = useState(true)
-  const [providers, setProviders] = useState({ google: false, phone: false, email: true })
+  const [providers, setProviders] = useState({ google: false, email: true })
   const [status, setStatus] = useState({ type: '', message: '' })
   const [submitting, setSubmitting] = useState(false)
-
-  const normalizedPhone = phone.replace(/\D/g, '').slice(-10)
 
   useEffect(() => {
     let active = true
@@ -70,31 +63,6 @@ export default function Login() {
     }
   }
 
-  const handlePhone = async (event) => {
-    event.preventDefault()
-    if (normalizedPhone.length !== 10) {
-      setStatus({ type: 'error', message: 'Enter a valid 10-digit mobile number.' })
-      return
-    }
-    if (!isAuthConfigured) return showMissingConfig()
-    if (!providers.phone) {
-      setStatus({ type: 'info', message: 'Mobile OTP is being configured. Use email login for now.' })
-      return
-    }
-
-    setSubmitting(true)
-    setStatus({ type: '', message: '' })
-    try {
-      await requestPhoneOtp(`+91${normalizedPhone}`)
-      setAwaitingOtp(true)
-      setStatus({ type: 'success', message: 'OTP sent. Enter the 6-digit code.' })
-    } catch (error) {
-      setStatus({ type: 'error', message: error.message })
-    } finally {
-      setSubmitting(false)
-    }
-  }
-
   const handleEmail = async (event) => {
     event.preventDefault()
     if (!/^\S+@\S+\.\S+$/.test(email)) {
@@ -115,34 +83,11 @@ export default function Login() {
     }
   }
 
-  const handleOtp = async (event) => {
-    event.preventDefault()
-    const token = otp.replace(/\D/g, '')
-    if (token.length !== 6) {
-      setStatus({ type: 'error', message: 'Enter the 6-digit OTP.' })
-      return
-    }
-
-    setSubmitting(true)
-    setStatus({ type: '', message: '' })
-    try {
-      const { session: nextSession } = await verifyPhoneOtp(`+91${normalizedPhone}`, token)
-      setSession(nextSession)
-      setStatus({ type: 'success', message: 'Signed in successfully.' })
-    } catch (error) {
-      setStatus({ type: 'error', message: error.message })
-    } finally {
-      setSubmitting(false)
-    }
-  }
-
   const handleSignOut = async () => {
     setSubmitting(true)
     try {
       await signOut()
       setSession(null)
-      setAwaitingOtp(false)
-      setOtp('')
       setStatus({ type: '', message: '' })
     } catch (error) {
       setStatus({ type: 'error', message: error.message })
@@ -159,7 +104,7 @@ export default function Login() {
 
   return (
     <div className="min-h-[calc(100dvh-52px)] bg-[#FAF7F2] px-5 py-12 md:py-20">
-      <SEOHead title="Client Login" description="Sign in to your thenightera client account using Google or your mobile number." path="/login" noIndex />
+      <SEOHead title="Client Login" description="Join the thenightera ecosystem and access your client workspace." path="/login" noIndex />
 
       <div className="mx-auto grid max-w-5xl overflow-hidden rounded-[28px] border border-black/10 bg-white shadow-[0_30px_90px_rgba(29,29,31,0.10)] md:grid-cols-[1.05fr_0.95fr]">
         <section className="relative hidden min-h-[620px] overflow-hidden bg-[#1d1d1f] p-12 text-white md:flex md:flex-col md:justify-between">
@@ -167,9 +112,9 @@ export default function Login() {
           <div className="absolute -bottom-24 -left-20 h-72 w-72 rounded-full bg-[#ff6f9c] opacity-50 blur-3xl" />
           <p className="relative text-sm font-semibold tracking-[-0.02em]">thenightera</p>
           <div className="relative">
-            <p className="mb-5 text-xs uppercase tracking-[0.22em] text-white/50">Client access</p>
-            <h1 className="max-w-md text-5xl font-semibold leading-[0.96] tracking-[-0.055em]">Your brand workspace, in one place.</h1>
-            <p className="mt-6 max-w-sm text-base leading-7 text-white/60">Projects, approvals, performance, and communication—built around work that compounds.</p>
+            <p className="mb-5 text-xs uppercase tracking-[0.22em] text-white/50">The thenightera ecosystem</p>
+            <h1 className="max-w-md text-5xl font-semibold leading-[0.96] tracking-[-0.055em]">Everything your brand needs. One place.</h1>
+            <p className="mt-6 max-w-sm text-base leading-7 text-white/60">Join a workspace where ideas become launches, approvals move faster, and growth stays visible.</p>
           </div>
         </section>
 
@@ -189,15 +134,15 @@ export default function Login() {
             </div>
           ) : (
             <>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#A39670]">Welcome back</p>
-              <h2 className="mt-3 text-4xl font-semibold tracking-[-0.045em] text-[#1d1d1f]">Sign in</h2>
-              <p className="mt-3 text-sm leading-6 text-[#6e6e73]">Use Google, email, or receive a secure one-time code on your phone.</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#A39670]">Your workspace awaits</p>
+              <h2 className="mt-3 text-4xl font-semibold tracking-[-0.045em] text-[#1d1d1f]">Join the ecosystem.</h2>
+              <p className="mt-3 text-sm leading-6 text-[#6e6e73]">One secure sign-in. Every project, approval, and result.</p>
 
               <button type="button" onClick={handleGoogle} disabled={submitting} className="mt-9 flex min-h-12 w-full items-center justify-center gap-3 rounded-full border border-black/15 bg-white px-5 text-sm font-semibold text-[#1d1d1f] transition hover:border-black/30 hover:bg-black/[0.02] disabled:opacity-60 focus:outline-none focus:ring-2 focus:ring-[#7D2027]/30">
                 <GoogleMark /> Continue with Google
               </button>
 
-              <div className="my-6 flex items-center gap-4 text-[11px] uppercase tracking-[0.18em] text-black/35"><span className="h-px flex-1 bg-black/10" /> or use email <span className="h-px flex-1 bg-black/10" /></div>
+              <div className="my-6 flex items-center gap-4 text-[11px] uppercase tracking-[0.18em] text-black/35"><span className="h-px flex-1 bg-black/10" /> or continue with email <span className="h-px flex-1 bg-black/10" /></div>
 
               <form onSubmit={handleEmail}>
                 <label htmlFor="email" className="mb-2 block text-sm font-medium text-[#1d1d1f]">Email address</label>
@@ -206,30 +151,6 @@ export default function Login() {
                   {submitting ? 'Sending…' : 'Email me a sign-in link'} <ArrowRight size={16} />
                 </button>
               </form>
-
-              <div className="my-6 flex items-center gap-4 text-[11px] uppercase tracking-[0.18em] text-black/35"><span className="h-px flex-1 bg-black/10" /> or use mobile <span className="h-px flex-1 bg-black/10" /></div>
-
-              {!awaitingOtp ? (
-                <form onSubmit={handlePhone}>
-                  <label htmlFor="phone" className="mb-2 block text-sm font-medium text-[#1d1d1f]">Mobile number</label>
-                  <div className="flex min-h-12 overflow-hidden rounded-2xl border border-black/15 bg-[#FAFAF8] focus-within:border-[#7D2027]/50 focus-within:ring-2 focus-within:ring-[#7D2027]/10">
-                    <span className="flex items-center border-r border-black/10 px-4 text-sm text-[#6e6e73]">+91</span>
-                    <input id="phone" type="tel" inputMode="numeric" autoComplete="tel-national" value={phone} onChange={(event) => setPhone(event.target.value)} placeholder="98765 43210" className="min-w-0 flex-1 bg-transparent px-4 text-base text-[#1d1d1f] outline-none placeholder:text-black/25" />
-                  </div>
-                  <button type="submit" disabled={submitting} className="mt-4 flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-[#1d1d1f] px-5 text-sm font-semibold text-white transition hover:bg-black disabled:cursor-wait disabled:opacity-60 focus:outline-none focus:ring-2 focus:ring-[#7D2027]/30">
-                    {submitting ? 'Sending…' : 'Continue with phone'} <ArrowRight size={16} />
-                  </button>
-                </form>
-              ) : (
-                <form onSubmit={handleOtp}>
-                  <label htmlFor="otp" className="mb-2 block text-sm font-medium text-[#1d1d1f]">One-time code</label>
-                  <input id="otp" type="text" inputMode="numeric" autoComplete="one-time-code" maxLength={6} value={otp} onChange={(event) => setOtp(event.target.value.replace(/\D/g, '').slice(0, 6))} placeholder="••••••" className="min-h-12 w-full rounded-2xl border border-black/15 bg-[#FAFAF8] px-4 text-center text-xl tracking-[0.35em] text-[#1d1d1f] outline-none focus:border-[#7D2027]/50 focus:ring-2 focus:ring-[#7D2027]/10" />
-                  <button type="submit" disabled={submitting} className="mt-4 flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-[#1d1d1f] px-5 text-sm font-semibold text-white transition hover:bg-black disabled:cursor-wait disabled:opacity-60">
-                    {submitting ? 'Verifying…' : 'Verify and sign in'} <ArrowRight size={16} />
-                  </button>
-                  <button type="button" onClick={() => { setAwaitingOtp(false); setOtp(''); setStatus({ type: '', message: '' }) }} className="mt-3 w-full text-sm text-[#6e6e73] hover:text-[#1d1d1f]">Use another number</button>
-                </form>
-              )}
 
               {status.message && <p role="status" className={`mt-4 rounded-xl px-4 py-3 text-sm ${statusClass}`}>{status.message}</p>}
               <p className="mt-8 flex items-center justify-center gap-2 text-xs text-[#86868b]"><ShieldCheck size={14} /> Secure access for thenightera clients.</p>

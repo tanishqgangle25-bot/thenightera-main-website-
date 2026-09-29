@@ -38,18 +38,6 @@ export async function signInWithEmail(email) {
   return data
 }
 
-export async function requestPhoneOtp(phone) {
-  const { data, error } = await requireClient().auth.signInWithOtp({ phone })
-  if (error) throw error
-  return data
-}
-
-export async function verifyPhoneOtp(phone, token) {
-  const { data, error } = await requireClient().auth.verifyOtp({ phone, token, type: 'sms' })
-  if (error) throw error
-  return data
-}
-
 export async function getCurrentSession() {
   if (!supabase) return null
   const { data, error } = await supabase.auth.getSession()
@@ -58,7 +46,7 @@ export async function getCurrentSession() {
 }
 
 export async function getAuthProviders() {
-  if (!isAuthConfigured) return { google: false, phone: false, email: false }
+  if (!isAuthConfigured) return { google: false, email: false }
   const response = await fetch(`${supabaseUrl}/auth/v1/settings`, {
     headers: { apikey: supabasePublishableKey },
   })
@@ -66,7 +54,6 @@ export async function getAuthProviders() {
   const settings = await response.json()
   return {
     google: Boolean(settings.external?.google),
-    phone: Boolean(settings.external?.phone),
     email: Boolean(settings.external?.email),
   }
 }

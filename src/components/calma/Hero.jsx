@@ -1,8 +1,6 @@
 import { motion } from 'framer-motion'
-import { Link } from 'react-router-dom'
 import { SplineScene } from '@/components/calma/ui/splite'
 import { Spotlight } from '@/components/calma/ui/spotlight'
-import { LiquidButton } from '@/components/calma/ui/liquid-glass-button'
 import Butterfly3D from '@/components/calma/Butterfly3D'
 
 export default function Hero() {

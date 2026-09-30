@@ -1,6 +1,4 @@
-import { Link } from 'react-router-dom'
 import FadeUp from './FadeUp.jsx'
-import { LiquidButton } from '@/components/calma/ui/liquid-glass-button'
 
 export default function FinalCTA() {
   return (

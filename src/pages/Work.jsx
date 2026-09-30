@@ -1,8 +1,7 @@
-import { useRef, useEffect, useState } from 'react'
-import { motion, AnimatePresence, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion'
+import { useRef } from 'react'
+import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import JellyfishDrift from '../components/ui/jelly-fish'
 import SEOHead from '../components/SEOHead'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -159,7 +158,6 @@ export default function Work() {
         path="/work"
         keywords="marketing portfolio indore, brand case studies, social media campaign examples, web development projects indore"
       />
-      <JellyfishDrift />
 
       <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '4rem 2rem 8rem', position: 'relative' }}>
         {PROJECTS.map((p, i) => (

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, MessageCircle, MapPin } from 'lucide-react';
+import { Mail, MessageCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
 import SEOHead from '../components/SEOHead';
 import { track } from '@vercel/analytics';
@@ -33,7 +33,7 @@ export default function Contact() {
       } else {
         alert("Kuch error aaya hai email bhejne me. Please try again.");
       }
-    } catch (err) {
+    } catch {
       alert("Network error. Please try again later.");
     } finally {
       setLoading(false);

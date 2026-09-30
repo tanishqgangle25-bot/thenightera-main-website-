@@ -1,11 +1,10 @@
-import { useRef, useEffect, useState, useCallback } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { motion, AnimatePresence, useMotionValue, useSpring, useTransform, useScroll } from 'framer-motion'
+import { motion, useMotionValue, useSpring, useTransform, useScroll } from 'framer-motion'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { LiquidMetalButton } from '../components/ui/liquid-metal-button'
 import { FrameSequenceHero } from '../components/ui/mac-book-neo-hero'
-import { Check, ChevronDown, Sparkles } from 'lucide-react'
 import SEOHead from '../components/SEOHead'
 gsap.registerPlugin(ScrollTrigger)
 
@@ -359,7 +358,7 @@ function ProcessSection() {
         scaleY: 1, ease: 'none',
         scrollTrigger: { trigger: ref.current, start: 'top 60%', end: 'bottom 60%', scrub: 1 }
       })
-      gsap.utils.toArray('.proc-step').forEach((step, i) => {
+      gsap.utils.toArray('.proc-step').forEach((step) => {
         gsap.fromTo(step, { opacity: 0, x: 40 }, {
           opacity: 1, x: 0, duration: 0.8, ease: 'power3.out',
           scrollTrigger: { trigger: step, start: 'top 75%', toggleActions: 'play none none none' }
@@ -392,7 +391,7 @@ function ProcessSection() {
           </div>
           <div className="hidden md:block" /> 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem' }}>
-            {steps.map((s, i) => (
+            {steps.map((s) => (
               <div key={s.num} className="proc-step" style={{ opacity: 0 }}>
                 <p style={{ fontSize: '0.65rem', fontFamily: 'monospace', color: '#7D2027', opacity: 0.6, marginBottom: '0.75rem', letterSpacing: '0.1em' }}>{s.num} / 04</p>
                 <h3 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', fontWeight: 800, letterSpacing: '-0.04em', color: '#1d1d1f', lineHeight: 1.0, marginBottom: '1rem' }}>{s.title}</h3>

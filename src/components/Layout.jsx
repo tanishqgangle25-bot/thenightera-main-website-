@@ -6,6 +6,7 @@ import gsap from 'gsap'
 
 const links = [
   { label: 'work',         to: '/work' },
+  { label: 'case studies', to: '/case-studies' },
   { label: 'portfolio',    to: '/portfolio' },
   { label: 'services',     to: '/services' },
   { label: 'calma',        to: '/calma' },
@@ -258,6 +259,11 @@ export default function Layout({ children }) {
               <p style={{ fontSize: '0.75rem', color: '#A39670', lineHeight: 1.6, maxWidth: '22ch' }}>
                 AI-powered branding, content & PR.<br />indore, madhya pradesh, india
               </p>
+            </div>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+              <Link to="/privacy" style={{ fontSize: '0.75rem', color: '#A39670', textDecoration: 'none' }}>privacy</Link>
+              <Link to="/terms" style={{ fontSize: '0.75rem', color: '#A39670', textDecoration: 'none' }}>terms</Link>
             </div>
 
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem 2rem' }}>

@@ -16,7 +16,7 @@ const TESTIMONIALS = [
   { name: 'Oven & Co.', role: 'Artisan Bakery · Indore', quote: "They built our entire brand identity from scratch and managed our launch campaign. The response was overwhelming. People thought we were an international franchise because of how premium the branding looked." }
 ]
 
-function ScrubQuote({ t, i }) {
+function ScrubQuote({ t }) {
   const ref = useRef(null)
 
   useEffect(() => {
@@ -63,7 +63,7 @@ function ScrubQuote({ t, i }) {
 }
 
 export default function Testimonials() {
-  // Review schema with real client names — helps Google show star ratings in search
+  // Client quotations published as testimonials. No fabricated aggregate rating.
   const reviewSchema = {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
@@ -74,11 +74,6 @@ export default function Testimonials() {
       '@type': 'Review',
       author: { '@type': 'Organization', name: t.name },
       reviewBody: t.quote,
-      reviewRating: {
-        '@type': 'Rating',
-        ratingValue: '5',
-        bestRating: '5',
-      },
       publisher: { '@type': 'Organization', name: 'thenightera' },
     })),
   }
@@ -99,8 +94,8 @@ export default function Testimonials() {
       />
 
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 2.5rem 8rem' }}>
-        {TESTIMONIALS.map((t, i) => (
-          <ScrubQuote key={t.name} t={t} i={i} />
+        {TESTIMONIALS.map((t) => (
+          <ScrubQuote key={t.name} t={t} />
         ))}
       </div>
     </div>

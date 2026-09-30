@@ -23,7 +23,12 @@ const SERVICES = [
     muted: '#7A6E50',
     accent: '#4D4828',
     dot: '#4D4828',
-    img: '/images/phone-case.jpg'
+    img: '/images/phone-case.jpg',
+    links: [
+      ['Social media marketing', '/social-media-marketing-indore'],
+      ['PR strategy', '/pr-agency-indore'],
+      ['Brand identity', '/branding-agency-indore'],
+    ]
   },
   {
     num: '02',
@@ -41,12 +46,13 @@ const SERVICES = [
     muted: 'rgba(255,255,255,0.45)',
     accent: '#ECE6D8',
     dot: 'rgba(236,230,216,0.5)',
-    img: '/images/coffee.jpg'
+    img: '/images/coffee.jpg',
+    links: [['Web development', '/web-development-indore']]
   }
 ]
 
 /* ─── Individual service panel ─── */
-function ServicePanel({ s, index }) {
+function ServicePanel({ s }) {
   const panelRef = useRef(null)
 
   useEffect(() => {
@@ -191,6 +197,10 @@ function ServicePanel({ s, index }) {
           }}>
             {s.desc}
           </p>
+
+          <div className="panel-fade-text" style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '2rem' }}>
+            {s.links.map(([label, href]) => <Link key={href} to={href} style={{ color: s.ink, fontSize: '0.82rem', fontWeight: 600, textDecoration: 'none', borderBottom: `1px solid ${s.muted}`, paddingBottom: '0.2rem' }}>{label} →</Link>)}
+          </div>
 
           {/* What's Included (Moved to left under desc) */}
           <div>
@@ -348,7 +358,7 @@ function Hero() {
           marginTop: '2.25rem', fontSize: '1.0625rem',
           color: '#6e6e73', maxWidth: '44ch', lineHeight: 1.72,
         }}>
-          We don't do everything. We do two things — and we do them at a level most agencies can't touch.
+          One connected team for social media, PR, branding, and conversion-focused web development.
         </p>
 
         <div className="scroll-hint-hero" style={{
@@ -541,7 +551,7 @@ export default function Services() {
       <ProgressBar />
       {SERVICES.map((s, i) => (
         <div key={s.num} className={`service-panel-${i}`}>
-          <ServicePanel s={s} index={i} />
+          <ServicePanel s={s} />
         </div>
       ))}
       <CTASection />

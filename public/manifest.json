@@ -1,7 +1,7 @@
 {
   "name": "thenightera",
   "short_name": "thenightera",
-  "description": "Indore-based creative and digital marketing studio serving brands worldwide with social media, web development, branding, and PR.",
+  "description": "Global design and technology studio serving brands worldwide with social media, web development, branding, and PR.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
@@ -11,9 +11,9 @@
   "categories": ["business", "marketing", "design"],
   "icons": [
     {
-      "src": "/favicon.svg",
+      "src": "/favicon.png",
       "sizes": "any",
-      "type": "image/svg+xml",
+      "type": "image/png",
       "purpose": "any maskable"
     }
   ]

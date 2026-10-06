@@ -257,7 +257,7 @@ export default function Layout({ children }) {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
               <p style={{ fontSize: '0.875rem', fontWeight: 700, color: '#372713' }}>thenightera</p>
               <p style={{ fontSize: '0.75rem', color: '#A39670', lineHeight: 1.6, maxWidth: '22ch' }}>
-                AI-powered branding, content & PR.<br />Based in Indore, India · Serving brands worldwide
+                AI-powered branding, content & PR.<br />operating globally, India · engineering premium digital experiences
               </p>
             </div>
 

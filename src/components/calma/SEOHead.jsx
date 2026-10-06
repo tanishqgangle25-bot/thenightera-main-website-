@@ -24,7 +24,7 @@ export default function SEOHead({
 
       {/* Geo targeting — India + Indore */}
       <meta name="geo.region" content="IN-MP" />
-      <meta name="geo.placename" content="Indore, Madhya Pradesh, India" />
+      <meta name="geo.placename" content="Global" />
       <meta name="geo.position" content="22.7196;75.8577" />
       <meta name="ICBM" content="22.7196, 75.8577" />
       <meta name="language" content="English" />

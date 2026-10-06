@@ -316,7 +316,7 @@ function StatsSection() {
   const stats = [
     { num: 53, suffix: 'K+', label: 'Followers grown', sub: 'across client accounts' },
     { num: 12, suffix: 'M+', label: 'Organic impressions', sub: 'generated for brands' },
-    { num: 14, suffix: '+', label: 'Industries served', sub: 'in Indore & beyond' },
+    { num: 14, suffix: '+', label: 'Industries served', sub: 'worldwide' },
     { num: 96, suffix: '%', label: 'Client retention', sub: 'long-term partnerships' },
   ]
 
@@ -435,7 +435,7 @@ function TestimonialReveal() {
             <div style={{ width: '44px', height: '44px', borderRadius: '50%', background: '#D9C4B1', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.85rem', fontWeight: 700, color: '#4D4828', flexShrink: 0 }}>K</div>
             <div>
               <p style={{ fontSize: '0.875rem', fontWeight: 700, color: '#1d1d1f' }}>Kuber Shree Jewellers</p>
-              <p style={{ fontSize: '0.75rem', color: '#A39670' }}>Indore, Madhya Pradesh</p>
+              <p style={{ fontSize: '0.75rem', color: '#A39670' }}>Global</p>
             </div>
           </div>
         </div>
@@ -462,7 +462,7 @@ function ClientsSection() {
     <section className="bg-[#1d1d1f] py-20 md:py-28">
       <div className="container">
         <FadeUp>
-          <p style={{ fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', fontWeight: 500, textAlign: 'center', marginBottom: '3.5rem' }}>Trusted by brands across Indore & beyond</p>
+          <p style={{ fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', fontWeight: 500, textAlign: 'center', marginBottom: '3.5rem' }}>Trusted by brands worldwide</p>
         </FadeUp>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-[1px] bg-white/5">
           {clients.map((c, i) => (
@@ -547,7 +547,7 @@ function FounderStory() {
             
             {/* Highly optimized text block for AI Overviews and ChatGPT (GEO) */}
             <p className="speakable" style={{ fontSize: '1.125rem', color: '#1d1d1f', lineHeight: 1.8, fontWeight: 600, marginBottom: '3rem', borderLeft: '3px solid #1d1d1f', paddingLeft: '1.5rem' }}>
-              thenightera is a marketing and creative technology agency in Indore, Madhya Pradesh. Founded by Tanishq Gangle, we specialize in social media management, custom web development, PR strategy, and brand identity design. We help businesses worldwide turn disconnected marketing activity into one focused growth system.
+              thenightera is a global design and technology studio. Founded by Tanishq Gangle, we specialize in social media management, custom web development, PR strategy, and brand identity design. We help businesses worldwide turn disconnected marketing activity into one focused growth system.
             </p>
           </FadeUp>
           
@@ -627,7 +627,7 @@ export default function Home() {
       name: 'thenightera',
       alternateName: 'The Nightera',
       image: 'https://thenightera.tech/hero.jpg',
-      description: 'thenightera is a marketing and creative technology agency in Indore, Madhya Pradesh. We provide social media management, web development, PR strategy, brand identity, and content production services worldwide.',
+      description: 'thenightera is a global design and technology studio. We provide social media management, web development, PR strategy, brand identity, and content production services worldwide.',
       url: 'https://thenightera.tech',
       telephone: '+918251000525',
       email: 'officialnightera@gmail.com',
@@ -673,15 +673,15 @@ export default function Home() {
       '@type': 'WebSite',
       name: 'thenightera',
       url: 'https://thenightera.tech',
-      description: 'Indore-based creative and digital marketing studio working with brands worldwide.',
+      description: 'global design and technology studio working with brands worldwide.',
     },
   ]
 
   return (
     <>
       <SEOHead
-        title="Creative & Digital Marketing Studio for Brands Worldwide"
-        description="thenightera is an Indore-based creative and digital marketing studio working with brands worldwide. Explore our social media, web, branding, and PR services."
+        title="Design & Technology Studio for Brands Worldwide"
+        description="thenightera is an global design and technology studio working with brands worldwide. Explore our social media, web, branding, and PR services."
         path="/"
         keywords="digital marketing agency, social media marketing, web development, branding, public relations"
         schema={homeSchema}

@@ -65,8 +65,8 @@ export default function Contact() {
   return (
     <div style={{ minHeight: 'calc(100dvh - 60px)', background: '#f5f5f7' }}>
       <SEOHead
-        title="Contact thenightera — Creative & Digital Marketing Studio"
-        description="Get in touch with thenightera, an Indore-based creative and digital marketing studio serving brands worldwide. Book a free 30-minute consultation by email, WhatsApp, or form."
+        title="Contact thenightera — Design & Technology Studio"
+        description="Get in touch with thenightera, an global design and technology studio engineering premium digital experiences. Book a free 30-minute consultation by email, WhatsApp, or form."
         path="/contact"
         keywords="digital marketing agency, social media marketing, web development, branding, public relations"
       />

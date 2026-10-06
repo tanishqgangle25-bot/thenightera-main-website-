@@ -7,7 +7,7 @@ const pages = {
     ['Service providers', 'Supabase supports authentication, Web3Forms processes contact-form delivery, Google may provide OAuth sign-in, and Vercel hosts and measures the website. Each provider processes information under its own terms and privacy practices.'],
     ['How we use information', 'We use submitted information to respond to enquiries, provide requested access, operate the website, prevent abuse, and improve our services. We do not sell personal information.'],
     ['Retention and choices', 'We keep information only as long as needed for the stated purpose, legal obligations, or legitimate business records. You may ask to access, correct, or delete your personal information by emailing officialnightera@gmail.com.'],
-    ['Contact', 'Privacy questions can be sent to officialnightera@gmail.com. thenightera is based in Indore, Madhya Pradesh, India.'],
+    ['Contact', 'Privacy questions can be sent to officialnightera@gmail.com. thenightera is operating globally, Madhya Pradesh, India.'],
   ]},
   terms: { title: 'Terms of Service', description: 'Terms governing use of thenightera.tech and enquiries for thenightera services.', blocks: [
     ['Website use', 'You may use this website to learn about thenightera, view our work, and contact us about services. Do not misuse the website, attempt unauthorized access, or interfere with its operation.'],

@@ -63,7 +63,7 @@ export default function Footer() {
 
         <div className="mt-8 pt-6 border-t flex flex-col md:flex-row items-center justify-between gap-2 text-xs" style={{ borderColor: '#ECE6D8', color: '#A39670' }}>
           <p>heycalma.in · calma is a product of thenightera</p>
-          <p>indore, madhya pradesh, india · 452001</p>
+          <p>Global · 452001</p>
         </div>
       </div>
     </footer>

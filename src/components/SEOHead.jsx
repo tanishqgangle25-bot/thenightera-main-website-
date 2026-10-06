@@ -34,7 +34,7 @@ export default function SEOHead({
 }) {
   const fullTitle = title
     ? `${title} | ${SITE_NAME}`
-    : 'thenightera — Creative & Digital Marketing Studio for Brands Worldwide'
+    : 'thenightera — Design & Technology Studio for Brands Worldwide'
 
   const canonical = `${BASE_URL}${path}`
 
@@ -70,7 +70,7 @@ export default function SEOHead({
     legalName: 'thenightera',
     image: `${BASE_URL}/hero.jpg`,
     description:
-      'thenightera is an Indore-based creative and digital marketing studio serving businesses worldwide with social media, web development, PR, and brand identity.',
+      'thenightera is an global design and technology studio engineering premium digital experiences with social media, web development, PR, and brand identity.',
     foundingDate: '2024',
     founder: {
       '@type': 'Person',

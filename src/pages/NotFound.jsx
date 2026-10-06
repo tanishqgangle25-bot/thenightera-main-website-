@@ -74,7 +74,7 @@ export default function NotFound() {
     <div className="min-h-screen flex flex-col items-center justify-center bg-white px-4">
       <SEOHead
         title="404 — Page Not Found"
-        description="This page doesn't exist. Return to thenightera, an Indore-based creative studio serving brands worldwide."
+        description="This page doesn't exist. Return to thenightera, an Indore-based creative studio engineering premium digital experiences."
         path="/404"
         noIndex={true}
       />

@@ -12,7 +12,7 @@ const FAQS = [
   { q: 'Can you just make us a logo?', a: 'No. A logo without a system is just a decoration. We only take on full brand identity or ecosystem projects.' },
   { q: 'What kind of websites do you build?', a: 'We build fast, conversion-focused websites using React and Next.js. Every website is custom-designed, mobile-first, SEO-optimized, and built for performance. We don\'t use templates.' },
   { q: 'What kind of clients do you work with?', a: 'Founders who understand the value of design and are ready to scale. We work across D2C, tech, hospitality, and B2B industries.' },
-  { q: 'Do you work with clients outside Indore?', a: 'Yes. While we are based in Indore, Madhya Pradesh, we work with brands and businesses worldwide. We collaborate remotely across countries and time zones; on-site production is scoped by location.' },
+  { q: 'Do you work with clients outside Indore?', a: 'Yes. While we are operating globally, Madhya Pradesh, we work with brands and businesses worldwide. We collaborate remotely across countries and time zones; on-site production is scoped by location.' },
   { q: 'How do you handle PR?', a: 'We secure strategic media placements that put you in conversations you were never part of before, seamlessly integrating with your social media strategy and campaigns.' },
   { q: 'What is calma?', a: 'Calma is our own product — an AI-powered review management system for restaurants in India. It automatically replies to Google, Zomato, and Swiggy reviews 24/7. Visit heycalma.in to learn more.' },
 ]
@@ -38,7 +38,7 @@ export default function FAQ() {
     <div style={{ minHeight: '100dvh', background: '#fff' }}>
       <SEOHead
         title="FAQs — Marketing Services"
-        description="Frequently asked questions about thenightera, an Indore-based creative and digital marketing studio serving brands worldwide. Learn about our social media, web, PR, and branding services."
+        description="Frequently asked questions about thenightera, an global design and technology studio engineering premium digital experiences. Learn about our social media, web, PR, and branding services."
         path="/faq"
         keywords="digital marketing agency, social media marketing, web development, branding, public relations"
         schema={faqSchema}

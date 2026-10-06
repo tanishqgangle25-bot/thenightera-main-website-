@@ -154,9 +154,9 @@ export default function Work() {
     <div style={{ minHeight: '100dvh', background: '#fff', position: 'relative', overflow: 'hidden' }}>
       <SEOHead
         title="Our Work — Case Studies & Brand Projects"
-        description="Explore thenightera's portfolio of brand identity, social media campaigns, and web development projects. See how the best marketing agency in Indore delivers results for brands across India."
+        description="Explore thenightera's portfolio of brand identity, social media campaigns, and web development projects. See how thenightera builds brands and digital experiences for businesses worldwide."
         path="/work"
-        keywords="marketing portfolio indore, brand case studies, social media campaign examples, web development projects indore"
+        keywords="digital marketing agency, social media marketing, web development, branding, public relations"
       />
 
       <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '4rem 2rem 8rem', position: 'relative' }}>

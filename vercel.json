@@ -4,5 +4,38 @@
       "source": "/(.*)",
       "destination": "/index.html"
     }
+  ],
+  "redirects": [
+    {
+      "source": "/social-media-marketing-indore",
+      "destination": "/social-media-marketing",
+      "permanent": true
+    },
+    {
+      "source": "/web-development-indore",
+      "destination": "/web-development",
+      "permanent": true
+    },
+    {
+      "source": "/pr-agency-indore",
+      "destination": "/pr-agency",
+      "permanent": true
+    },
+    {
+      "source": "/branding-agency-indore",
+      "destination": "/branding-agency",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.thenightera.tech"
+        }
+      ],
+      "destination": "https://thenightera.tech/:path*",
+      "permanent": true
+    }
   ]
 }

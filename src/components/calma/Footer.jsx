@@ -11,7 +11,7 @@ export default function Footer() {
             <p className="text-sm font-bold" style={{ color: '#372713' }}>calma</p>
             <p className="text-xs leading-relaxed max-w-xs" style={{ color: '#A39670' }}>
               AI review management for restaurants in India.<br />
-              by <a href="https://www.thenightera.in" target="_blank" rel="noopener noreferrer" className="hover:underline">thenightera</a> · indore, mp
+              by <a href="https://thenightera.tech" target="_blank" rel="noopener noreferrer" className="hover:underline">thenightera</a> · indore, mp
             </p>
           </div>
 

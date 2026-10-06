@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async'
 
 const SITE_NAME = 'thenightera'
-const BASE_URL = 'https://thenightera.in'
+const BASE_URL = 'https://thenightera.tech'
 const DEFAULT_OG_IMAGE = `${BASE_URL}/hero.jpg`
 
 // Real business data — update these if anything changes
@@ -34,12 +34,11 @@ export default function SEOHead({
 }) {
   const fullTitle = title
     ? `${title} | ${SITE_NAME}`
-    : 'thenightera — Best Marketing Agency in Indore | Social Media & Web Development'
+    : 'thenightera — Creative & Digital Marketing Studio for Brands Worldwide'
 
   const canonical = `${BASE_URL}${path}`
 
-  const defaultKeywords =
-    'marketing agency indore, best marketing company in indore, social media management indore, web development indore, digital marketing indore, SMM indore, brand identity indore, PR agency indore, marketing company madhya pradesh, social media agency indore'
+  const defaultKeywords = 'digital marketing agency, creative studio, social media marketing, web development, branding, public relations'
   const allKeywords = keywords ? `${keywords}, ${defaultKeywords}` : defaultKeywords
 
   // ── Breadcrumb schema (every page) ──────────────────────────────────────
@@ -71,7 +70,7 @@ export default function SEOHead({
     legalName: 'thenightera',
     image: `${BASE_URL}/hero.jpg`,
     description:
-      'thenightera is a marketing and creative technology agency in Indore, Madhya Pradesh. We provide social media management, web development, PR strategy, and brand identity for businesses across India.',
+      'thenightera is an Indore-based creative and digital marketing studio serving businesses worldwide with social media, web development, PR, and brand identity.',
     foundingDate: '2024',
     founder: {
       '@type': 'Person',
@@ -93,17 +92,10 @@ export default function SEOHead({
         email: BUSINESS.email,
         contactType: 'customer service',
         availableLanguage: ['English', 'Hindi'],
-        areaServed: 'IN',
+        areaServed: 'Worldwide',
       },
     ],
-    areaServed: [
-      { '@type': 'City', name: 'Indore' },
-      { '@type': 'City', name: 'Bhopal' },
-      { '@type': 'City', name: 'Mumbai' },
-      { '@type': 'City', name: 'Delhi' },
-      { '@type': 'State', name: 'Madhya Pradesh' },
-      { '@type': 'Country', name: 'India' },
-    ],
+    areaServed: 'Worldwide',
     sameAs: [
       BUSINESS.instagram,
       BUSINESS.youtube,
@@ -143,6 +135,7 @@ export default function SEOHead({
 
   return (
     <Helmet>
+      <html lang="en" />
       {/* ── Primary SEO ── */}
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
@@ -160,13 +153,9 @@ export default function SEOHead({
       <meta name="publisher" content="thenightera" />
       <meta name="copyright" content={`© ${new Date().getFullYear()} thenightera`} />
 
-      {/* ── Geo Targeting — Indore, MP, India ── */}
-      <meta name="geo.region" content="IN-MP" />
-      <meta name="geo.placename" content="Indore, Madhya Pradesh, India" />
-      <meta name="geo.position" content={`${BUSINESS.latitude};${BUSINESS.longitude}`} />
-      <meta name="ICBM" content={`${BUSINESS.latitude}, ${BUSINESS.longitude}`} />
+      {/* ── Global English language ── */}
       <meta name="language" content="English" />
-      <meta name="content-language" content="en-IN" />
+      <meta name="content-language" content="en" />
       <meta name="rating" content="general" />
 
       {/* ── Open Graph ── */}
@@ -181,8 +170,6 @@ export default function SEOHead({
       <meta property="og:image:height" content="630" />
       <meta property="og:image:alt" content={fullTitle} />
       <meta property="og:image:type" content="image/jpeg" />
-      <meta property="og:locale" content="en_IN" />
-      <meta property="og:locale:alternate" content="hi_IN" />
 
       {/* ── Twitter / X Card ── */}
       <meta name="twitter:card" content="summary_large_image" />

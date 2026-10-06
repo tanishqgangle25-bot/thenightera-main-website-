@@ -246,7 +246,7 @@ export default function Pricing() {
         title="Premium Social Media Marketing Packages | thenightera"
         description="Transparent pricing from thenightera. Social media management from ₹25K/mo, web development, PR strategy. No hidden fees. Book a free call."
         path="/pricing"
-        keywords="premium marketing packages, social media management, marketing agency, web development pricing, SMM packages"
+        keywords="digital marketing agency, social media marketing, web development, branding, public relations"
       />
       <PageHeader
         label="Pricing Plans"
@@ -301,15 +301,15 @@ export default function Pricing() {
             </h2>
             <div style={{ display: 'grid', gap: '1.5rem', maxWidth: '800px' }}>
               <div>
-                <h3 style={{ fontSize: '1.05rem', fontWeight: 600, color: '#1d1d1f' }}>What is the cost of social media marketing in Indore?</h3>
+                <h3 style={{ fontSize: '1.05rem', fontWeight: 600, color: '#1d1d1f' }}>What is the cost of social media marketing?</h3>
                 <p style={{ marginTop: '0.5rem', fontSize: '0.95rem', color: '#6e6e73', lineHeight: 1.6 }}>
-                  Our social media management packages start at ₹25,000 per month. This cost includes content strategy, design, copywriting, and monthly performance tracking. We offer premium, high-converting content that traditional marketing agencies in Indore typically charge much more for.
+                  Our social media management packages start at ₹25,000 per month. This cost includes content strategy, design, copywriting, and monthly performance tracking. Prices shown are in INR. International projects are quoted according to scope, production location, and payment requirements.
                 </p>
               </div>
               <div>
                 <h3 style={{ fontSize: '1.05rem', fontWeight: 600, color: '#1d1d1f' }}>How much does a custom website cost?</h3>
                 <p style={{ marginTop: '0.5rem', fontSize: '0.95rem', color: '#6e6e73', lineHeight: 1.6 }}>
-                  Our Web Development and landing page services start at ₹45,000+. We build custom, fast, and SEO-optimized web experiences using React and Next.js, tailored specifically for brands looking to establish a strong digital presence in India.
+                  Our Web Development and landing page services start at ₹45,000+. We build custom, fast, and SEO-optimized web experiences using React and Next.js, tailored specifically for brands looking to establish a strong digital presence worldwide.
                 </p>
               </div>
             </div>

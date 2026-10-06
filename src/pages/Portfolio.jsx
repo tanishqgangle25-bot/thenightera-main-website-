@@ -267,9 +267,9 @@ export default function Portfolio() {
     <div style={{ minHeight: '100dvh', background: '#FAFAF8', position: 'relative' }}>
       <SEOHead
         title="Portfolio — Brand, Social Media & Web Projects"
-        description="Browse thenightera's portfolio of social media campaigns, brand identities, web development projects, and reels. Real work from the best marketing agency in Indore, MP."
+        description="Browse thenightera's portfolio of social media campaigns, brand identities, web development projects, and reels for brands worldwide."
         path="/portfolio"
-        keywords="marketing portfolio indore, social media reels portfolio, web development showcase indore, brand identity projects"
+        keywords="digital marketing agency, social media marketing, web development, branding, public relations"
       />
       <AnimatePresence mode="wait">
         {!activeCategory ? (

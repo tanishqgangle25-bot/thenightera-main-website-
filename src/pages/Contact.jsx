@@ -65,10 +65,10 @@ export default function Contact() {
   return (
     <div style={{ minHeight: 'calc(100dvh - 60px)', background: '#f5f5f7' }}>
       <SEOHead
-        title="Contact thenightera — Marketing Agency in Indore, MP"
-        description="Get in touch with thenightera — the best marketing agency in Indore. Book a free 30-minute consultation. Email, WhatsApp, or fill our form. We respond within 24 hours."
+        title="Contact thenightera — Creative & Digital Marketing Studio"
+        description="Get in touch with thenightera, an Indore-based creative and digital marketing studio serving brands worldwide. Book a free 30-minute consultation by email, WhatsApp, or form."
         path="/contact"
-        keywords="contact marketing agency indore, book marketing consultation indore, marketing company phone indore, best marketing agency contact"
+        keywords="digital marketing agency, social media marketing, web development, branding, public relations"
       />
       {/* Header */}
       <div style={{ padding: '5rem 0 2rem', textAlign: 'center' }}>

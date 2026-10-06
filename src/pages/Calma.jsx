@@ -28,7 +28,7 @@ export default function Calma() {
     creator: {
       '@type': 'Organization',
       name: 'thenightera',
-      url: 'https://thenightera.in',
+      url: 'https://thenightera.tech',
     },
   }
 

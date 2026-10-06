@@ -69,7 +69,7 @@ function Hero() {
           <span className="fsh-title-rainbow">thenightera</span>
         </>
       }
-      subtitle="Scroll to explore our world."
+      subtitle="Social media, branding, PR and web development for brands worldwide."
       steps={steps}
     />
   );
@@ -547,7 +547,7 @@ function FounderStory() {
             
             {/* Highly optimized text block for AI Overviews and ChatGPT (GEO) */}
             <p className="speakable" style={{ fontSize: '1.125rem', color: '#1d1d1f', lineHeight: 1.8, fontWeight: 600, marginBottom: '3rem', borderLeft: '3px solid #1d1d1f', paddingLeft: '1.5rem' }}>
-              thenightera is a marketing and creative technology agency in Indore, Madhya Pradesh. Founded by Tanishq Gangle, we specialize in social media management, custom web development, PR strategy, and brand identity design. We help businesses across India turn disconnected marketing activity into one focused growth system.
+              thenightera is a marketing and creative technology agency in Indore, Madhya Pradesh. Founded by Tanishq Gangle, we specialize in social media management, custom web development, PR strategy, and brand identity design. We help businesses worldwide turn disconnected marketing activity into one focused growth system.
             </p>
           </FadeUp>
           
@@ -623,12 +623,12 @@ export default function Home() {
     {
       '@context': 'https://schema.org',
       '@type': 'LocalBusiness',
-      '@id': 'https://thenightera.in/#localbusiness',
+      '@id': 'https://thenightera.tech/#localbusiness',
       name: 'thenightera',
       alternateName: 'The Nightera',
-      image: 'https://thenightera.in/hero.jpg',
-      description: 'thenightera is a marketing and creative technology agency in Indore, Madhya Pradesh. We provide social media management, web development, PR strategy, brand identity, and content production services across India.',
-      url: 'https://thenightera.in',
+      image: 'https://thenightera.tech/hero.jpg',
+      description: 'thenightera is a marketing and creative technology agency in Indore, Madhya Pradesh. We provide social media management, web development, PR strategy, brand identity, and content production services worldwide.',
+      url: 'https://thenightera.tech',
       telephone: '+918251000525',
       email: 'officialnightera@gmail.com',
       priceRange: '₹₹',
@@ -648,14 +648,7 @@ export default function Home() {
         latitude: 22.7196,
         longitude: 75.8577,
       },
-      areaServed: [
-        { '@type': 'City', name: 'Indore' },
-        { '@type': 'City', name: 'Bhopal' },
-        { '@type': 'City', name: 'Mumbai' },
-        { '@type': 'City', name: 'Delhi' },
-        { '@type': 'State', name: 'Madhya Pradesh' },
-        { '@type': 'Country', name: 'India' },
-      ],
+      areaServed: 'Worldwide',
       serviceType: [
         'Social Media Management',
         'Web Development',
@@ -679,18 +672,18 @@ export default function Home() {
       '@context': 'https://schema.org',
       '@type': 'WebSite',
       name: 'thenightera',
-      url: 'https://thenightera.in',
-      description: 'Best marketing agency in Indore — social media management, web development, and PR strategy.',
+      url: 'https://thenightera.tech',
+      description: 'Indore-based creative and digital marketing studio working with brands worldwide.',
     },
   ]
 
   return (
     <>
       <SEOHead
-        title="Best Marketing Agency in Indore — Social Media & Web Development"
-        description="thenightera is an Indore marketing agency specializing in social media management, web development, PR strategy, and brand identity. Explore our work or book a free consultation."
+        title="Creative & Digital Marketing Studio for Brands Worldwide"
+        description="thenightera is an Indore-based creative and digital marketing studio working with brands worldwide. Explore our social media, web, branding, and PR services."
         path="/"
-        keywords="best marketing agency in indore, top marketing company indore, social media marketing indore, digital marketing agency indore, web development company indore, best SMM agency indore, marketing firm indore mp, branding agency indore"
+        keywords="digital marketing agency, social media marketing, web development, branding, public relations"
         schema={homeSchema}
       />
       <Hero />

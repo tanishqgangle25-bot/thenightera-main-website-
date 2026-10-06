@@ -2,36 +2,36 @@ import { Link, Navigate, useParams } from 'react-router-dom'
 import SEOHead from '../components/SEOHead'
 
 const SERVICES = {
-  'social-media-marketing-indore': {
-    title: 'Social Media Marketing Agency in Indore', eyebrow: 'Social media marketing · Indore',
+  'social-media-marketing': {
+    title: 'Social Media Marketing Agency', eyebrow: 'Social media marketing · Worldwide',
     headline: 'Content people remember. Strategy that moves business.',
-    answer: 'thenightera is a social media marketing agency in Indore that plans, produces, edits, publishes, and improves brand content. One team handles strategy, reels, campaign ideas, community direction, and reporting so every post supports a clear business goal.',
-    description: 'Social media marketing in Indore: strategy, content calendars, reels, editing, publishing, community direction, and reporting for growing brands.',
+    answer: 'thenightera is a social media marketing agency that plans, produces, edits, publishes, and improves brand content. One team handles strategy, reels, campaign ideas, community direction, and reporting so every post supports a clear business goal.',
+    description: 'Social media marketing: strategy, content calendars, reels, editing, publishing, community direction, and reporting for growing brands.',
     deliverables: ['Brand and audience strategy', 'Monthly content calendar', 'Reel concepts, shoots, and editing', 'Campaign creative direction', 'Publishing and community playbooks', 'Monthly performance review'],
     outcomes: ['A consistent, recognizable brand voice', 'Content connected to commercial goals', 'A faster production and approval system'],
-    faqs: [['What does your social media service include?', 'Strategy, planning, content production, editing, publishing support, community direction, and performance reviews. Scope is tailored to the brand and chosen plan.'], ['Do you work only with Indore businesses?', 'No. We are based in Indore and work with brands across India using remote planning, production coordination, and review systems.'], ['Can you produce reels and short-form video?', 'Yes. Reel concepts, scripts, shoots, editing, and platform-ready delivery can be included in the engagement.']],
+    faqs: [['What does your social media service include?', 'Strategy, planning, content production, editing, publishing support, community direction, and performance reviews. Scope is tailored to the brand and chosen plan.'], ['Do you work only with Indore businesses?', 'No. We are based in Indore, India, and work with brands worldwide using remote planning, production coordination, and review systems.'], ['Can you produce reels and short-form video?', 'Yes. Reel concepts, scripts, shoots, editing, and platform-ready delivery can be included in the engagement.']],
   },
-  'web-development-indore': {
-    title: 'Web Development Company in Indore', eyebrow: 'Web development · Indore',
+  'web-development': {
+    title: 'Web Development Company', eyebrow: 'Web development · Worldwide',
     headline: 'A fast website built to earn the next action.',
-    answer: 'thenightera designs and develops conversion-focused websites in Indore for service businesses, creators, and growing brands. We combine clear messaging, mobile-first interfaces, search-friendly structure, analytics, and modern React development in one focused build.',
-    description: 'Conversion-focused web development in Indore: fast, mobile-first React websites with clear messaging, SEO foundations, analytics, and lead capture.',
+    answer: 'thenightera designs and develops conversion-focused websites for service businesses, creators, and growing brands. We combine clear messaging, mobile-first interfaces, search-friendly structure, analytics, and modern React development in one focused build.',
+    description: 'Conversion-focused web development: fast, mobile-first React websites with clear messaging, SEO foundations, analytics, and lead capture.',
     deliverables: ['Messaging and page architecture', 'Responsive interface design', 'React or Next.js development', 'Technical SEO foundations', 'Analytics and lead tracking', 'Launch and handover support'],
     outcomes: ['Clearer paths from visit to enquiry', 'Fast, responsive mobile experience', 'A maintainable platform ready to grow'],
     faqs: [['What kind of websites do you build?', 'We build marketing websites, service-business sites, portfolios, landing pages, and custom digital experiences using modern web technology.'], ['Will my website work well on mobile?', 'Yes. Every build is designed and tested for mobile layouts, touch interactions, readable typography, and responsive media.'], ['Do you include SEO and analytics?', 'We include technical SEO foundations, crawlable page structure, metadata, structured data where relevant, and analytics setup. Ongoing SEO can be scoped separately.']],
   },
-  'pr-agency-indore': {
-    title: 'PR Agency in Indore', eyebrow: 'Public relations · Indore', headline: 'Make your reputation as strong as your work.',
-    answer: 'thenightera helps founders and brands in Indore shape clear stories, build media-ready assets, and plan credible public relations campaigns. Our work connects positioning, founder communication, press outreach, and social content so attention reinforces trust.',
-    description: 'PR strategy in Indore for founders and brands: positioning, media-ready stories, press outreach planning, founder visibility, and reputation support.',
+  'pr-agency': {
+    title: 'PR Agency', eyebrow: 'Public relations · Worldwide', headline: 'Make your reputation as strong as your work.',
+    answer: 'thenightera helps founders and brands shape clear stories, build media-ready assets, and plan credible public relations campaigns. Our work connects positioning, founder communication, press outreach, and social content so attention reinforces trust.',
+    description: 'PR strategy for founders and brands: positioning, media-ready stories, press outreach planning, founder visibility, and reputation support.',
     deliverables: ['Narrative and positioning workshop', 'Founder and brand story development', 'Press kit and media materials', 'Media list and outreach planning', 'Announcement and launch strategy', 'Reputation response playbook'],
     outcomes: ['A sharper story for media and customers', 'Consistent founder and brand positioning', 'A repeatable process for credible visibility'],
     faqs: [['Do you guarantee media coverage?', 'No credible PR agency can guarantee independent editorial coverage. We build strong stories, materials, targeting, and outreach to improve the chance of relevant attention.'], ['Can you support a launch?', 'Yes. We can plan the announcement, narrative, media materials, outreach sequence, founder communication, and supporting social content.'], ['Is PR useful for a local business?', 'Yes when trust, reputation, expertise, or a meaningful launch matters. We choose channels based on the audience rather than chasing coverage for its own sake.']],
   },
-  'branding-agency-indore': {
-    title: 'Branding Agency in Indore', eyebrow: 'Brand identity · Indore', headline: 'Build a brand people recognize before reading the name.',
-    answer: 'thenightera is a branding agency in Indore creating clear positioning, visual direction, verbal identity, and practical brand systems. We turn business strategy into a consistent experience across websites, social media, campaigns, and customer touchpoints.',
-    description: 'Branding agency in Indore for positioning, visual identity, voice, launch systems, and creative direction across web, social, and campaigns.',
+  'branding-agency': {
+    title: 'Branding Agency', eyebrow: 'Brand identity · Worldwide', headline: 'Build a brand people recognize before reading the name.',
+    answer: 'thenightera is a branding agency creating clear positioning, visual direction, verbal identity, and practical brand systems. We turn business strategy into a consistent experience across websites, social media, campaigns, and customer touchpoints.',
+    description: 'Branding agency for positioning, visual identity, voice, launch systems, and creative direction across web, social, and campaigns.',
     deliverables: ['Positioning and audience definition', 'Messaging and verbal identity', 'Logo and visual direction', 'Color, type, and layout system', 'Social and campaign templates', 'Brand guidelines and launch plan'],
     outcomes: ['A distinct and consistent market position', 'Faster creative decisions across channels', 'A usable system your team can maintain'],
     faqs: [['Is branding more than a logo?', 'Yes. A logo is one asset. Branding defines how the business is positioned, speaks, looks, and behaves across every customer touchpoint.'], ['Can you refresh an existing brand?', 'Yes. We can preserve useful recognition while updating positioning, messaging, visual language, and practical templates.'], ['Will I receive brand guidelines?', 'Yes. Final scope can include clear guidance for logo use, colors, typography, voice, imagery, layouts, and common applications.']],
@@ -40,11 +40,13 @@ const SERVICES = {
 
 export default function ServiceLanding() {
   const { serviceSlug } = useParams()
+  const legacyRoutes = {"social-media-marketing-indore": "social-media-marketing", "web-development-indore": "web-development", "pr-agency-indore": "pr-agency", "branding-agency-indore": "branding-agency"}
+  if (legacyRoutes[serviceSlug]) return <Navigate to={`/${legacyRoutes[serviceSlug]}`} replace />
   const service = SERVICES[serviceSlug]
   if (!service) return <Navigate to="/services" replace />
   const path = `/${serviceSlug}`
   const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: service.faqs.map(([name, text]) => ({ '@type': 'Question', name, acceptedAnswer: { '@type': 'Answer', text } })) }
-  const serviceSchema = { '@context': 'https://schema.org', '@type': 'Service', name: service.title, url: `https://thenightera.in${path}`, description: service.description, provider: { '@type': 'ProfessionalService', '@id': 'https://thenightera.in/#organization', name: 'thenightera' }, areaServed: [{ '@type': 'City', name: 'Indore' }, { '@type': 'Country', name: 'India' }] }
+  const serviceSchema = { '@context': 'https://schema.org', '@type': 'Service', name: service.title, url: `https://thenightera.tech${path}`, description: service.description, provider: { '@type': 'ProfessionalService', '@id': 'https://thenightera.tech/#organization', name: 'thenightera' }, areaServed: 'Worldwide' }
   return <div className="min-h-screen bg-[#FAF7F2] text-[#1d1d1f]">
     <SEOHead title={service.title} description={service.description} path={path} schema={[serviceSchema, faqSchema]} />
     <section className="mx-auto max-w-6xl px-6 pb-20 pt-28 md:px-10 md:pb-28 md:pt-36"><p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#7D2027]">{service.eyebrow}</p><h1 className="mt-6 max-w-5xl text-5xl font-semibold leading-[0.96] tracking-[-0.055em] sm:text-6xl md:text-8xl">{service.headline}</h1><p className="speakable mt-8 max-w-3xl text-lg leading-8 text-[#5f5f63] md:text-xl">{service.answer}</p><div className="mt-10 flex flex-wrap gap-3"><Link to="/contact" className="rounded-full bg-[#1d1d1f] px-6 py-3 text-sm font-semibold text-white no-underline">Book a free consultation</Link><Link to="/pricing" className="rounded-full border border-black/15 px-6 py-3 text-sm font-semibold text-[#1d1d1f] no-underline">See pricing</Link></div></section>

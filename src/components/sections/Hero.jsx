@@ -48,7 +48,7 @@ export default function Hero() {
               background: '#22c55e', display: 'inline-block',
               animation: 'pulse 2s infinite',
             }} />
-            India&rsquo;s Premium Creative Studio
+            Creative Studio for Brands Worldwide
           </span>
         </div>
 

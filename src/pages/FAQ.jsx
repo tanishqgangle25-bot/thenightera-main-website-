@@ -4,15 +4,15 @@ import PageHeader from '../components/PageHeader'
 import SEOHead from '../components/SEOHead'
 
 const FAQS = [
-  { q: 'What kind of brands do you work with?', a: 'We work with creators, D2C brands, startups, and established businesses across India. If you are serious about building a brand that earns attention, we are the right partner.' },
-  { q: 'What makes thenightera different from other marketing agencies in Indore?', a: 'thenightera combines social media management, web development, PR strategy, brand identity, and AI automation in one connected team. This keeps positioning consistent and makes campaigns, websites, and content work toward the same commercial goal.' },
+  { q: 'What kind of brands do you work with?', a: 'We work with creators, D2C brands, startups, and established businesses worldwide. If you are serious about building a brand that earns attention, we are the right partner.' },
+  { q: 'What makes thenightera different from other marketing agencies?', a: 'thenightera combines social media management, web development, PR strategy, brand identity, and AI automation in one connected team. This keeps positioning consistent and makes campaigns, websites, and content work toward the same commercial goal.' },
   { q: 'How long does a project take?', a: 'Brand identity projects typically take 3–4 weeks. Full ecosystem builds (brand + web + SMM) are 6–10 weeks.' },
   { q: 'Do you work on a retainer or project basis?', a: 'Both. One-time project work for brand identity and web builds. Monthly retainers for ongoing social media management and PR.' },
-  { q: 'What social media management services do you offer in Indore?', a: 'We offer complete social media management including monthly content calendars, reel scripting and production, professional editing, community engagement, influencer collaborations, and strategic PR placements. We manage Instagram, LinkedIn, YouTube, and more.' },
+  { q: 'What social media management services do you offer?', a: 'We offer complete social media management including monthly content calendars, reel scripting and production, professional editing, community engagement, influencer collaborations, and strategic PR placements. We manage Instagram, LinkedIn, YouTube, and more.' },
   { q: 'Can you just make us a logo?', a: 'No. A logo without a system is just a decoration. We only take on full brand identity or ecosystem projects.' },
   { q: 'What kind of websites do you build?', a: 'We build fast, conversion-focused websites using React and Next.js. Every website is custom-designed, mobile-first, SEO-optimized, and built for performance. We don\'t use templates.' },
   { q: 'What kind of clients do you work with?', a: 'Founders who understand the value of design and are ready to scale. We work across D2C, tech, hospitality, and B2B industries.' },
-  { q: 'Do you work with clients outside Indore?', a: 'Yes. While we are based in Indore, Madhya Pradesh, we work with brands and businesses across India. Our primary markets include Indore, Bhopal, Mumbai, Delhi, and Bangalore.' },
+  { q: 'Do you work with clients outside Indore?', a: 'Yes. While we are based in Indore, Madhya Pradesh, we work with brands and businesses worldwide. We collaborate remotely across countries and time zones; on-site production is scoped by location.' },
   { q: 'How do you handle PR?', a: 'We secure strategic media placements that put you in conversations you were never part of before, seamlessly integrating with your social media strategy and campaigns.' },
   { q: 'What is calma?', a: 'Calma is our own product — an AI-powered review management system for restaurants in India. It automatically replies to Google, Zomato, and Swiggy reviews 24/7. Visit heycalma.in to learn more.' },
 ]
@@ -37,10 +37,10 @@ export default function FAQ() {
   return (
     <div style={{ minHeight: '100dvh', background: '#fff' }}>
       <SEOHead
-        title="FAQs — Marketing Services Indore"
-        description="Frequently asked questions about thenightera — the best marketing agency in Indore. Learn about our social media management, web development, PR services, pricing, and how we work with brands across India."
+        title="FAQs — Marketing Services"
+        description="Frequently asked questions about thenightera, an Indore-based creative and digital marketing studio serving brands worldwide. Learn about our social media, web, PR, and branding services."
         path="/faq"
-        keywords="marketing agency FAQ indore, social media management questions, web development questions indore, best marketing company indore FAQ"
+        keywords="digital marketing agency, social media marketing, web development, branding, public relations"
         schema={faqSchema}
       />
       <PageHeader

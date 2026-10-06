@@ -257,7 +257,7 @@ export default function Layout({ children }) {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
               <p style={{ fontSize: '0.875rem', fontWeight: 700, color: '#372713' }}>thenightera</p>
               <p style={{ fontSize: '0.75rem', color: '#A39670', lineHeight: 1.6, maxWidth: '22ch' }}>
-                AI-powered branding, content & PR.<br />indore, madhya pradesh, india
+                AI-powered branding, content & PR.<br />Based in Indore, India · Serving brands worldwide
               </p>
             </div>
 
@@ -303,7 +303,7 @@ export default function Layout({ children }) {
             display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap',
             gap: '0.5rem', fontSize: '0.75rem', color: '#A39670',
           }}>
-            <p>thenightera.in · brands that earn attention</p>
+            <p>thenightera.tech · brands that earn attention</p>
             <p>© {new Date().getFullYear()} thenightera</p>
           </div>
         </div>

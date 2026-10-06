@@ -67,9 +67,9 @@ export default function Testimonials() {
   const reviewSchema = {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
-    '@id': 'https://thenightera.in/#localbusiness',
+    '@id': 'https://thenightera.tech/#localbusiness',
     name: 'thenightera',
-    url: 'https://thenightera.in',
+    url: 'https://thenightera.tech',
     review: TESTIMONIALS.map(t => ({
       '@type': 'Review',
       author: { '@type': 'Organization', name: t.name },
@@ -81,10 +81,10 @@ export default function Testimonials() {
   return (
     <div style={{ minHeight: '100dvh', background: '#fff' }}>
       <SEOHead
-        title="Client Reviews — Best Marketing Agency in Indore"
-        description="Read what our clients say about thenightera. Real reviews from Indore brands, creators, jewellers, cafes, clinics and businesses who trusted the best marketing agency in Indore with their growth."
+        title="Client Reviews — thenightera"
+        description="Read client reviews for thenightera. Feedback from Indore brands, creators, jewellers, cafes, clinics, and businesses worldwide."
         path="/testimonials"
-        keywords="marketing agency reviews indore, client testimonials marketing company, best SMM agency reviews, web development reviews indore, thenightera reviews"
+        keywords="digital marketing agency, social media marketing, web development, branding, public relations"
         schema={reviewSchema}
       />
       <PageHeader

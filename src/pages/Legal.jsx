@@ -1,7 +1,7 @@
 import SEOHead from '../components/SEOHead'
 
 const pages = {
-  privacy: { title: 'Privacy Policy', description: 'How thenightera collects, uses, and protects information submitted through thenightera.in.', blocks: [
+  privacy: { title: 'Privacy Policy', description: 'How thenightera collects, uses, and protects information submitted through thenightera.tech.', blocks: [
     ['Information we collect', 'When you submit a contact form or sign in, we may receive your name, email address, brand name, message, authentication provider, and basic account information.'],
     ['Website analytics', 'We use Vercel Analytics and Speed Insights to understand aggregate traffic, page usage, device performance, and site reliability. These tools help us improve the website experience.'],
     ['Service providers', 'Supabase supports authentication, Web3Forms processes contact-form delivery, Google may provide OAuth sign-in, and Vercel hosts and measures the website. Each provider processes information under its own terms and privacy practices.'],
@@ -9,7 +9,7 @@ const pages = {
     ['Retention and choices', 'We keep information only as long as needed for the stated purpose, legal obligations, or legitimate business records. You may ask to access, correct, or delete your personal information by emailing officialnightera@gmail.com.'],
     ['Contact', 'Privacy questions can be sent to officialnightera@gmail.com. thenightera is based in Indore, Madhya Pradesh, India.'],
   ]},
-  terms: { title: 'Terms of Service', description: 'Terms governing use of thenightera.in and enquiries for thenightera services.', blocks: [
+  terms: { title: 'Terms of Service', description: 'Terms governing use of thenightera.tech and enquiries for thenightera services.', blocks: [
     ['Website use', 'You may use this website to learn about thenightera, view our work, and contact us about services. Do not misuse the website, attempt unauthorized access, or interfere with its operation.'],
     ['Service engagements', 'Project scope, deliverables, timelines, fees, revisions, ownership, and cancellation terms are defined in a separate written proposal or agreement. Website content does not create a client relationship.'],
     ['Content and intellectual property', 'The thenightera name, site design, writing, graphics, and original portfolio presentation belong to thenightera or their respective owners. Do not reproduce them without permission.'],

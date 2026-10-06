@@ -25,9 +25,9 @@ const SERVICES = [
     dot: '#4D4828',
     img: '/images/phone-case.jpg',
     links: [
-      ['Social media marketing', '/social-media-marketing-indore'],
-      ['PR strategy', '/pr-agency-indore'],
-      ['Brand identity', '/branding-agency-indore'],
+      ['Social media marketing', '/social-media-marketing'],
+      ['PR strategy', '/pr-agency'],
+      ['Brand identity', '/branding-agency'],
     ]
   },
   {
@@ -47,7 +47,7 @@ const SERVICES = [
     accent: '#ECE6D8',
     dot: 'rgba(236,230,216,0.5)',
     img: '/images/coffee.jpg',
-    links: [['Web development', '/web-development-indore']]
+    links: [['Web development', '/web-development']]
   }
 ]
 
@@ -519,10 +519,10 @@ export default function Services() {
       provider: {
         '@type': 'LocalBusiness',
         name: 'thenightera',
-        url: 'https://thenightera.in',
+        url: 'https://thenightera.tech',
       },
-      areaServed: { '@type': 'City', name: 'Indore' },
-      description: 'Complete social media management including content calendar, reel production, PR placements, community engagement. Best SMM agency in Indore.',
+      areaServed: 'Worldwide',
+      description: 'Complete social media management including content calendar, reel production, PR placements, community engagement.',
     },
     {
       '@context': 'https://schema.org',
@@ -531,20 +531,20 @@ export default function Services() {
       provider: {
         '@type': 'LocalBusiness',
         name: 'thenightera',
-        url: 'https://thenightera.in',
+        url: 'https://thenightera.tech',
       },
-      areaServed: { '@type': 'City', name: 'Indore' },
-      description: 'Custom React & Next.js web development with mobile-first design, SEO optimization, and performance analytics. Best web development company in Indore.',
+      areaServed: 'Worldwide',
+      description: 'Custom React & Next.js web development with mobile-first design, SEO optimization, and performance analytics.',
     },
   ]
 
   return (
     <div style={{ background: '#fff' }}>
       <SEOHead
-        title="Social Media & Web Development Services in Indore"
-        description="thenightera offers premium social media management, web development, PR strategy & brand identity services in Indore, MP. Custom React builds, content calendars, reel production & more. Get a free consultation."
+        title="Social Media & Web Development Services Worldwide"
+        description="thenightera offers premium social media management, web development, PR strategy & brand identity services for brands worldwide. Custom React builds, content calendars, reel production & more. Get a free consultation."
         path="/services"
-        keywords="social media management services indore, web development services indore, SMM agency indore, website development indore, PR services indore, content marketing indore, reel production indore"
+        keywords="digital marketing agency, social media marketing, web development, branding, public relations"
         schema={serviceSchema}
       />
       <Hero />

@@ -32,7 +32,7 @@ export default function ContactCTA() {
         </h2>
         <div className="reveal" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
           <a
-            href="mailto:hello@thenightera.in"
+            href="mailto:officialnightera@gmail.com"
             style={{
               display: 'inline-flex', alignItems: 'center', gap: '0.75rem',
               background: 'var(--accent)', color: 'var(--ink)',
@@ -44,7 +44,7 @@ export default function ContactCTA() {
             onMouseEnter={(e) => e.currentTarget.style.opacity = '0.88'}
             onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
           >
-            hello@thenightera.in
+            officialnightera@gmail.com
           </a>
           <a
             href="https://instagram.com/thenightera"

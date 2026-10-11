@@ -266,10 +266,9 @@ export default function Portfolio() {
   return (
     <div style={{ minHeight: '100dvh', background: '#FAFAF8', position: 'relative' }}>
       <SEOHead
-        title="Portfolio — Brand, Social Media & Web Projects"
-        description="Browse thenightera's portfolio of social media campaigns, brand identities, web development projects, and reels for brands worldwide."
+        title="thenightera Portfolio | Brand, Social and Web"
+        description="Browse selected thenightera work in brand identity, social media, short-form video, web development, and digital design."
         path="/portfolio"
-        keywords="digital marketing agency, social media marketing, web development, branding, public relations"
       />
       <AnimatePresence mode="wait">
         {!activeCategory ? (

@@ -24,21 +24,20 @@ export default function Calma() {
     applicationCategory: 'BusinessApplication',
     operatingSystem: 'Web',
     url: 'https://heycalma.in',
-    description: 'Calma is an AI-powered review management tool for restaurants in India. It automatically replies to Google, Zomato, and Swiggy reviews 24/7.',
+    description: 'Calma helps restaurant teams understand guest feedback, spot recurring themes, and choose practical service improvements.',
     creator: {
       '@type': 'Organization',
       name: 'thenightera',
-      url: 'https://thenightera.tech',
+      url: 'https://www.thenightera.tech',
     },
   }
 
   return (
     <div className="calma-web-wrapper">
       <SEOHead
-        title="Calma — AI Review Management for Restaurants in India"
-        description="Calma by thenightera automatically replies to Google, Zomato & Swiggy reviews 24/7. Save 20+ hours weekly. The best AI review tool for restaurants in India. Built in Indore."
+        title="Calma | Restaurant Feedback Intelligence"
+        description="Calma helps restaurant teams spot guest feedback patterns, understand recurring issues, and decide what to improve next."
         path="/calma"
-        keywords="AI review management, restaurant review reply, Google review automation, Zomato review bot, Swiggy review management, calma AI, restaurant marketing indore"
         schema={calmaSchema}
       />
       <Hero />

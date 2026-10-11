@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion'
-import { Link } from 'react-router-dom'
 
 function aiImg(prompt, w = 1400, h = 900, seed = 42) {
   return `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=${w}&height=${h}&model=flux&nologo=true&seed=${seed}`
@@ -16,7 +15,7 @@ const IMGS = {
 
 const FALLBACK = {
   restaurant: aiImg('empty luxury restaurant interior at night, warm amber candlelight, dark moody atmosphere, bokeh background, no people, cinematic photography, 50mm lens, shallow depth of field', 1400, 900, 42),
-  reviews: aiImg('close up of a hand holding smartphone showing 5 star google review notification, dark background, soft studio lighting, hyperrealistic product photography, cinematic', 900, 1100, 42),
+  reviews: aiImg('restaurant owner reviewing a clean guest feedback dashboard on a smartphone, no visible text, no ratings or logos, warm dark background, soft studio lighting, editorial product photography', 900, 1100, 42),
   owner: aiImg('young indian woman restaurant owner smiling at smartphone in warm cafe, candid editorial photography, golden hour, shallow depth of field, film grain', 900, 1100, 42),
   coffee: aiImg('overhead flat lay of latte art coffee on dark wood table, warm golden light, lifestyle photography, hyperrealistic, minimal, editorial, cozy cafe atmosphere', 1400, 900, 42),
 }
@@ -64,7 +63,7 @@ export default function ImageMoments() {
                 </h2>
               </div>
               <p className="text-base font-light text-white/50 max-w-xs leading-relaxed">
-                every 5-star review brings the next customer through your door.
+                individual comments make more sense when recurring themes are easy to see.
               </p>
             </div>
           </motion.div>
@@ -78,16 +77,16 @@ export default function ImageMoments() {
             <div className="relative z-10 p-10 pb-0 flex flex-col" style={{ minHeight: 580 }}>
               <p className="text-xs font-semibold tracking-[4px] text-[#6e6e73] uppercase mb-4">reviews</p>
               <h2 className="text-4xl md:text-5xl font-semibold tracking-tight leading-[1.05] text-[#1d1d1f]">
-                finally.
-                <br />
-                <span className="text-[#6e6e73]">a good morning.</span>
+                  feedback.
+                  <br />
+                  <span className="text-[#6e6e73]">with more context.</span>
               </h2>
               <p className="mt-4 text-base font-light text-[#6e6e73] max-w-xs leading-relaxed">
-                open your phone. see five-star reviews waiting.
+                read guest comments with the broader experience in mind.
               </p>
               {/* Phone image rising from bottom */}
               <div className="flex-1 flex items-end justify-center mt-8">
-                <img src={imgSrc('reviews')} onError={e => onImgError(e, 'reviews')} alt="restaurant owner viewing 5-star Google reviews on smartphone" loading="lazy"
+                <img src={imgSrc('reviews')} onError={e => onImgError(e, 'reviews')} alt="restaurant owner reviewing guest feedback on a smartphone" loading="lazy"
                   className="h-[320px] w-auto object-contain object-bottom drop-shadow-2xl" />
               </div>
             </div>
@@ -106,25 +105,20 @@ export default function ImageMoments() {
 
           <div className="relative z-10 p-12 md:p-20 flex flex-col md:flex-row items-center justify-between gap-10" style={{ minHeight: 480 }}>
             <div className="flex-1">
-              <p className="text-xs font-semibold tracking-[4px] text-white/30 uppercase mb-6">results</p>
+              <p className="text-xs font-semibold tracking-[4px] text-white/30 uppercase mb-6">a clearer process</p>
               <h2 className="text-[clamp(40px,5vw,72px)] font-semibold tracking-tight leading-[1.0] text-white">
-                the number
-                <br />
-                <span className="text-white/40">that matters most.</span>
+                  see the pattern
+                  <br />
+                  <span className="text-white/40">behind the comments.</span>
               </h2>
-              <Link to="/pricing" className="mt-8 inline-flex items-center gap-2 text-[#5e5ce6] text-base font-medium hover:opacity-70 transition-opacity">
-                get started →
-              </Link>
+              <a href="https://heycalma.in/" className="mt-8 inline-flex items-center gap-2 text-[#5e5ce6] text-base font-medium hover:opacity-70 transition-opacity" target="_blank" rel="noreferrer">
+                visit calma →
+              </a>
             </div>
-            {/* Big stat */}
             <div className="text-right">
-              <div className="text-[clamp(100px,14vw,180px)] font-bold leading-none text-white tracking-tight">
-                4.8
-              </div>
-              <div className="flex justify-end gap-1 mt-1">
-                {[1,2,3,4,5].map(i => <span key={i} className="text-2xl text-[#ff9f0a]">★</span>)}
-              </div>
-              <p className="mt-3 text-sm font-light text-white/30 tracking-wide">avg rating after 60 days</p>
+              <p className="text-xs font-semibold tracking-[3px] uppercase text-white/35">from feedback</p>
+              <p className="mt-4 text-4xl md:text-6xl font-semibold tracking-tight text-white">to insight</p>
+              <p className="mt-3 max-w-xs text-sm font-light leading-relaxed text-white/45">A clearer view of what guests mention, repeatedly.</p>
             </div>
           </div>
         </motion.div>
@@ -144,16 +138,15 @@ export default function ImageMoments() {
             <div className="flex-1 max-w-md">
               <p className="text-xs font-semibold tracking-[4px] text-[#4a7c40] uppercase mb-5">always with you</p>
               <h2 className="text-[clamp(36px,4.5vw,64px)] font-semibold tracking-tight leading-[1.05] text-[#1d1d1f]">
-                calma lives
-                <br />in your phone.
+                make feedback
+                <br />easier to act on.
               </h2>
               <p className="mt-5 text-base font-light text-[#4a5568] leading-relaxed max-w-sm">
-                our lil' AI stays in your pocket — so when a bad review drops, it's already on it.
-                no panic, no damage. just vibes and five stars.
+                spot recurring guest themes, share them with the right people, and decide what to improve next.
               </p>
               <div className="mt-6 inline-flex items-center gap-2 bg-[#1d1d1f] text-white text-sm font-medium px-5 py-3 rounded-full">
                 <span className="text-base">✦</span>
-                bye bye low ratings
+                feedback, with context
               </div>
             </div>
 
@@ -161,7 +154,7 @@ export default function ImageMoments() {
             <div className="flex-1 flex items-center justify-center md:justify-end">
               <img
                 src="/images/calma/phone-case.jpg"
-                alt="calma AI review management app displayed on a smartphone"
+                alt="Illustrative calma guest feedback view displayed on a smartphone"
                 loading="lazy"
                 className="h-[340px] md:h-[420px] w-auto object-cover object-top drop-shadow-2xl"
                 style={{ clipPath: 'inset(0 0 28% 0 round 16px)' }}
@@ -173,9 +166,9 @@ export default function ImageMoments() {
         {/* ROW 4: Three stat cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {[
-            { num: '24/7', label: 'reviews monitored', sub: 'never miss one', dark: true },
-            { num: '7min', label: 'avg reply time', sub: 'faster than any human', dark: false },
-            { num: '60d', label: 'rating guarantee', sub: 'or we refund you', dark: true },
+            { num: '01', label: 'Guest feedback', sub: 'listen to what people share', dark: true },
+            { num: '02', label: 'Recurring themes', sub: 'see what comes up again', dark: false },
+            { num: '03', label: 'Team next steps', sub: 'decide what to improve', dark: true },
           ].map((s, i) => (
             <motion.div
               key={s.num}

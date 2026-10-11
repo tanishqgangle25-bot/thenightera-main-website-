@@ -71,7 +71,7 @@ export default function Hero() {
         }} className="flex-col md:grid">
           <div>
             <p className="h-sub body-lg" style={{ maxWidth: '42ch', marginBottom: '2rem' }}>
-              AI-powered branding, content &amp; PR for creators and businesses
+              Brand identity, content &amp; PR for creators and businesses
               who refuse to be invisible.
             </p>
             <div className="h-ctas" style={{ display: 'flex', alignItems: 'center', gap: '1.75rem', flexWrap: 'wrap' }}>

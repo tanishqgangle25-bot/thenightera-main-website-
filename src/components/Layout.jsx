@@ -70,14 +70,14 @@ function AnimNav({ to, label, isDark = false }) {
 
 export default function Layout({ children }) {
   const [open, setOpen] = useState(false)
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 868)
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 1200)
   const [scrolled, setScrolled] = useState(false)
   const { pathname } = useLocation()
   const navRef = useRef(null)
 
   /* resize */
   useEffect(() => {
-    const onResize = () => setIsMobile(window.innerWidth < 868)
+    const onResize = () => setIsMobile(window.innerWidth < 1200)
     window.addEventListener('resize', onResize)
     return () => window.removeEventListener('resize', onResize)
   }, [])
@@ -122,22 +122,27 @@ export default function Layout({ children }) {
           maxWidth: '1200px', margin: '0 auto',
           padding: '0 2.5rem', height: '52px',
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-          gap: '1.5rem',
+          gap: '1rem',
         }}>
 
           {/* Logo */}
-          <Link to="/" style={{
-            color: '#372713', fontWeight: 700, fontSize: '0.9375rem',
-            letterSpacing: '-0.02em', textDecoration: 'none', flexShrink: 0,
+          <Link to="/" aria-label="thenightera home" title="thenightera" style={{
+            textDecoration: 'none', flexShrink: 0,
+            display: 'inline-flex', flexDirection: 'row', alignItems: 'center', gap: '12px',
           }}>
-            thenightera
+            <img src="/logo-era.png" alt="ERA." width="78" height="26" style={{ objectFit: 'contain', display: 'block', width: '72px', height: '24px' }} />
+            <span style={{ width: '1px', height: '22px', background: '#D8D3CD' }} aria-hidden="true" />
+            <span style={{ color: '#292725', fontFamily: 'Inter, system-ui, sans-serif', fontSize: '0.72rem', fontStyle: 'normal', fontWeight: 500, letterSpacing: '0.015em', lineHeight: 1, whiteSpace: 'nowrap' }}>
+              Design Studio
+            </span>
           </Link>
 
           {/* Desktop links */}
           {!isMobile && (
             <div style={{
               display: 'flex', alignItems: 'center',
-              gap: '1.75rem', flex: 1, justifyContent: 'center',
+              gap: 'clamp(0.75rem, 1.2vw, 1.4rem)', flex: 1, justifyContent: 'flex-start',
+              marginLeft: 'clamp(1rem, 2vw, 1.75rem)',
             }}>
               {links.map(l => (
                 <AnimNav key={l.label} to={l.to} label={l.label} isDark={false} />
@@ -257,7 +262,7 @@ export default function Layout({ children }) {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
               <p style={{ fontSize: '0.875rem', fontWeight: 700, color: '#372713' }}>thenightera</p>
               <p style={{ fontSize: '0.75rem', color: '#A39670', lineHeight: 1.6, maxWidth: '22ch' }}>
-                AI-powered branding, content & PR.<br />operating globally, India · engineering premium digital experiences
+                Design, technology & growth for ambitious brands.<br />Based in Indore. Working worldwide.
               </p>
             </div>
 
@@ -284,7 +289,7 @@ export default function Layout({ children }) {
               {[
                 ['instagram · @thenightera', 'https://instagram.com/thenightera'],
                 ['calma · heycalma.in',      'https://heycalma.in'],
-                ['officialnightera@gmail.com','mailto:officialnightera@gmail.com'],
+                ['hello@thenightera.tech','mailto:hello@thenightera.tech'],
               ].map(([label, href]) => (
                 <a key={label} href={href}
                    target={href.startsWith('http') ? '_blank' : undefined}

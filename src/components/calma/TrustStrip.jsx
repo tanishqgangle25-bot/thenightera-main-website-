@@ -1,29 +1,8 @@
 import { motion } from 'framer-motion'
 
-const businesses = [
-  'Cafe Madras Coffee',
-  'Mehfil Restaurant',
-  'The Brew Lab',
-  'Padmavati Sweets',
-  'Hotel Surya',
-  'Glow Beauty Lounge',
-  'Saffron Kitchen',
-  'Indore Resto',
-  'Apna Tiffin Centre',
-  'Joshi Dahi Bada',
-  'Rajwada Sweets',
-  'Coffee Culture MG Road',
-]
-
-const stats = [
-  { n: '200+', l: 'local businesses' },
-  { n: '4.5★', l: 'avg rating after 60 days' },
-  { n: '12,000+', l: 'reviews answered monthly' },
-  { n: '7 min', l: 'avg reply time' },
-]
+const steps = ['Guest feedback', 'Recurring patterns', 'Team priorities', 'Better experiences']
 
 export default function TrustStrip() {
-  const row = [...businesses, ...businesses]
   return (
     <section className="bg-white py-20 md:py-24 border-t border-black/5">
       <div className="max-w-6xl mx-auto px-6 md:px-10">
@@ -34,7 +13,7 @@ export default function TrustStrip() {
           transition={{ duration: 0.5 }}
           className="text-center text-sm uppercase tracking-wider text-muted"
         >
-          trusted by 200+ local businesses across india
+          from individual reviews to the bigger picture
         </motion.p>
       </div>
 
@@ -46,12 +25,12 @@ export default function TrustStrip() {
           animate={{ x: ['0%', '-50%'] }}
           transition={{ duration: 40, repeat: Infinity, ease: 'linear' }}
         >
-          {row.map((b, i) => (
+          {[...steps, ...steps].map((step, i) => (
             <span
               key={i}
               className="text-xl md:text-2xl font-medium text-muted/70 tracking-tight shrink-0"
             >
-              {b}
+              {step}
             </span>
           ))}
         </motion.div>
@@ -64,10 +43,10 @@ export default function TrustStrip() {
         transition={{ duration: 0.6, delay: 0.1 }}
         className="max-w-6xl mx-auto px-6 md:px-10 mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 border-t border-black/5 pt-12"
       >
-        {stats.map((s) => (
-          <div key={s.l}>
-            <p className="text-3xl md:text-4xl font-semibold tracking-tight">{s.n}</p>
-            <p className="mt-2 text-sm text-muted leading-relaxed">{s.l}</p>
+        {steps.map((step, index) => (
+          <div key={step}>
+            <p className="text-3xl md:text-4xl font-semibold tracking-tight tabular-nums">0{index + 1}</p>
+            <p className="mt-2 text-sm text-muted leading-relaxed">{step}</p>
           </div>
         ))}
       </motion.div>

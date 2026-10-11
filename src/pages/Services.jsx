@@ -248,7 +248,7 @@ function ServicePanel({ s }) {
                   fontWeight: 500, borderBottom: `1px solid ${s.muted}`,
                   paddingBottom: '0.2rem', transition: 'opacity 0.2s'
                 }} onMouseEnter={e => e.currentTarget.style.opacity = '0.7'} onMouseLeave={e => e.currentTarget.style.opacity = '1'}>
-                  Automate your restaurant reviews with Calma →
+                  Understand restaurant guest feedback with Calma →
                 </Link>
               </div>
             )}
@@ -517,9 +517,10 @@ export default function Services() {
       '@type': 'Service',
       serviceType: 'Social Media Management & PR',
       provider: {
-        '@type': 'LocalBusiness',
+        '@type': 'Organization',
+        '@id': 'https://www.thenightera.tech/#organization',
         name: 'thenightera',
-        url: 'https://thenightera.tech',
+        url: 'https://www.thenightera.tech',
       },
       areaServed: 'Worldwide',
       description: 'Complete social media management including content calendar, reel production, PR placements, community engagement.',
@@ -529,9 +530,10 @@ export default function Services() {
       '@type': 'Service',
       serviceType: 'Web Development',
       provider: {
-        '@type': 'LocalBusiness',
+        '@type': 'Organization',
+        '@id': 'https://www.thenightera.tech/#organization',
         name: 'thenightera',
-        url: 'https://thenightera.tech',
+        url: 'https://www.thenightera.tech',
       },
       areaServed: 'Worldwide',
       description: 'Custom React & Next.js web development with mobile-first design, SEO optimization, and performance analytics.',
@@ -541,10 +543,9 @@ export default function Services() {
   return (
     <div style={{ background: '#fff' }}>
       <SEOHead
-        title="Social Media & Web Development Services Worldwide"
-        description="thenightera offers premium social media management, web development, PR strategy & brand identity services for brands worldwide. Custom React builds, content calendars, reel production & more. Get a free consultation."
+        title="Social, Web, Brand and PR Services | thenightera"
+        description="Explore thenightera services: social media strategy, web design and development, brand identity, and public relations for businesses worldwide."
         path="/services"
-        keywords="digital marketing agency, social media marketing, web development, branding, public relations"
         schema={serviceSchema}
       />
       <Hero />

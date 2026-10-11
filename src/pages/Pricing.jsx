@@ -243,10 +243,9 @@ export default function Pricing() {
   return (
     <div style={{ minHeight: '100dvh', background: '#f5f5f7' }}>
       <SEOHead
-        title="Premium Social Media Marketing Packages | thenightera"
-        description="Transparent pricing from thenightera. Social media management from ₹25K/mo, web development, PR strategy. No hidden fees. Book a free call."
+        title="thenightera Pricing | Social and Web Services"
+        description="Explore thenightera pricing for social media management and web projects. Compare service plans, deliverables, and engagement terms."
         path="/pricing"
-        keywords="digital marketing agency, social media marketing, web development, branding, public relations"
       />
       <PageHeader
         label="Pricing Plans"

@@ -1,5 +1,6 @@
 import { Link, Navigate, useParams } from 'react-router-dom'
 import SEOHead from '../components/SEOHead'
+import NotFound from './NotFound'
 
 const SERVICES = {
   'social-media-marketing': {
@@ -9,7 +10,7 @@ const SERVICES = {
     description: 'Social media marketing: strategy, content calendars, reels, editing, publishing, community direction, and reporting for growing brands.',
     deliverables: ['Brand and audience strategy', 'Monthly content calendar', 'Reel concepts, shoots, and editing', 'Campaign creative direction', 'Publishing and community playbooks', 'Monthly performance review'],
     outcomes: ['A consistent, recognizable brand voice', 'Content connected to commercial goals', 'A faster production and approval system'],
-    faqs: [['What does your social media service include?', 'Strategy, planning, content production, editing, publishing support, community direction, and performance reviews. Scope is tailored to the brand and chosen plan.'], ['Do you work only with Indore businesses?', 'No. We are operating globally, India, and work with brands worldwide using remote planning, production coordination, and review systems.'], ['Can you produce reels and short-form video?', 'Yes. Reel concepts, scripts, shoots, editing, and platform-ready delivery can be included in the engagement.']],
+    faqs: [['What does your social media service include?', 'Strategy, planning, content production, editing, publishing support, community direction, and performance reviews. Scope is tailored to the brand and chosen plan.'], ['Do you work only with Indore businesses?', 'No. We are based in Indore, India, and work with brands worldwide using remote planning, production coordination, and review systems.'], ['Can you produce reels and short-form video?', 'Yes. Reel concepts, scripts, shoots, editing, and platform-ready delivery can be included in the engagement.']],
   },
   'web-development': {
     title: 'Web Development Company', eyebrow: 'Web development · Worldwide',
@@ -43,12 +44,12 @@ export default function ServiceLanding() {
   const legacyRoutes = {"social-media-marketing-indore": "social-media-marketing", "web-development-indore": "web-development", "pr-agency-indore": "pr-agency", "branding-agency-indore": "branding-agency"}
   if (legacyRoutes[serviceSlug]) return <Navigate to={`/${legacyRoutes[serviceSlug]}`} replace />
   const service = SERVICES[serviceSlug]
-  if (!service) return <Navigate to="/services" replace />
+  if (!service) return <NotFound />
   const path = `/${serviceSlug}`
-  const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: service.faqs.map(([name, text]) => ({ '@type': 'Question', name, acceptedAnswer: { '@type': 'Answer', text } })) }
-  const serviceSchema = { '@context': 'https://schema.org', '@type': 'Service', name: service.title, url: `https://thenightera.tech${path}`, description: service.description, provider: { '@type': 'ProfessionalService', '@id': 'https://thenightera.tech/#organization', name: 'thenightera' }, areaServed: 'Worldwide' }
+  // FAQ content remains visible for visitors; FAQ rich results are not generally shown for business sites.
+  const serviceSchema = { '@context': 'https://schema.org', '@type': 'Service', name: service.title, url: `https://www.thenightera.tech${path}`, description: service.description, provider: { '@type': 'ProfessionalService', '@id': 'https://www.thenightera.tech/#organization', name: 'thenightera' }, areaServed: 'Worldwide' }
   return <div className="min-h-screen bg-[#FAF7F2] text-[#1d1d1f]">
-    <SEOHead title={service.title} description={service.description} path={path} schema={[serviceSchema, faqSchema]} />
+    <SEOHead title={service.title} description={service.description} path={path} schema={serviceSchema} />
     <section className="mx-auto max-w-6xl px-6 pb-20 pt-28 md:px-10 md:pb-28 md:pt-36"><p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#7D2027]">{service.eyebrow}</p><h1 className="mt-6 max-w-5xl text-5xl font-semibold leading-[0.96] tracking-[-0.055em] sm:text-6xl md:text-8xl">{service.headline}</h1><p className="speakable mt-8 max-w-3xl text-lg leading-8 text-[#5f5f63] md:text-xl">{service.answer}</p><div className="mt-10 flex flex-wrap gap-3"><Link to="/contact" className="rounded-full bg-[#1d1d1f] px-6 py-3 text-sm font-semibold text-white no-underline">Book a free consultation</Link><Link to="/pricing" className="rounded-full border border-black/15 px-6 py-3 text-sm font-semibold text-[#1d1d1f] no-underline">See pricing</Link></div></section>
     <section className="border-y border-black/10 bg-white"><div className="mx-auto grid max-w-6xl gap-12 px-6 py-20 md:grid-cols-2 md:px-10 md:py-28"><div><p className="text-sm font-semibold text-[#7D2027]">What you get</p><h2 className="mt-4 text-4xl font-semibold tracking-[-0.045em] md:text-5xl">One clear system. Built around your goal.</h2></div><ul className="divide-y divide-black/10 border-y border-black/10">{service.deliverables.map((item, i) => <li key={item} className="flex gap-5 py-5 text-base font-medium md:text-lg"><span className="text-[#A39670]">0{i + 1}</span>{item}</li>)}</ul></div></section>
     <section className="mx-auto max-w-6xl px-6 py-20 md:px-10 md:py-28"><p className="text-sm font-semibold text-[#7D2027]">Designed outcome</p><h2 className="mt-4 max-w-3xl text-4xl font-semibold tracking-[-0.045em] md:text-5xl">Work your audience can understand, trust, and act on.</h2><div className="mt-10 grid gap-4 md:grid-cols-3">{service.outcomes.map(item => <div key={item} className="rounded-3xl border border-black/10 bg-white p-7 text-lg font-medium leading-7">{item}</div>)}</div></section>

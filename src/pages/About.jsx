@@ -6,41 +6,33 @@ const capabilities = [
   'Conversion-focused web development',
   'Brand identity and creative direction',
   'Public relations and founder positioning',
-  'AI automation and reputation intelligence',
 ]
 
 export default function About() {
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'AboutPage',
-    '@id': 'https://thenightera.tech/about#about',
-    url: 'https://thenightera.tech/about',
+    '@id': 'https://www.thenightera.tech/about#about',
+    url: 'https://www.thenightera.tech/about',
     name: 'About thenightera',
-    description: 'Learn about thenightera, an global design and technology studio engineering premium digital experiences, founded by Tanishq Gangle.',
-    mainEntity: {
-      '@type': 'Organization',
-      '@id': 'https://thenightera.tech/#organization',
-      name: 'thenightera',
-      founder: { '@type': 'Person', name: 'Tanishq Gangle', jobTitle: 'Founder and Creative Director' },
-      foundingDate: '2024',
-      address: { '@type': 'PostalAddress', addressLocality: 'Indore', addressRegion: 'Madhya Pradesh', addressCountry: 'IN' },
-    },
+    description: 'Learn about thenightera, a global design studio founded by Tanishq Gangle and working with brands worldwide.',
+    mainEntity: { '@id': 'https://www.thenightera.tech/#organization' },
   }
 
   return (
     <main className="bg-[#FAF7F2] text-[#1d1d1f]">
-      <SEOHead title="About thenightera — Marketing & Creative Technology Agency" description="thenightera is an global design and technology studio founded by Tanishq Gangle, engineering premium digital experiences with social media, web, PR, branding, and AI systems." path="/about" keywords="digital marketing agency, social media marketing, web development, branding, public relations" schema={schema} />
+      <SEOHead title="About thenightera | Global Design Studio" description="Founded by Tanishq Gangle, thenightera is a global design studio for brand identity, social media, web development, and PR." path="/about" schema={schema} />
 
       <section className="mx-auto max-w-6xl px-6 pb-20 pt-32 md:px-10 md:pb-28 md:pt-40">
         <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#7D2027]">About thenightera</p>
         <h1 className="mt-6 max-w-5xl text-5xl font-semibold leading-[0.95] tracking-[-0.06em] sm:text-6xl md:text-8xl">Intelligence for brands that want to matter.</h1>
-        <p className="speakable mt-8 max-w-3xl text-lg leading-8 text-[#5f5f63] md:text-xl">thenightera is a global design and technology studio. Founded by Tanishq Gangle, we combine social media, web development, public relations, brand identity, and AI systems into one connected growth partner.</p>
+        <p className="speakable mt-8 max-w-3xl text-lg leading-8 text-[#5f5f63] md:text-xl">thenightera is a global design studio. Founded by Tanishq Gangle, we bring brand identity, social media, web development, and public relations together in one connected creative partner.</p>
       </section>
 
       <section className="border-y border-black/10 bg-white">
         <div className="mx-auto grid max-w-6xl gap-14 px-6 py-20 md:grid-cols-[0.9fr_1.1fr] md:px-10 md:py-28">
           <div><p className="text-sm font-semibold text-[#7D2027]">Why we exist</p><h2 className="mt-4 text-4xl font-semibold tracking-[-0.045em] md:text-5xl">One team. One system. Clear growth.</h2></div>
-          <div className="space-y-6 text-base leading-7 text-[#5f5f63] md:text-lg md:leading-8"><p>Most brands coordinate separate people for content, websites, PR, and automation. Strategy gets fragmented. Execution slows down. Results become hard to measure.</p><p>We connect those disciplines from the start. Every page, campaign, story, and system supports the same positioning and commercial goal.</p></div>
+          <div className="space-y-6 text-base leading-7 text-[#5f5f63] md:text-lg md:leading-8"><p>When content, websites, and PR are handled separately, a brand's story can become fragmented. Execution slows down and results become harder to measure.</p><p>We connect those disciplines from the start. Every page, campaign, and story supports the same positioning and commercial goal.</p></div>
         </div>
       </section>
 

@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import { Link } from 'react-router-dom';
 
 const CalmaSpotlight = () => {
   const sectionRef = useRef(null);
@@ -33,22 +34,22 @@ const CalmaSpotlight = () => {
             </span>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold tracking-tighter mb-6 leading-tight">
-            The World's First AI-Powered Reputation Intelligence.
+            Understand the feedback behind every rating.
           </h2>
           <p className="text-lg text-muted-foreground mb-8">
-            Built exclusively for hospitality. It doesn't just collect feedback—it understands sentiment, predicts perception, and turns every guest interaction into strategic intelligence.
+            Calma helps restaurant teams make sense of guest feedback, spot recurring themes, and choose what to improve next.
           </p>
           <ul className="space-y-4 mb-10">
-            {['24/7 Monitoring', '7min avg reply time', '60-day rating guarantee'].map((feature, i) => (
+            {['Guest feedback', 'Recurring themes', 'Practical next steps'].map((feature, i) => (
               <li key={i} className="flex items-center space-x-3 text-sm font-medium">
                 <div className="w-1.5 h-1.5 rounded-full bg-primary" />
                 <span>{feature}</span>
               </li>
             ))}
           </ul>
-          <button className="border border-white/20 px-8 py-3 rounded-full font-medium hover:bg-white hover:text-black transition-colors">
+          <Link to="/calma" className="inline-block border border-white/20 px-8 py-3 rounded-full font-medium hover:bg-white hover:text-black transition-colors">
             Discover Calma
-          </button>
+          </Link>
         </div>
         
         <div className="calma-content relative">
@@ -60,24 +61,24 @@ const CalmaSpotlight = () => {
             
             <div className="space-y-4">
               <div className="bg-black/40 backdrop-blur-md rounded-xl p-4 border border-white/5 transform -rotate-2">
-                <div className="text-xs text-muted-foreground mb-1">New Review • 3 mins ago</div>
-                <div className="text-sm">"The ambiance was okay, but service was slow."</div>
-                <div className="mt-3 text-xs text-primary/80 font-mono">→ GENERATING EMPATHETIC RESPONSE...</div>
+                <div className="text-xs text-muted-foreground mb-1">Illustrative guest feedback</div>
+                <div className="text-sm">“The food was lovely. Service felt slow during the rush.”</div>
+                <div className="mt-3 text-xs text-primary/80 font-mono">RECURRING THEME · SERVICE WAIT</div>
               </div>
               <div className="bg-black/60 backdrop-blur-md rounded-xl p-4 border border-white/10 transform rotate-1 translate-x-4">
-                <div className="text-xs text-primary mb-1">Calma Auto-Reply</div>
-                <div className="text-sm text-gray-300">"We appreciate your honest feedback. We're looking into our service speed to ensure your next visit is flawless..."</div>
+                <div className="text-xs text-primary mb-1">A useful next step</div>
+                <div className="text-sm text-gray-300">Review peak-hour service with the team. Your people decide what changes.</div>
               </div>
             </div>
             
             <div className="pt-8 border-t border-white/5 flex justify-between items-end">
               <div>
-                <div className="text-3xl font-bold text-white">4.8★</div>
-                <div className="text-xs text-muted-foreground">Avg Rating</div>
+                <div className="text-xl font-bold text-white">Signal</div>
+                <div className="text-xs text-muted-foreground">Repeated feedback</div>
               </div>
               <div className="text-right">
-                <div className="text-xl font-bold text-white">12k+</div>
-                <div className="text-xs text-muted-foreground">Replies / mo</div>
+                <div className="text-xl font-bold text-white">Next step</div>
+                <div className="text-xs text-muted-foreground">Chosen by your team</div>
               </div>
             </div>
           </div>

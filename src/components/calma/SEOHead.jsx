@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async'
 
 const SITE_NAME = 'calma'
-const BASE_URL = 'https://heycalma.in'
+const BASE_URL = 'https://www.thenightera.tech'
 const DEFAULT_OG_IMAGE = `${BASE_URL}/images/restaurant.jpg`
 
 export default function SEOHead({
@@ -11,7 +11,7 @@ export default function SEOHead({
   ogImage = DEFAULT_OG_IMAGE,
   schema = null,
 }) {
-  const fullTitle = title ? `${title} | calma` : 'calma — AI Review Management for Restaurants in India'
+  const fullTitle = title ? (title.toLowerCase().includes(SITE_NAME) ? title : `${title} | calma`) : 'Calma | Restaurant Feedback Intelligence'
   const canonical = `${BASE_URL}${path}`
 
   return (
@@ -22,12 +22,6 @@ export default function SEOHead({
       <link rel="canonical" href={canonical} />
       <meta name="robots" content="index, follow" />
 
-      {/* Geo targeting — India + Indore */}
-      <meta name="geo.region" content="IN-MP" />
-      <meta name="geo.placename" content="Global" />
-      <meta name="geo.position" content="22.7196;75.8577" />
-      <meta name="ICBM" content="22.7196, 75.8577" />
-      <meta name="language" content="English" />
 
       {/* Open Graph */}
       <meta property="og:type" content="website" />
@@ -39,8 +33,8 @@ export default function SEOHead({
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
       <meta property="og:image:type" content="image/jpeg" />
-      <meta property="og:image:alt" content="calma — AI review management for restaurants in India" />
-      <meta property="og:locale" content="en_IN" />
+      <meta property="og:image:alt" content="Calma restaurant feedback intelligence" />
+      <meta property="og:locale" content="en_US" />
 
       {/* Twitter Card */}
       <meta name="twitter:card" content="summary_large_image" />

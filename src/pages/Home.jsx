@@ -6,6 +6,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { LiquidMetalButton } from '../components/ui/liquid-metal-button'
 import { FrameSequenceHero } from '../components/ui/mac-book-neo-hero'
 import SEOHead from '../components/SEOHead'
+import { ORGANIZATION_SCHEMA, WEBSITE_SCHEMA } from '../lib/siteStructuredData'
 gsap.registerPlugin(ScrollTrigger)
 
 /* ─── SHARED ─── */
@@ -23,53 +24,22 @@ function FadeUp({ children, delay = 0, y = 40 }) {
 }
 
 /* ═══════════════════════════════════════════
-   1. HERO — MacBook Image Sequence (Apple Style)
+   1. HERO — layered Mac-style introduction
    ═══════════════════════════════════════════ */
 function Hero() {
   const steps = [
-    { from: 0.02, to: 0.28, color: "#7D2027", num: "01", total: "04", icon: "✦",
-      title: "Presence, Engineered.",
-      description: "We don't chase trends. We architect the digital presence of brands that dictate them.",
-      label: "Identity" },
-    { from: 0.28, to: 0.55, color: "#A39670", num: "02", total: "04", icon: "◐",
-      title: "A refined narrative.",
-      description: "Every pixel, every frame, crafted to earn attention and command authority in a noisy world.",
-      label: "Strategy" },
-    { from: 0.55, to: 0.82, color: "#D9C4B1", num: "03", total: "04", icon: "▣",
-      title: "Design that captivates.",
-      description: "Premium aesthetics combined with hardware-accelerated animations for silky-smooth motion.",
-      label: "Experience" },
-    { from: 0.82, to: 0.92, color: "#ECE6D8", num: "04", total: "04", icon: "⌁",
-      title: "Built for dominance.",
-      description: "Because good isn't enough. We build for the extraordinary.",
-      label: "Results" },
-  ];
+    { from: 0.02, to: 0.28, color: '#7D2027', num: '01', total: '04', icon: '✦', title: 'Presence, engineered.', description: 'A distinct identity and a digital presence built to move brands forward.', label: 'Identity' },
+    { from: 0.28, to: 0.55, color: '#A39670', num: '02', total: '04', icon: '◐', title: 'A sharper story.', description: 'Strategy, content and design working together at every touchpoint.', label: 'Story' },
+    { from: 0.55, to: 0.82, color: '#D9C4B1', num: '03', total: '04', icon: '▣', title: 'Technology with intent.', description: 'Digital experiences and intelligent systems shaped around people.', label: 'Technology' },
+    { from: 0.82, to: 1, color: '#ECE6D8', num: '04', total: '04', icon: '⌁', title: 'Built to keep moving.', description: 'A studio and a product—connected by design.', label: 'Calma' },
+  ]
 
   return (
     <FrameSequenceHero
-      scrollHeight="500vh"
-      brand={
-        <>
-          <span className="fsh-brand-dot" />
-          thenightera.
-        </>
-      }
-      navLinks={[
-        { label: "Work", href: "#" },
-        { label: "Services", href: "#" },
-        { label: "About", href: "#" },
-        { label: "Contact", href: "#" },
-      ]}
-      ctaLabel="Start a project"
-      ctaHref="/contact"
-      title={
-        <>
-          <span className="fsh-title-dark">Welcome to</span>{" "}
-          <br />
-          <span className="fsh-title-rainbow">thenightera</span>
-        </>
-      }
-      subtitle="Social media, branding, PR and web development for brands worldwide."
+      scrollHeight="400vh"
+      showNav={false}
+      title={<><span className="fsh-title-dark">Welcome to</span><br /><span className="fsh-title-rainbow">thenightera</span></>}
+      subtitle="Design studio · products · intelligent systems"
       steps={steps}
     />
   );
@@ -192,7 +162,7 @@ function Services3DApple() {
    ═══════════════════════════════════════════ */
 
 const VAULT_ITEMS = [
-  { trackingText: 'Our AI', label: 'heycalma.in', img: '/images/tanu/calma.png' },
+  { trackingText: 'Our product', label: 'calma', img: '/images/tanu/calma.png' },
   { trackingText: 'Social Media Marketing', label: 'Amavi Indore', img: '/images/tanu/ssm.jpg' },
   { trackingText: 'Web Development', label: 'Kuber Shree', img: '/images/tanu/web dev.png' },
 ]
@@ -452,9 +422,6 @@ function ClientsSection() {
     { name: 'Kuber Shree', cat: 'Jewellery' },
     { name: 'Amavi Cafe', cat: 'F&B' },
     { name: 'Symphony', cat: 'Restaurant' },
-    { name: 'Oven & Co.', cat: 'Bakery' },
-    { name: 'Dr. Siddharth', cat: 'Healthcare' },
-    { name: 'Studio 11', cat: 'Salon' },
     { name: '49K+ Creator', cat: 'Content' },
     { name: '1.7M Network', cat: 'Collab' },
   ]
@@ -464,7 +431,7 @@ function ClientsSection() {
         <FadeUp>
           <p style={{ fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', fontWeight: 500, textAlign: 'center', marginBottom: '3.5rem' }}>Trusted by brands worldwide</p>
         </FadeUp>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-[1px] bg-white/5">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-[1px] bg-white/5">
           {clients.map((c, i) => (
             <motion.div key={c.name}
               initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}
@@ -481,7 +448,11 @@ function ClientsSection() {
 }
 
 /* ═══════════════════════════════════════════
-   9. CALMA SPOTLIGHT
+   9. THENIGHTERA ECOSYSTEM — immersive 3D scene
+   ═══════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════
+   10. CALMA SPOTLIGHT
    ═══════════════════════════════════════════ */
 function CalmaSpotlight() {
   return (
@@ -489,20 +460,20 @@ function CalmaSpotlight() {
       <div className="container">
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5rem', alignItems: 'center' }}>
           <FadeUp>
-            <p style={{ fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#A39670', fontWeight: 500, marginBottom: '1.5rem' }}>Case study</p>
-            <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', fontWeight: 800, letterSpacing: '-0.055em', color: '#1d1d1f', lineHeight: 0.95, marginBottom: '1.5rem' }}>heycalma.in</h2>
-            <p style={{ fontSize: '1.05rem', color: '#4D4828', lineHeight: 1.7, marginBottom: '2rem', maxWidth: '44ch' }}>A complete brand and digital identity for a premium wellness cafe. From logo to website to social — built to attract a premium audience.</p>
+            <p style={{ fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#A39670', fontWeight: 500, marginBottom: '1.5rem' }}>A product by thenightera</p>
+            <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', fontWeight: 800, letterSpacing: '-0.055em', color: '#1d1d1f', lineHeight: 0.95, marginBottom: '1.5rem' }}>calma</h2>
+            <p style={{ fontSize: '1.05rem', color: '#4D4828', lineHeight: 1.7, marginBottom: '2rem', maxWidth: '44ch' }}>Restaurant feedback intelligence that helps teams find recurring guest feedback themes and decide what to improve.</p>
             <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginBottom: '2rem' }}>
               {['Branding', 'Web', 'Social'].map(t => <span key={t} style={{ fontSize: '0.7rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#7A6E50', border: '1px solid #C4B49A', padding: '0.35rem 0.9rem', borderRadius: '999px' }}>{t}</span>)}
             </div>
-            <Link to="/portfolio" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', color: '#1d1d1f', fontWeight: 600, fontSize: '0.9rem', textDecoration: 'none', borderBottom: '1px solid #1d1d1f', paddingBottom: '2px', transition: 'opacity 0.2s' }}
+            <Link to="/calma" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', color: '#1d1d1f', fontWeight: 600, fontSize: '0.9rem', textDecoration: 'none', borderBottom: '1px solid #1d1d1f', paddingBottom: '2px', transition: 'opacity 0.2s' }}
               onMouseEnter={e => e.currentTarget.style.opacity = '0.6'}
               onMouseLeave={e => e.currentTarget.style.opacity = '1'}
-            >View case study →</Link>
+            >Explore calma →</Link>
           </FadeUp>
           <motion.div initial={{ opacity: 0, scale: 0.96 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             style={{ borderRadius: '24px', overflow: 'hidden', aspectRatio: '4/5', background: '#0D1F0D' }}>
-            <img src="/images/coffee.jpg" alt="heycalma" style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.8, transition: 'transform 0.8s ease' }}
+            <img src="/images/coffee.jpg" alt="calma restaurant feedback intelligence" style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.8, transition: 'transform 0.8s ease' }}
               onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.04)'}
               onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
             />
@@ -518,21 +489,10 @@ function CalmaSpotlight() {
    ═══════════════════════════════════════════ */
 function FounderStory() {
   const paragraphs = [
-    "Most companies create content. Some build brands. We believe the future belongs to businesses that build interconnected ecosystems.",
-    "**thenightera** exists to help companies make that transition.",
-    "We don't see branding as a logo, a website, a campaign, or a collection of social media posts. We see it as an ecosystem where every interaction, every design decision, every customer experience, and every piece of technology works together with purpose. A brand should not only look exceptional. It should communicate and grow. That's why we believe the strongest companies of tomorrow won't simply have better marketing. They'll have better systems.",
-    "At thenightera, creativity is only the beginning. Behind every visual is a strategy. Behind every campaign is data. Behind every website is performance. We combine design, storytelling, technology, social media management, and web development into a single ecosystem that helps businesses become faster, smarter, and more valuable over time.",
-    "We don't measure success by how much content we publish or how many campaigns we launch. We measure success by what those creations accomplish. Does the website create trust? Does the film create emotion? Does the design become recognizable? Does every experience move the business forward? If the answer is no, then the work isn't finished.",
-    "Technology has changed the way businesses operate, but too many companies still treat creativity and technology as separate disciplines. We believe they should never exist apart. Design should understand data. Web development should support creativity. Social media should drive real connection. Every tool should make businesses more human by giving people more time to focus on what truly matters: building relationships, creating ideas, and delivering extraordinary experiences.",
-    "Our philosophy is built around one belief: businesses shouldn't need ten different partners to build their future. Branding, websites, content production, social media management, digital experiences, PR, and growth strategy should work together as one connected system. Every project we create becomes another layer of that system, strengthening the foundation for everything that follows.",
-    "We care deeply about craftsmanship. Not because perfection is fashionable, but because details shape perception. The spacing on a website. The pacing of a film. The movement of an animation. The words people read. The speed of a page. Individually they seem small. Together they define how a business is experienced. Excellence is rarely created by one big decision. It's created by hundreds of thoughtful ones.",
-    "As the digital world becomes increasingly complex, simplicity becomes more valuable. We believe the best experiences feel effortless because the complexity has already been solved behind the scenes. Whether we're designing a visual identity, producing cinematic content, managing social ecosystems, building digital platforms, or securing PR placements, our objective remains the same: remove friction, increase clarity, and create experiences that simply work.",
-    "Founded by **Tanishq Gangle**, **thenightera** was created with a long-term vision that extends far beyond a traditional creative agency. We are building a company where creativity meets engineering, where technology serves people, and where interconnected systems become the foundation of modern business. Every product we build, every client we partner with, and every idea we pursue moves us toward that vision.",
-    "We don't believe the next generation of great companies will be defined by the amount of content they produce. They will be defined by how intelligently they operate, how consistently they communicate, and how intentionally they evolve.",
-    "That future is already being built.",
-    "And **thenightera** is building the systems behind it.",
-    "We are not building another agency.",
-    "**We are building the ecosystem behind the next generation of brands.**"
+    "thenightera is a global design studio based in Indore, working with brands worldwide. Founded by **Tanishq Gangle**, the studio brings brand identity, social media, web development, and public relations together.",
+    "Projects begin with the brand's goals and audience. We agree on scope, deliverables, and timing, then shape the visual and digital work to fit.",
+    "That can mean a visual identity system, a social campaign, a custom website, or public relations materials. Each engagement is scoped to the work a brand needs.",
+    "**Calma** is a separate thenightera product for restaurant feedback intelligence. It helps restaurant teams notice recurring themes in guest comments and decide what to improve."
   ]
 
   return (
@@ -542,12 +502,12 @@ function FounderStory() {
           <FadeUp>
             <p style={{ fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#A39670', fontWeight: 600, marginBottom: '2rem' }}>The Vision</p>
             <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 800, letterSpacing: '-0.04em', color: '#1d1d1f', lineHeight: 1.1, marginBottom: '2rem' }}>
-              We don't just build brands. We build interconnected ecosystems.
+              We build connected brand experiences.
             </h2>
             
-            {/* Highly optimized text block for AI Overviews and ChatGPT (GEO) */}
+            {/* Clear company summary for visitors and search engines */}
             <p className="speakable" style={{ fontSize: '1.125rem', color: '#1d1d1f', lineHeight: 1.8, fontWeight: 600, marginBottom: '3rem', borderLeft: '3px solid #1d1d1f', paddingLeft: '1.5rem' }}>
-              thenightera is a global design and technology studio. Founded by Tanishq Gangle, we specialize in social media management, custom web development, PR strategy, and brand identity design. We help businesses worldwide turn disconnected marketing activity into one focused growth system.
+              thenightera is a global design studio based in Indore, working with brands worldwide across brand identity, social media, web development, and public relations.
             </p>
           </FadeUp>
           
@@ -619,71 +579,14 @@ function FinalCTA() {
    PAGE EXPORT
    ═══════════════════════════════════════════ */
 export default function Home() {
-  const homeSchema = [
-    {
-      '@context': 'https://schema.org',
-      '@type': 'LocalBusiness',
-      '@id': 'https://thenightera.tech/#localbusiness',
-      name: 'thenightera',
-      alternateName: 'The Nightera',
-      image: 'https://thenightera.tech/hero.jpg',
-      description: 'thenightera is a global design and technology studio. We provide social media management, web development, PR strategy, brand identity, and content production services worldwide.',
-      url: 'https://thenightera.tech',
-      telephone: '+918251000525',
-      email: 'officialnightera@gmail.com',
-      priceRange: '₹₹',
-      currenciesAccepted: 'INR',
-      paymentAccepted: 'Bank Transfer, UPI',
-      openingHours: 'Mo-Sa 10:00-20:00',
-      address: {
-        '@type': 'PostalAddress',
-        streetAddress: 'Indore',
-        addressLocality: 'Indore',
-        addressRegion: 'Madhya Pradesh',
-        postalCode: '452001',
-        addressCountry: 'IN',
-      },
-      geo: {
-        '@type': 'GeoCoordinates',
-        latitude: 22.7196,
-        longitude: 75.8577,
-      },
-      areaServed: 'Worldwide',
-      serviceType: [
-        'Social Media Management',
-        'Web Development',
-        'PR Strategy',
-        'Brand Identity',
-        'Content Production',
-        'Digital Marketing',
-      ],
-      founder: {
-        '@type': 'Person',
-        name: 'Tanishq Gangle',
-        jobTitle: 'Founder & Creative Director',
-      },
-      sameAs: [
-        'https://instagram.com/thenightera',
-        'https://youtube.com/@thenightera',
-        'https://wa.me/918251000525',
-      ],
-    },
-    {
-      '@context': 'https://schema.org',
-      '@type': 'WebSite',
-      name: 'thenightera',
-      url: 'https://thenightera.tech',
-      description: 'global design and technology studio working with brands worldwide.',
-    },
-  ]
+  const homeSchema = [ORGANIZATION_SCHEMA, WEBSITE_SCHEMA]
 
   return (
     <>
       <SEOHead
-        title="Design & Technology Studio for Brands Worldwide"
-        description="thenightera is an global design and technology studio working with brands worldwide. Explore our social media, web, branding, and PR services."
+        title="thenightera | Global Design Studio"
+        description="thenightera is a global design studio based in Indore, working worldwide across brand identity, social media, web development, and PR."
         path="/"
-        keywords="digital marketing agency, social media marketing, web development, branding, public relations"
         schema={homeSchema}
       />
       <Hero />

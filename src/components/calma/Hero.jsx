@@ -37,15 +37,15 @@ export default function Hero() {
           className="w-full md:flex-1 max-w-xl z-10 text-center md:text-left"
         >
           <p className="text-sm text-muted mb-6 tracking-wide">
-            <strong className="text-[#372713]">calma</strong> — your reviews. on autopilot.
+            <strong className="text-[#372713]">calma</strong> — restaurant feedback intelligence.
           </p>
           <h1 className="text-4xl md:text-7xl font-semibold tracking-tight leading-[1.05]">
-            your reputation.
+            understand your guests.
             <br />
-            automated.
+            improve with clarity.
           </h1>
           <p className="speakable mt-6 text-base md:text-xl text-muted max-w-md leading-relaxed mx-auto md:mx-0">
-            calma is an AI tool that automatically replies to your Google, Zomato, and Swiggy reviews 24/7. Restaurants across India use calma to improve ratings and save hours every week.
+            calma helps restaurant teams bring guest feedback together, spot recurring themes, and choose practical improvements to the experience.
           </p>
           <div className="inline-block mt-8 relative">
             <a

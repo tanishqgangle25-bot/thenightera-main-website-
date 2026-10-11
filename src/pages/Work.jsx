@@ -153,10 +153,9 @@ export default function Work() {
   return (
     <div style={{ minHeight: '100dvh', background: '#fff', position: 'relative', overflow: 'hidden' }}>
       <SEOHead
-        title="Our Work — Case Studies & Brand Projects"
-        description="Explore thenightera's portfolio of brand identity, social media campaigns, and web development projects. See how thenightera builds brands and digital experiences for businesses worldwide."
+        title="Selected Brand, Social and Web Work"
+        description="Explore thenightera projects across brand identity, social media campaigns, web development, and digital experiences for clients worldwide."
         path="/work"
-        keywords="digital marketing agency, social media marketing, web development, branding, public relations"
       />
 
       <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '4rem 2rem 8rem', position: 'relative' }}>

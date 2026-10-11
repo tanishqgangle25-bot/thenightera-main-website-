@@ -5,47 +5,31 @@ import SEOHead from '../components/SEOHead'
 
 const FAQS = [
   { q: 'What kind of brands do you work with?', a: 'We work with creators, D2C brands, startups, and established businesses worldwide. If you are serious about building a brand that earns attention, we are the right partner.' },
-  { q: 'What makes thenightera different from other marketing agencies?', a: 'thenightera combines social media management, web development, PR strategy, brand identity, and AI automation in one connected team. This keeps positioning consistent and makes campaigns, websites, and content work toward the same commercial goal.' },
-  { q: 'How long does a project take?', a: 'Brand identity projects typically take 3–4 weeks. Full ecosystem builds (brand + web + SMM) are 6–10 weeks.' },
+  { q: 'What makes thenightera different from other design studios?', a: 'thenightera brings brand identity, social media, web development, and public relations together, so the story stays consistent across every customer touchpoint.' },
+  { q: 'How long does a project take?', a: 'Timing depends on the scope, deliverables, and feedback process. We confirm a realistic schedule in the proposal before work begins.' },
   { q: 'Do you work on a retainer or project basis?', a: 'Both. One-time project work for brand identity and web builds. Monthly retainers for ongoing social media management and PR.' },
   { q: 'What social media management services do you offer?', a: 'We offer complete social media management including monthly content calendars, reel scripting and production, professional editing, community engagement, influencer collaborations, and strategic PR placements. We manage Instagram, LinkedIn, YouTube, and more.' },
-  { q: 'Can you just make us a logo?', a: 'No. A logo without a system is just a decoration. We only take on full brand identity or ecosystem projects.' },
+  { q: 'Can you help with a logo or visual identity?', a: 'Yes. We can scope a logo or build a broader visual identity system based on what your brand needs.' },
   { q: 'What kind of websites do you build?', a: 'We build fast, conversion-focused websites using React and Next.js. Every website is custom-designed, mobile-first, SEO-optimized, and built for performance. We don\'t use templates.' },
   { q: 'What kind of clients do you work with?', a: 'Founders who understand the value of design and are ready to scale. We work across D2C, tech, hospitality, and B2B industries.' },
-  { q: 'Do you work with clients outside Indore?', a: 'Yes. While we are operating globally, Madhya Pradesh, we work with brands and businesses worldwide. We collaborate remotely across countries and time zones; on-site production is scoped by location.' },
-  { q: 'How do you handle PR?', a: 'We secure strategic media placements that put you in conversations you were never part of before, seamlessly integrating with your social media strategy and campaigns.' },
-  { q: 'What is calma?', a: 'Calma is our own product — an AI-powered review management system for restaurants in India. It automatically replies to Google, Zomato, and Swiggy reviews 24/7. Visit heycalma.in to learn more.' },
+  { q: 'Do you work with clients outside Indore?', a: 'Yes. We are based in Indore, India, and work with brands worldwide. We collaborate remotely across countries and time zones; on-site production is scoped by location.' },
+  { q: 'How do you handle PR?', a: 'We shape a clear story, prepare media-ready materials, identify relevant outlets, and plan outreach. Editorial coverage is decided by publishers, so placements are never guaranteed.' },
+  { q: 'What is calma?', a: 'Calma is our restaurant feedback-intelligence product. It helps teams understand guest comments, notice recurring themes, and decide what to improve. It supports team decisions rather than automatically replying to reviews.' },
 ]
 
 export default function FAQ() {
   const [open, setOpen] = useState(null)
 
-  // FAQPage schema — critical for Google AI Overview
-  const faqSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: FAQS.map(faq => ({
-      '@type': 'Question',
-      name: faq.q,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: faq.a,
-      },
-    })),
-  }
-
   return (
     <div style={{ minHeight: '100dvh', background: '#fff' }}>
       <SEOHead
-        title="FAQs — Marketing Services"
-        description="Frequently asked questions about thenightera, an global design and technology studio engineering premium digital experiences. Learn about our social media, web, PR, and branding services."
+        title="thenightera FAQs | Services, Process and Pricing"
+        description="Answers about thenightera services, project timelines, pricing, web development, social media, PR, and working with brands worldwide."
         path="/faq"
-        keywords="digital marketing agency, social media marketing, web development, branding, public relations"
-        schema={faqSchema}
       />
       <PageHeader
         label="questions"
-        title="we've got\nanswers."
+        title={"we've got\nanswers."}
         sub="everything you need to know about working with us."
       />
 

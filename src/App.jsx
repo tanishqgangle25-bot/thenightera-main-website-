@@ -1,5 +1,5 @@
-import { lazy, Suspense } from 'react'
-import { Routes, Route, useLocation } from 'react-router-dom'
+import { lazy, Suspense, useEffect } from 'react'
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import Layout from './components/Layout'
 
@@ -10,6 +10,7 @@ const Testimonials = lazy(() => import('./pages/Testimonials'))
 const FAQ = lazy(() => import('./pages/FAQ'))
 const Pricing = lazy(() => import('./pages/Pricing'))
 const Contact = lazy(() => import('./pages/Contact'))
+const ThankYou = lazy(() => import('./pages/ThankYou'))
 const Portfolio = lazy(() => import('./pages/Portfolio'))
 const Calma = lazy(() => import('./pages/Calma'))
 const Login = lazy(() => import('./pages/Login'))
@@ -55,6 +56,15 @@ function PageWrapper({ children }) {
 export default function App() {
   const location = useLocation()
 
+  useEffect(() => {
+    if (typeof window.gtag !== 'function') return
+    window.gtag('event', 'page_view', {
+      page_title: document.title,
+      page_location: window.location.href,
+      page_path: `${location.pathname}${location.search}`,
+    })
+  }, [location.pathname, location.search])
+
   return (
     <Layout>
       <Suspense fallback={<div className="route-loader" role="status" aria-label="Loading page" />}>
@@ -68,7 +78,9 @@ export default function App() {
             <Route path="/faq"         element={<PageWrapper><FAQ /></PageWrapper>} />
             <Route path="/pricing"     element={<PageWrapper><Pricing /></PageWrapper>} />
             <Route path="/contact"     element={<PageWrapper><Contact /></PageWrapper>} />
+            <Route path="/thank-you"  element={<PageWrapper><ThankYou /></PageWrapper>} />
             <Route path="/calma"       element={<PageWrapper><Calma /></PageWrapper>} />
+            <Route path="/ecosystem"   element={<Navigate to="/" replace />} />
             <Route path="/login"       element={<PageWrapper><Login /></PageWrapper>} />
             <Route path="/about"       element={<PageWrapper><About /></PageWrapper>} />
             <Route path="/case-studies" element={<PageWrapper><CaseStudies /></PageWrapper>} />

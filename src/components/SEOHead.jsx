@@ -1,27 +1,12 @@
 import { Helmet } from 'react-helmet-async'
+import { SITE_URL } from '../lib/siteStructuredData'
 
 const SITE_NAME = 'thenightera'
-const BASE_URL = 'https://thenightera.tech'
-const DEFAULT_OG_IMAGE = `${BASE_URL}/hero.jpg`
-
-// Real business data — update these if anything changes
-const BUSINESS = {
-  phone: '+918251000525',
-  email: 'officialnightera@gmail.com',
-  whatsapp: 'https://wa.me/918251000525',
-  instagram: 'https://instagram.com/thenightera',
-  youtube: 'https://youtube.com/@thenightera',
-  addressLocality: 'Indore',
-  addressRegion: 'Madhya Pradesh',
-  postalCode: '452001',
-  latitude: 22.7196,
-  longitude: 75.8577,
-}
+const DEFAULT_OG_IMAGE = `${SITE_URL}/hero.jpg`
 
 /**
  * Global SEO Head component for thenightera.
- * Injects per-page meta, Open Graph, Twitter Cards, geo targeting,
- * Breadcrumb + Organization JSON-LD on every page, plus page-specific schemas.
+ * Injects per-page metadata and page-specific structured data.
  */
 export default function SEOHead({
   title,
@@ -29,109 +14,29 @@ export default function SEOHead({
   path = '/',
   ogImage = DEFAULT_OG_IMAGE,
   schema = null,
-  keywords = '',
   noIndex = false,
 }) {
   const fullTitle = title
-    ? `${title} | ${SITE_NAME}`
-    : 'thenightera — Design & Technology Studio for Brands Worldwide'
+    ? (title.toLowerCase().includes(SITE_NAME) ? title : `${title} | ${SITE_NAME}`)
+    : 'thenightera Design Studio | Brand & Digital Experiences'
 
-  const canonical = `${BASE_URL}${path}`
-
-  const defaultKeywords = 'digital marketing agency, creative studio, social media marketing, web development, branding, public relations'
-  const allKeywords = keywords ? `${keywords}, ${defaultKeywords}` : defaultKeywords
+  const canonical = `${SITE_URL}${path === '/' ? '/' : path.startsWith('/') ? path : `/${path}`}`
 
   // ── Breadcrumb schema (every page) ──────────────────────────────────────
   const breadcrumbSchema = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: BASE_URL },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/` },
       ...(path !== '/'
         ? [{ '@type': 'ListItem', position: 2, name: title || 'Page', item: canonical }]
         : []),
     ],
   }
 
-  // ── Organization schema (every page) ────────────────────────────────────
-  const organizationSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    '@id': `${BASE_URL}/#organization`,
-    name: 'thenightera',
-    alternateName: 'The Nightera',
-    url: BASE_URL,
-    logo: {
-      '@type': 'ImageObject',
-      url: `${BASE_URL}/favicon.png`,
-      width: 512,
-      height: 512,
-    },
-    legalName: 'thenightera',
-    image: `${BASE_URL}/hero.jpg`,
-    description:
-      'thenightera is an global design and technology studio engineering premium digital experiences with social media, web development, PR, and brand identity.',
-    foundingDate: '2024',
-    founder: {
-      '@type': 'Person',
-      name: 'Tanishq Gangle',
-      jobTitle: 'Founder & Creative Director',
-      worksFor: { '@type': 'Organization', name: 'thenightera' },
-    },
-    address: {
-      '@type': 'PostalAddress',
-      addressLocality: BUSINESS.addressLocality,
-      addressRegion: BUSINESS.addressRegion,
-      postalCode: BUSINESS.postalCode,
-      addressCountry: 'IN',
-    },
-    contactPoint: [
-      {
-        '@type': 'ContactPoint',
-        telephone: BUSINESS.phone,
-        email: BUSINESS.email,
-        contactType: 'customer service',
-        availableLanguage: ['English', 'Hindi'],
-        areaServed: 'Worldwide',
-      },
-    ],
-    areaServed: 'Worldwide',
-    sameAs: [
-      BUSINESS.instagram,
-      BUSINESS.youtube,
-      BUSINESS.whatsapp,
-    ],
-    hasOfferCatalog: {
-      '@type': 'OfferCatalog',
-      name: 'Marketing Services',
-      itemListElement: [
-        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Social Media Management' } },
-        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Web Development' } },
-        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'PR Strategy' } },
-        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Brand Identity' } },
-      ],
-    },
-  }
-
-  // ── Speakable schema (for Google AI Overview / voice search) ─────────────
-  const speakableSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'WebPage',
-    name: fullTitle,
-    url: canonical,
-    speakable: {
-      '@type': 'SpeakableSpecification',
-      cssSelector: ['.speakable', 'h1', 'h2'],
-    },
-  }
-
-  // ── Combine all schemas ───────────────────────────────────────────────────
-  const allSchemas = [
-    breadcrumbSchema,
-    organizationSchema,
-    speakableSchema,
-    ...(schema ? (Array.isArray(schema) ? schema : [schema]) : []),
-  ]
+  const allSchemas = noIndex
+    ? []
+    : [...(path !== '/' ? [breadcrumbSchema] : []), ...(schema ? (Array.isArray(schema) ? schema : [schema]) : [])]
 
   return (
     <Helmet>
@@ -139,8 +44,7 @@ export default function SEOHead({
       {/* ── Primary SEO ── */}
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
-      <meta name="keywords" content={allKeywords} />
-      <link rel="canonical" href={canonical} />
+      {!noIndex && <link rel="canonical" href={canonical} />}
       <meta
         name="robots"
         content={
@@ -149,25 +53,17 @@ export default function SEOHead({
             : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'
         }
       />
-      <meta name="author" content="thenightera" />
-      <meta name="publisher" content="thenightera" />
-      <meta name="copyright" content={`© ${new Date().getFullYear()} thenightera`} />
-
-      {/* ── Global English language ── */}
-      <meta name="language" content="English" />
-      <meta name="content-language" content="en" />
-      <meta name="rating" content="general" />
-
       {/* ── Open Graph ── */}
       <meta property="og:type" content="website" />
       <meta property="og:site_name" content={SITE_NAME} />
+      <meta property="og:locale" content="en_US" />
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />
-      <meta property="og:url" content={canonical} />
+      {!noIndex && <meta property="og:url" content={canonical} />}
       <meta property="og:image" content={ogImage} />
       <meta property="og:image:secure_url" content={ogImage} />
-      <meta property="og:image:width" content="1200" />
-      <meta property="og:image:height" content="630" />
+      <meta property="og:image:width" content="1376" />
+      <meta property="og:image:height" content="768" />
       <meta property="og:image:alt" content={fullTitle} />
       <meta property="og:image:type" content="image/jpeg" />
 

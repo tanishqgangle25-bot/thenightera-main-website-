@@ -1,10 +1,10 @@
 import FadeUp from './FadeUp.jsx'
 
 const steps = [
-  'watches your Google reviews around the clock',
-  'understands sentiment behind every review',
-  'writes and posts perfect replies automatically',
-  'surfaces insights on what to actually fix',
+  'bring guest feedback into one clear view',
+  'spot recurring themes across what guests share',
+  'see where the experience needs attention',
+  'choose a practical next step with your team',
 ]
 
 export default function HowItWorks() {

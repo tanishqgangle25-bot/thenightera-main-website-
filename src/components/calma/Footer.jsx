@@ -10,8 +10,8 @@ export default function Footer() {
           <div className="flex flex-col gap-2">
             <p className="text-sm font-bold" style={{ color: '#372713' }}>calma</p>
             <p className="text-xs leading-relaxed max-w-xs" style={{ color: '#A39670' }}>
-              AI review management for restaurants in India.<br />
-              by <a href="https://thenightera.tech" target="_blank" rel="noopener noreferrer" className="hover:underline">thenightera</a> · indore, mp
+              Restaurant feedback intelligence.<br />
+              by <a href="https://www.thenightera.tech" target="_blank" rel="noopener noreferrer" className="hover:underline">thenightera</a> · indore, mp
             </p>
           </div>
 
@@ -22,7 +22,6 @@ export default function Footer() {
             <Link to="/pricing" className="hover:opacity-60 transition-opacity">pricing</Link>
             <Link to="/faq" className="hover:opacity-60 transition-opacity">faq</Link>
             <Link to="/about" className="hover:opacity-60 transition-opacity">about</Link>
-            <Link to="/ecosystem" className="hover:opacity-60 transition-opacity">ecosystem</Link>
             <Link to="/contact" className="hover:opacity-60 transition-opacity">contact</Link>
           </div>
 
@@ -53,10 +52,10 @@ export default function Footer() {
               whatsapp · +91 82510 00525
             </a>
             <a
-              href="mailto:officialnightera@gmail.com"
+              href="mailto:hello@thenightera.tech"
               className="hover:opacity-60 transition-opacity"
             >
-              officialnightera@gmail.com
+              hello@thenightera.tech
             </a>
           </div>
         </div>

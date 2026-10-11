@@ -12,6 +12,7 @@ export function FrameSequenceHero({
   subtitle,
   steps,
   className,
+  showNav = true,
 }) {
   const spacerRef = useRef(null);
   const rafRef = useRef(null);
@@ -27,8 +28,9 @@ export function FrameSequenceHero({
     rafRef.current = null;
     const spacer = spacerRef.current;
     if (!spacer) return;
-    const total = spacer.offsetHeight - window.innerHeight;
-    const p = Math.max(0, Math.min(1, window.scrollY / Math.max(1, total)));
+    const spacerTop = spacer.getBoundingClientRect().top + window.scrollY;
+    const scrollStart = spacerTop - window.innerHeight;
+    const p = Math.max(0, Math.min(1, (window.scrollY - scrollStart) / Math.max(1, spacer.offsetHeight)));
     
     setProgress(p);
     setNavScrolled(window.scrollY > 4);
@@ -66,19 +68,21 @@ export function FrameSequenceHero({
 
   return (
     <div className={cx("fsh-root", className)}>
-      <nav className={cx("fsh-nav", navScrolled && "fsh-nav-scrolled")}>
-        <div className="fsh-brand">{brand}</div>
-        {navLinks.length > 0 && (
-          <div className="fsh-nav-links">
-            {navLinks.map((l) => (
-              <a key={l.label} href={l.href}>{l.label}</a>
-            ))}
-          </div>
-        )}
-        {ctaLabel && (
-          <a href={ctaHref} className="fsh-cta">{ctaLabel}</a>
-        )}
-      </nav>
+      {showNav && (
+        <nav className={cx("fsh-nav", navScrolled && "fsh-nav-scrolled")}>
+          <div className="fsh-brand">{brand}</div>
+          {navLinks.length > 0 && (
+            <div className="fsh-nav-links">
+              {navLinks.map((l) => (
+                <a key={l.label} href={l.href}>{l.label}</a>
+              ))}
+            </div>
+          )}
+          {ctaLabel && (
+            <a href={ctaHref} className="fsh-cta">{ctaLabel}</a>
+          )}
+        </nav>
+      )}
 
       {/* Pinned stage — always full viewport */}
       <div className="fsh-stage" style={{ background: '#FAF7F2' }}>
@@ -128,7 +132,7 @@ export function FrameSequenceHero({
            })}
         </div>
 
-        <div className="fsh-copy" style={{ zIndex: 5 }}>
+        <div className="fsh-copy" style={{ zIndex: 5, opacity: progress < (steps[0]?.from ?? 0) ? 1 : 0, transition: 'opacity 300ms ease' }}>
           <h1 className="fsh-title" style={{ color: '#1d1d1f' }}>{title}</h1>
           {subtitle && (
             <p className={cx("fsh-sub", subHidden && "fsh-sub-hidden")} style={{ color: '#666' }}>{subtitle}</p>

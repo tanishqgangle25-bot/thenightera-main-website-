@@ -11,9 +11,6 @@ const TESTIMONIALS = [
   { name: 'Symphony', role: 'Cafe & Restaurant', quote: "Our experience was incredible. They understood the exact vibe we wanted for our cafe and translated it perfectly into our marketing strategy. We saw a genuine shift in customer engagement." },
   { name: 'Top Creators', role: 'Network of 1.7M+, 49K+ & many more big creators', quote: "I've collaborated with many teams, but their editing and creative direction is on a completely different level. They know exactly how to hold attention and make the content look incredibly premium. It completely changed the game for our channels." },
   { name: 'Deepa Anand', role: 'Founder · Mumbai', quote: "I was genuinely impressed. The work is clean, intelligent, and premium. They don't just execute what you ask for — they elevate the whole concept. That is the standard they bring to everything." },
-  { name: 'The Studio 11', role: 'Premium Salon · Indore', quote: "thenightera transformed our local presence. Before them, our social media was just existing. Now, it actively brings in high-ticket clients every week. Their understanding of aesthetics is unmatched." },
-  { name: 'Dr. Siddharth Jain', role: 'Aesthetic Clinic · Indore', quote: "Trust is everything in our industry. They didn't just run ads; they built a completely premium narrative around our clinic through content. We saw a massive increase in consults within the first two months." },
-  { name: 'Oven & Co.', role: 'Artisan Bakery · Indore', quote: "They built our entire brand identity from scratch and managed our launch campaign. The response was overwhelming. People thought we were an international franchise because of how premium the branding looked." }
 ]
 
 function ScrubQuote({ t }) {
@@ -63,34 +60,17 @@ function ScrubQuote({ t }) {
 }
 
 export default function Testimonials() {
-  // Client quotations published as testimonials. No fabricated aggregate rating.
-  const reviewSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
-    '@id': 'https://thenightera.tech/#localbusiness',
-    name: 'thenightera',
-    url: 'https://thenightera.tech',
-    review: TESTIMONIALS.map(t => ({
-      '@type': 'Review',
-      author: { '@type': 'Organization', name: t.name },
-      reviewBody: t.quote,
-      publisher: { '@type': 'Organization', name: 'thenightera' },
-    })),
-  }
-
   return (
     <div style={{ minHeight: '100dvh', background: '#fff' }}>
       <SEOHead
-        title="Client Reviews — thenightera"
-        description="Read client reviews for thenightera. Feedback from Indore brands, creators, jewellers, cafes, clinics, and businesses worldwide."
+        title="thenightera Client Feedback | Selected Reviews"
+        description="Read selected client feedback about thenightera's brand identity, social media, creative, and digital work."
         path="/testimonials"
-        keywords="digital marketing agency, social media marketing, web development, branding, public relations"
-        schema={reviewSchema}
       />
       <PageHeader
         label="client stories"
-        title="what they\nsay."
-        sub="real words from real people who trusted us with their brand."
+        title={"what they\nsay."}
+        sub="Selected feedback from thenightera client partnerships."
       />
 
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 2.5rem 8rem' }}>

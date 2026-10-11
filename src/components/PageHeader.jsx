@@ -55,20 +55,19 @@ export default function PageHeader({ label, title, sub }) {
           </p>
         )}
 
-        <h1 style={{
+        <h1 aria-label={title.replace(/\n/g, ' ')} style={{
           fontSize: 'clamp(2.75rem, 7vw, 6.5rem)',
           fontWeight: 600, letterSpacing: '-0.05em',
           lineHeight: 1.08, color: '#1d1d1f', margin: 0,
         }}>
           {lines.map((line, li) => (
             <span key={li} style={{ display: 'block', overflow: 'hidden', paddingBottom: '0.08em' }}>
-              {line.split(' ').map((word, wi) => (
+              {line.split(' ').map((word, wi, words) => (
                 <span key={wi} className="ph-word" style={{
                   display: 'inline-block',
-                  marginRight: '0.28em',
                   willChange: 'transform',
                 }}>
-                  {word}
+                  {word}{wi < words.length - 1 ? ' ' : null}
                 </span>
               ))}
             </span>

@@ -1,23 +1,23 @@
 # thenightera
 
-> thenightera is a marketing and creative technology agency based in Indore, Madhya Pradesh, India. It serves brands worldwide with social media management, web development, public relations, brand identity, content production, and AI automation.
+> thenightera is a global design studio based in Indore, India. It works with brands worldwide across brand identity, social media, web development, and public relations.
 
 ## Core pages
 
-- [Home](https://thenightera.tech/): Overview of thenightera, capabilities, work, process, and contact options.
-- [About](https://thenightera.tech/about): Company background, founder, location, and operating approach.
-- [Services](https://thenightera.tech/services): Social media, web development, PR, brand identity, and related services.
-- [Portfolio](https://thenightera.tech/portfolio): Selected creative, social, video, and brand work.
-- [Pricing](https://thenightera.tech/pricing): Current service packages and commercial starting points.
-- [Client reviews](https://thenightera.tech/testimonials): Attributed client experiences.
-- [FAQ](https://thenightera.tech/faq): Direct answers about services, process, pricing, and timelines.
-- [Contact](https://thenightera.tech/contact): Consultation and enquiry options.
-- [Calma](https://thenightera.tech/calma): AI reputation intelligence product for hospitality businesses.
-- [Social media marketing](https://thenightera.tech/social-media-marketing): Strategy, production, publishing, and reporting.
-- [Web development](https://thenightera.tech/web-development): Mobile-first, conversion-focused websites.
-- [Public relations](https://thenightera.tech/pr-agency): Positioning, media materials, and outreach planning.
-- [Branding](https://thenightera.tech/branding-agency): Positioning, visual identity, voice, and brand systems.
-- [Case studies](https://thenightera.tech/case-studies): Client briefs, delivered work, and reported outcomes.
+- [Home](https://www.thenightera.tech/): Overview of thenightera, capabilities, work, process, and contact options.
+- [About](https://www.thenightera.tech/about): Company background, founder, location, and operating approach.
+- [Services](https://www.thenightera.tech/services): Social media, web development, PR, brand identity, and related services.
+- [Portfolio](https://www.thenightera.tech/portfolio): Selected creative, social, video, and brand work.
+- [Pricing](https://www.thenightera.tech/pricing): Current service packages and commercial starting points.
+- [Client reviews](https://www.thenightera.tech/testimonials): Attributed client experiences.
+- [FAQ](https://www.thenightera.tech/faq): Direct answers about services, process, pricing, and timelines.
+- [Contact](https://www.thenightera.tech/contact): Consultation and enquiry options.
+- [Calma](https://www.thenightera.tech/calma): restaurant feedback-intelligence product that helps teams understand guest comments and recurring themes.
+- [Social media marketing](https://www.thenightera.tech/social-media-marketing): Strategy, production, publishing, and reporting.
+- [Web development](https://www.thenightera.tech/web-development): Mobile-first, conversion-focused websites.
+- [Public relations](https://www.thenightera.tech/pr-agency): Positioning, media materials, and outreach planning.
+- [Branding](https://www.thenightera.tech/branding-agency): Positioning, visual identity, voice, and brand systems.
+- [Case studies](https://www.thenightera.tech/case-studies): Client briefs, delivered work, and reported outcomes.
 
 ## Entity facts
 
@@ -26,7 +26,7 @@
 - Founded: 2024
 - Location: Indore, Madhya Pradesh, India
 - Service area: Worldwide
-- Email: officialnightera@gmail.com
+- Email: hello@thenightera.tech
 - Instagram: https://instagram.com/thenightera
 
 ## Preferred citation

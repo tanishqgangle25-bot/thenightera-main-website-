@@ -9,9 +9,9 @@ const SERVICES = [
   },
   {
     num: '02',
-    title: 'AI & Automation',
-    body: 'Intelligent pipelines that scale your output without scaling your team. 20+ hours saved, every week.',
-    tag: 'Technology',
+    title: 'Web Development',
+    body: 'Fast, responsive websites with clear messaging, thoughtful interactions, and practical SEO foundations.',
+    tag: 'Digital',
   },
   {
     num: '03',
@@ -22,7 +22,7 @@ const SERVICES = [
   {
     num: '04',
     title: 'PR & Growth',
-    body: 'Media placements and ecosystem strategy that put you in conversations you were never part of before.',
+    body: 'Clear positioning, media-ready stories, and thoughtful outreach planning. Editorial coverage is always up to publishers.',
     tag: 'Growth',
   },
 ];

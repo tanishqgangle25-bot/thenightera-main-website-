@@ -6,12 +6,12 @@ export default function FinalCTA() {
       <div className="max-w-6xl mx-auto px-6 md:px-10 text-center">
         <FadeUp>
           <h2 className="text-4xl md:text-6xl font-semibold tracking-tight">
-            your reputation is
+            understand your guests.
             <br />
             your business.
           </h2>
           <p className="mt-6 text-lg md:text-xl text-muted">
-            let calma handle it.
+            notice what keeps coming up, then choose what to improve.
           </p>
           <FadeUp delay={0.4}>
             <a

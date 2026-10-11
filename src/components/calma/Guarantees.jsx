@@ -4,23 +4,23 @@ import { ShieldCheck, RefreshCcw, Lock, BadgeIndianRupee } from 'lucide-react'
 const items = [
   {
     icon: ShieldCheck,
-    title: '60-day rating guarantee',
-    body: "if your rating doesn't move up in 60 days, we refund the months you paid. nobody else does this.",
+    title: 'Look beyond one review',
+    body: 'See repeated feedback themes alongside individual comments, so one unusual experience does not become the whole story.',
   },
   {
     icon: RefreshCcw,
-    title: 'cancel anytime',
-    body: 'no annual lock-in, no exit fees. one email and you stop being charged the same day.',
+    title: 'Make patterns easier to see',
+    body: 'Bring guest feedback into a clearer view and notice what appears repeatedly across visits.',
   },
   {
     icon: BadgeIndianRupee,
-    title: 'no setup cost',
-    body: 'onboarded in 20 minutes by our team over WhatsApp. you pay only when calma starts replying.',
+    title: 'Turn insight into a next step',
+    body: 'Use feedback patterns to guide practical conversations about service, operations, and the guest experience.',
   },
   {
     icon: Lock,
-    title: 'your data, your account',
-    body: 'we use Google official APIs. nothing is scraped, no passwords stored, you can revoke access in one tap.',
+    title: 'Your team stays in control',
+    body: 'Calma helps your team understand what guests are saying. Your people decide which changes to make and how to respond.',
   },
 ]
 
@@ -44,9 +44,9 @@ export default function Guarantees() {
           transition={{ duration: 0.5 }}
           className="max-w-2xl"
         >
-          <p className="text-sm uppercase tracking-wider text-muted">why owners trust us</p>
+          <p className="text-sm uppercase tracking-wider text-muted">feedback into action</p>
           <h2 className="mt-3 text-3xl md:text-5xl font-semibold tracking-tight">
-            four promises we put in writing.
+            a clearer way to understand guests.
           </h2>
         </motion.div>
 

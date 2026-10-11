@@ -1,30 +1,50 @@
 {
-    "rewrites":  [
-                     {
-                         "source":  "/(.*)",
-                         "destination":  "/index.html"
-                     }
-                 ],
-    "redirects":  [
-                      {
-                          "source":  "/social-media-marketing-indore",
-                          "destination":  "/social-media-marketing",
-                          "permanent":  true
-                      },
-                      {
-                          "source":  "/web-development-indore",
-                          "destination":  "/web-development",
-                          "permanent":  true
-                      },
-                      {
-                          "source":  "/pr-agency-indore",
-                          "destination":  "/pr-agency",
-                          "permanent":  true
-                      },
-                      {
-                          "source":  "/branding-agency-indore",
-                          "destination":  "/branding-agency",
-                          "permanent":  true
-                      }
-                  ]
+  "redirects": [
+    {
+      "source": "/gallery",
+      "destination": "https://www.thenightera.tech/portfolio",
+      "permanent": true
+    },
+    {
+      "source": "/accessibility-statement",
+      "destination": "https://www.thenightera.tech/",
+      "permanent": true
+    },
+    {
+      "source": "/ecosystem",
+      "destination": "https://www.thenightera.tech/",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "thenightera.tech"
+        }
+      ],
+      "destination": "https://www.thenightera.tech/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/social-media-marketing-indore",
+      "destination": "/social-media-marketing",
+      "permanent": true
+    },
+    {
+      "source": "/web-development-indore",
+      "destination": "/web-development",
+      "permanent": true
+    },
+    {
+      "source": "/pr-agency-indore",
+      "destination": "/pr-agency",
+      "permanent": true
+    },
+    {
+      "source": "/branding-agency-indore",
+      "destination": "/branding-agency",
+      "permanent": true
+    }
+  ]
 }

@@ -3,11 +3,11 @@ import SEOHead from '../components/SEOHead'
 const pages = {
   privacy: { title: 'Privacy Policy', description: 'How thenightera collects, uses, and protects information submitted through thenightera.tech.', blocks: [
     ['Information we collect', 'When you submit a contact form or sign in, we may receive your name, email address, brand name, message, authentication provider, and basic account information.'],
-    ['Website analytics', 'We use Vercel Analytics and Speed Insights to understand aggregate traffic, page usage, device performance, and site reliability. These tools help us improve the website experience.'],
-    ['Service providers', 'Supabase supports authentication, Web3Forms processes contact-form delivery, Google may provide OAuth sign-in, and Vercel hosts and measures the website. Each provider processes information under its own terms and privacy practices.'],
+    ['Website analytics', 'We use Google Analytics 4, Vercel Analytics, and Speed Insights to understand page views, aggregate traffic, device performance, and site reliability. Google Analytics may use cookies and similar technologies to collect website usage data. Google signals for advertising personalization are disabled.'],
+    ['Service providers', 'Supabase supports authentication, Web3Forms processes contact-form delivery, Google provides Analytics and may provide OAuth sign-in, and Vercel hosts and measures the website. Each provider processes information under its own terms and privacy practices.'],
     ['How we use information', 'We use submitted information to respond to enquiries, provide requested access, operate the website, prevent abuse, and improve our services. We do not sell personal information.'],
-    ['Retention and choices', 'We keep information only as long as needed for the stated purpose, legal obligations, or legitimate business records. You may ask to access, correct, or delete your personal information by emailing officialnightera@gmail.com.'],
-    ['Contact', 'Privacy questions can be sent to officialnightera@gmail.com. thenightera is operating globally, Madhya Pradesh, India.'],
+    ['Retention and choices', 'We keep information only as long as needed for the stated purpose, legal obligations, or legitimate business records. You may ask to access, correct, or delete your personal information by emailing hello@thenightera.tech.'],
+    ['Contact', 'Privacy questions can be sent to hello@thenightera.tech. thenightera is based in Indore, Madhya Pradesh, India, and works with clients worldwide.'],
   ]},
   terms: { title: 'Terms of Service', description: 'Terms governing use of thenightera.tech and enquiries for thenightera services.', blocks: [
     ['Website use', 'You may use this website to learn about thenightera, view our work, and contact us about services. Do not misuse the website, attempt unauthorized access, or interfere with its operation.'],
@@ -15,7 +15,7 @@ const pages = {
     ['Content and intellectual property', 'The thenightera name, site design, writing, graphics, and original portfolio presentation belong to thenightera or their respective owners. Do not reproduce them without permission.'],
     ['Third-party services', 'This website may link to or use third-party services. thenightera is not responsible for third-party availability, policies, or content.'],
     ['No guaranteed outcome', 'Marketing, public relations, search visibility, and commercial performance depend on many factors. We do not guarantee rankings, press coverage, revenue, or specific results unless a signed agreement states otherwise.'],
-    ['Contact', 'Questions about these terms can be sent to officialnightera@gmail.com. These terms are governed by applicable laws of India.'],
+    ['Contact', 'Questions about these terms can be sent to hello@thenightera.tech. These terms are governed by applicable laws of India.'],
   ]},
 }
 

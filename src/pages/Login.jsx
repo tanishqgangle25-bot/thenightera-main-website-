@@ -104,7 +104,7 @@ export default function Login() {
 
   return (
     <div className="min-h-[calc(100dvh-52px)] bg-[#FAF7F2] px-5 py-12 md:py-20">
-      <SEOHead title="Client Login" description="Join the thenightera ecosystem and access your client workspace." path="/login" noIndex />
+      <SEOHead title="Client Login" description="Access your thenightera client workspace." path="/login" noIndex />
 
       <div className="mx-auto grid max-w-5xl overflow-hidden rounded-[28px] border border-black/10 bg-white shadow-[0_30px_90px_rgba(29,29,31,0.10)] md:grid-cols-[1.05fr_0.95fr]">
         <section className="relative hidden min-h-[620px] overflow-hidden bg-[#1d1d1f] p-12 text-white md:flex md:flex-col md:justify-between">
@@ -112,7 +112,7 @@ export default function Login() {
           <div className="absolute -bottom-24 -left-20 h-72 w-72 rounded-full bg-[#ff6f9c] opacity-50 blur-3xl" />
           <p className="relative text-sm font-semibold tracking-[-0.02em]">thenightera</p>
           <div className="relative">
-            <p className="mb-5 text-xs uppercase tracking-[0.22em] text-white/50">The thenightera ecosystem</p>
+            <p className="mb-5 text-xs uppercase tracking-[0.22em] text-white/50">thenightera client workspace</p>
             <h1 className="max-w-md text-5xl font-semibold leading-[0.96] tracking-[-0.055em]">Everything your brand needs. One place.</h1>
             <p className="mt-6 max-w-sm text-base leading-7 text-white/60">Join a workspace where ideas become launches, approvals move faster, and growth stays visible.</p>
           </div>
@@ -135,7 +135,7 @@ export default function Login() {
           ) : (
             <>
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#A39670]">Your workspace awaits</p>
-              <h2 className="mt-3 text-4xl font-semibold tracking-[-0.045em] text-[#1d1d1f]">Join the ecosystem.</h2>
+              <h2 className="mt-3 text-4xl font-semibold tracking-[-0.045em] text-[#1d1d1f]">Welcome back.</h2>
               <p className="mt-3 text-sm leading-6 text-[#6e6e73]">One secure sign-in. Every project, approval, and result.</p>
 
               <button type="button" onClick={handleGoogle} disabled={submitting} className="mt-9 flex min-h-12 w-full items-center justify-center gap-3 rounded-full border border-black/15 bg-white px-5 text-sm font-semibold text-[#1d1d1f] transition hover:border-black/30 hover:bg-black/[0.02] disabled:opacity-60 focus:outline-none focus:ring-2 focus:ring-[#7D2027]/30">

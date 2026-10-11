@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Mail, MessageCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
 import SEOHead from '../components/SEOHead';
@@ -6,16 +7,24 @@ import { track } from '@vercel/analytics';
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', brand: '', message: '' });
-  const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
 
-  const handle = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+  const handle = (e) => {
+    setForm(current => ({ ...current, [e.target.name]: e.target.value }));
+    setError('');
+  };
 
   const submit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
     const formData = new FormData(e.target);
+    if (formData.has('botcheck')) {
+      setLoading(false);
+      return;
+    }
     // ⚠️ IMPORTANT: Replace this key with your actual Web3Forms access key
     formData.append("access_key", "4dcd03a5-2036-468b-9521-94095f1b5e8b"); 
     formData.append("subject", "New Contact from thenightera Website");
@@ -29,12 +38,12 @@ export default function Contact() {
       
       if (data.success) {
         track('Contact Form Submitted');
-        setSent(true);
+        navigate('/thank-you');
       } else {
-        alert("Kuch error aaya hai email bhejne me. Please try again.");
+        setError('Message could not be sent. Please try again or contact us by email.');
       }
     } catch {
-      alert("Network error. Please try again later.");
+      setError('Network error. Please try again or contact us by email.');
     } finally {
       setLoading(false);
     }
@@ -57,7 +66,7 @@ export default function Contact() {
   );
 
   const contactCards = [
-    { icon: <Mail size={32} color="#0066cc" strokeWidth={1.5} />, label: "Email Us", href: "https://mail.google.com/mail/?view=cm&fs=1&to=officialnightera@gmail.com" },
+    { icon: <Mail size={32} color="#0066cc" strokeWidth={1.5} />, label: "Email Us", href: "mailto:hello@thenightera.tech" },
     { icon: <MessageCircle size={32} color="#0066cc" strokeWidth={1.5} />, label: "WhatsApp", href: "https://wa.me/918251000525" },
     { icon: <InstagramIcon />, label: "Instagram", href: "https://instagram.com/thenightera" }
   ];
@@ -66,9 +75,8 @@ export default function Contact() {
     <div style={{ minHeight: 'calc(100dvh - 60px)', background: '#f5f5f7' }}>
       <SEOHead
         title="Contact thenightera — Design & Technology Studio"
-        description="Get in touch with thenightera, an global design and technology studio engineering premium digital experiences. Book a free 30-minute consultation by email, WhatsApp, or form."
+        description="Contact thenightera to discuss brand identity, social media, web development, or PR. Start a project with our team, wherever you are."
         path="/contact"
-        keywords="digital marketing agency, social media marketing, web development, branding, public relations"
       />
       {/* Header */}
       <div style={{ padding: '5rem 0 2rem', textAlign: 'center' }}>
@@ -121,49 +129,40 @@ export default function Contact() {
         {/* Bottom — Form */}
         <div style={{ background: '#ffffff', padding: '3rem', borderRadius: '24px', border: '1px solid #E5E5EA', boxShadow: '0 4px 20px rgba(0,0,0,0.02)' }}>
           <h2 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#1d1d1f', marginBottom: '2rem', textAlign: 'center' }}>Send us a message</h2>
-          {sent ? (
-            <div style={{ padding: '3rem 1rem', textAlign: 'center' }}>
-              <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: '#dcfce7', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1rem' }}>
-                <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-                  <path d="M4 11l5 5L18 6" stroke="#16a34a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </div>
-              <h3 style={{ fontWeight: 700, fontSize: '1.25rem', marginBottom: '0.5rem', color: 'var(--ink)' }}>Message sent!</h3>
-              <p style={{ fontSize: '0.9rem', color: 'var(--ink-2)' }}>We will be back within 24 hours.</p>
-            </div>
-          ) : (
-            <form onSubmit={submit} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+          <form onSubmit={submit} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+              <input type="checkbox" name="botcheck" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ display: 'none' }} />
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1.5rem' }}>
                 <div>
-                  <label style={{ fontSize: '0.85rem', fontWeight: 500, color: '#1d1d1f', display: 'block', marginBottom: '0.5rem' }}>Name</label>
-                  <input name="name" required value={form.name} onChange={handle} placeholder="Your name" style={inputStyle}
+                  <label htmlFor="contact-name" style={{ fontSize: '0.85rem', fontWeight: 500, color: '#1d1d1f', display: 'block', marginBottom: '0.5rem' }}>Name</label>
+                  <input id="contact-name" name="name" required value={form.name} onChange={handle} placeholder="Your name" style={inputStyle}
                     onFocus={(e) => e.target.style.borderColor = '#1d1d1f'}
                     onBlur={(e) => e.target.style.borderColor = 'var(--border)'}
                   />
                 </div>
                 <div>
-                  <label style={{ fontSize: '0.85rem', fontWeight: 500, color: '#1d1d1f', display: 'block', marginBottom: '0.5rem' }}>Email</label>
-                  <input name="email" type="email" required value={form.email} onChange={handle} placeholder="you@brand.com" style={inputStyle}
+                  <label htmlFor="contact-email" style={{ fontSize: '0.85rem', fontWeight: 500, color: '#1d1d1f', display: 'block', marginBottom: '0.5rem' }}>Email</label>
+                  <input id="contact-email" name="email" type="email" required value={form.email} onChange={handle} placeholder="you@brand.com" style={inputStyle}
                     onFocus={(e) => e.target.style.borderColor = '#1d1d1f'}
                     onBlur={(e) => e.target.style.borderColor = 'var(--border)'}
                   />
                 </div>
               </div>
               <div>
-                <label style={{ fontSize: '0.85rem', fontWeight: 500, color: '#1d1d1f', display: 'block', marginBottom: '0.5rem' }}>Brand / Company</label>
-                <input name="brand" value={form.brand} onChange={handle} placeholder="Your brand name" style={inputStyle}
+                <label htmlFor="contact-brand" style={{ fontSize: '0.85rem', fontWeight: 500, color: '#1d1d1f', display: 'block', marginBottom: '0.5rem' }}>Brand / Company</label>
+                <input id="contact-brand" name="brand" value={form.brand} onChange={handle} placeholder="Your brand name" style={inputStyle}
                   onFocus={(e) => e.target.style.borderColor = '#1d1d1f'}
                   onBlur={(e) => e.target.style.borderColor = 'var(--border)'}
                 />
               </div>
               <div>
-                <label style={{ fontSize: '0.85rem', fontWeight: 500, color: '#1d1d1f', display: 'block', marginBottom: '0.5rem' }}>What do you need?</label>
-                <textarea name="message" required value={form.message} onChange={handle} placeholder="Tell us about your goals..." rows={5}
+                <label htmlFor="contact-message" style={{ fontSize: '0.85rem', fontWeight: 500, color: '#1d1d1f', display: 'block', marginBottom: '0.5rem' }}>What do you need?</label>
+                <textarea id="contact-message" name="message" required value={form.message} onChange={handle} placeholder="Tell us about your goals..." rows={5}
                   style={{ ...inputStyle, resize: 'vertical', minHeight: '130px', background: '#f5f5f7' }}
                   onFocus={(e) => e.target.style.borderColor = '#1d1d1f'}
                   onBlur={(e) => e.target.style.borderColor = 'var(--border)'}
                 />
               </div>
+              {error && <p role="alert" style={{ color: '#9b1c1c', textAlign: 'center', margin: 0 }}>{error}</p>}
               <button type="submit" disabled={loading} style={{
                 alignSelf: 'center',
                 display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.65rem',
@@ -181,8 +180,7 @@ export default function Contact() {
               >
                 {loading ? 'Sending...' : 'Send message'}
               </button>
-            </form>
-          )}
+          </form>
         </div>
       </div>
     </div>

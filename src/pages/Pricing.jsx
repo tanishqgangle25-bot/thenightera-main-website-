@@ -31,7 +31,7 @@ const cardVariants = {
   },
 }
 
-function PricingCard({ title, monthlyPrice, annualPrice, annualSavings, tagline, desc, features, inheritedFeatures = [], isHighlighted, cta, billing, scopeLevel, scopeLabel, selectedPlan, onSelect, onInquiry }) {
+function PricingCard({ title, monthlyPrice, annualPrice, annualSavings, tagline, desc, features, inheritedFeatures = [], isHighlighted, cta, billing, scopeLevel, scopeLabel, selectedPlan, onSelect, onInquiry, imageSrc, imageAlt }) {
   const [expanded, setExpanded] = useState(false)
   const reduceMotion = useReducedMotion()
   const isSelected = selectedPlan === title
@@ -66,9 +66,14 @@ function PricingCard({ title, monthlyPrice, annualPrice, annualSavings, tagline,
       )}
       
       <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.75rem' }}>
+          <div>
+            <p style={{ fontSize: '0.68rem', letterSpacing: '0.14em', color: '#7D2027', fontWeight: 650 }}>thenightera partnership</p>
+            <h3 style={{ marginTop: '0.45rem', fontSize: '2rem', letterSpacing: '-0.055em', lineHeight: 1, color: '#1d1d1f', fontWeight: 750 }}>{title}</h3>
+          </div>
+          {imageSrc && <motion.img src={imageSrc} alt={imageAlt || `${title} partnership tree`} loading="lazy" animate={reduceMotion ? undefined : { y: [0, -5, 0], rotate: [0, 1.2, 0] }} transition={reduceMotion ? undefined : { duration: 5.5, ease: 'easeInOut', repeat: Infinity }} style={{ width: '76px', height: '76px', objectFit: 'contain', flexShrink: 0 }} />}
+        </div>
         <div>
-          <p style={{ fontSize: '0.68rem', letterSpacing: '0.14em', color: '#7D2027', fontWeight: 650 }}>thenightera partnership</p>
-          <h3 style={{ marginTop: '0.45rem', fontSize: '2rem', letterSpacing: '-0.055em', lineHeight: 1, color: '#1d1d1f', fontWeight: 750 }}>{title}</h3>
           <p style={{ marginTop: '1.4rem', fontSize: '0.78rem', color: '#86868b' }}>Starting at</p>
           {annual ? (
             <>
@@ -203,6 +208,8 @@ export default function Pricing() {
       title: "Core",
       scopeLevel: 1,
       scopeLabel: "Creative foundation",
+      imageSrc: "https://www.thiings.co/_next/image?url=https%3A%2F%2Flftz25oez4aqbxpq.public.blob.vercel-storage.com%2Fimage-gyoxLFpXzRRzVsgPJOKvB2r4tvzpcy.png&w=320&q=75",
+      imageAlt: "Pink cherry blossom tree",
       monthlyPrice: "₹25,000",
       annualPrice: "₹2,70,000",
       annualSavings: "₹30,000",
@@ -220,6 +227,8 @@ export default function Pricing() {
       title: "Prime",
       scopeLevel: 2,
       scopeLabel: "Integrated growth support",
+      imageSrc: "https://www.thiings.co/_next/image?url=https%3A%2F%2Flftz25oez4aqbxpq.public.blob.vercel-storage.com%2Fimage-v98BP3EQdx0Yd0NkjHPnWx33WvzwGP.png&w=320&q=75",
+      imageAlt: "Golden autumn tree",
       monthlyPrice: "₹50,000",
       annualPrice: "₹5,40,000",
       annualSavings: "₹60,000",
@@ -242,6 +251,8 @@ export default function Pricing() {
       title: "Vertex",
       scopeLevel: 3,
       scopeLabel: "Dedicated growth partnership",
+      imageSrc: "https://www.thiings.co/_next/image?url=https%3A%2F%2Flftz25oez4aqbxpq.public.blob.vercel-storage.com%2Fimage-gyoxLFpXzRRzVsgPJOKvB2r4tvzpcy.png&w=320&q=75",
+      imageAlt: "Pink cherry blossom tree",
       monthlyPrice: "₹90,000",
       annualPrice: "₹9,72,000",
       annualSavings: "₹1,08,000",

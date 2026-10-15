@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import PageHeader from '../components/PageHeader'
-import { Diamond, Sparkles, ChevronDown } from 'lucide-react'
+import { Diamond, ChevronDown } from 'lucide-react'
 import SEOHead from '../components/SEOHead'
+import PricingExperience3D from '../components/pricing/PricingExperience3D'
+import PricingInquiryModal from '../components/pricing/PricingInquiryModal'
 
 function FadeUp({ children, delay = 0, y = 40 }) {
   return (
@@ -29,19 +31,14 @@ const cardVariants = {
   },
 }
 
-const imageVariants = {
-  initial: { scale: 1, rotate: 0 },
-  hover: {
-    scale: 1.1,
-    rotate: -5,
-    transition: { type: "spring", stiffness: 300, damping: 20 },
-  },
-}
-
-function PricingCard({ title, price, priceDescription, desc, features, isHighlighted, imageSrc, imageAlt, useSparkles }) {
+function PricingCard({ title, monthlyPrice, annualPrice, annualSavings, tagline, desc, features, inheritedFeatures = [], isHighlighted, cta, billing, scopeLevel, scopeLabel, selectedPlan, onSelect, onInquiry }) {
   const [expanded, setExpanded] = useState(false)
+  const reduceMotion = useReducedMotion()
+  const isSelected = selectedPlan === title
   const visibleCount = 3
-  const hasMore = features.length > visibleCount
+  const allFeatures = [...features.flatMap((group) => group.items), ...inheritedFeatures.flatMap((group) => group.items)]
+  const hasMore = allFeatures.length > visibleCount
+  const annual = billing === 'annual'
 
   return (
     <motion.div
@@ -50,13 +47,13 @@ function PricingCard({ title, price, priceDescription, desc, features, isHighlig
       whileHover="hover"
       style={{
         background: '#ffffff',
-        border: isHighlighted ? '2px solid #1d1d1f' : '1px solid #E5E5EA',
-        borderRadius: '16px',
+        border: isSelected ? '2px solid #7D2027' : isHighlighted ? '2px solid #1d1d1f' : '1px solid #E5E5EA',
+        borderRadius: '18px',
         padding: '2rem',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
-        boxShadow: isHighlighted ? '0 30px 60px rgba(0,0,0,0.08)' : '0 10px 30px rgba(0,0,0,0.03)',
+        boxShadow: isSelected ? '0 24px 55px rgba(125,32,39,0.14)' : isHighlighted ? '0 30px 60px rgba(0,0,0,0.08)' : '0 10px 30px rgba(0,0,0,0.03)',
         position: 'relative',
         height: '100%',
         color: '#1d1d1f'
@@ -69,43 +66,66 @@ function PricingCard({ title, price, priceDescription, desc, features, isHighlig
       )}
       
       <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-        {/* Card Header with optional image */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-          <div>
-            <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: '#1d1d1f' }}>{title}</h3>
-            {price && (
-              <div style={{ marginTop: '0.25rem' }}>
-                <span style={{ fontSize: '2.5rem', fontWeight: 800, color: '#1d1d1f' }}>{price}</span>
-                <p style={{ fontSize: '0.875rem', color: '#86868b', marginTop: '0.25rem' }}>{priceDescription}</p>
-              </div>
-            )}
-          </div>
-          {imageSrc && (
-            <motion.img
-              src={imageSrc}
-              alt={imageAlt || title}
-              style={{ width: '80px', height: '80px', objectFit: 'contain', userSelect: 'none' }}
-              variants={imageVariants}
-            />
+        <div>
+          <p style={{ fontSize: '0.68rem', letterSpacing: '0.14em', color: '#7D2027', fontWeight: 650 }}>thenightera partnership</p>
+          <h3 style={{ marginTop: '0.45rem', fontSize: '2rem', letterSpacing: '-0.055em', lineHeight: 1, color: '#1d1d1f', fontWeight: 750 }}>{title}</h3>
+          <p style={{ marginTop: '1.4rem', fontSize: '0.78rem', color: '#86868b' }}>Starting at</p>
+          {annual ? (
+            <>
+              <p style={{ marginTop: '0.3rem', color: '#1d1d1f' }}><strong style={{ fontSize: '2.25rem', letterSpacing: '-0.05em' }}>{annualPrice}</strong><span style={{ color: '#86868b' }}> / year</span></p>
+              <p style={{ marginTop: '0.15rem', fontSize: '0.82rem', color: '#6e6e73' }}>Equivalent to {monthlyPrice}/month, billed annually</p>
+              <p style={{ marginTop: '0.7rem', fontSize: '0.8rem', fontWeight: 700, color: '#39704b' }}>Save {annualSavings} annually</p>
+            </>
+          ) : (
+            <p style={{ marginTop: '0.3rem', color: '#1d1d1f' }}><strong style={{ fontSize: '2.25rem', letterSpacing: '-0.05em' }}>{monthlyPrice}</strong><span style={{ color: '#86868b' }}> / month</span></p>
           )}
         </div>
 
-        {/* Card Description */}
-        <p style={{ fontSize: '0.9rem', color: '#86868b', lineHeight: 1.5, minHeight: '60px', marginTop: '0.5rem' }}>{desc}</p>
+        <div style={{ paddingTop: '1.1rem', borderTop: '1px solid #ececef' }}>
+          <p style={{ fontSize: '0.65rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: '#86868b', fontWeight: 700 }}>Designed for</p>
+          <p style={{ marginTop: '0.45rem', fontSize: '1.05rem', lineHeight: 1.4, color: '#1d1d1f', fontWeight: 600 }}>{tagline}</p>
+          <p style={{ marginTop: '0.4rem', fontSize: '0.88rem', lineHeight: 1.55, color: '#6e6e73' }}>{desc}</p>
+          <p style={{ marginTop: '1.3rem', fontSize: '0.65rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: '#86868b', fontWeight: 700 }}>What’s included</p>
+          {inheritedFeatures.length > 0 && <p style={{ marginTop: '0.55rem', fontSize: '0.83rem', color: '#55555a' }}>Everything in {title === 'Prime' ? 'Core' : 'Prime'}, plus:</p>}
+        </div>
 
-        {/* Feature List — Collapsible */}
+        <div style={{ marginTop: '0.5rem', display: 'grid', gap: '1rem' }}>
+          {features.slice(0, 1).map((group) => (
+            <section key={group.title}>
+              <h4 style={{ fontSize: '0.76rem', color: '#7D2027', fontWeight: 700, marginBottom: '0.5rem' }}>{group.title}</h4>
+              <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gap: '0.55rem' }}>
+                {group.items.slice(0, 3).map((item) => (
+                  <li key={item} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.6rem', fontSize: '0.84rem', color: '#1d1d1f', lineHeight: 1.4 }}>
+                    <Diamond size={14} style={{ flex: '0 0 auto', marginTop: '2px', color: isHighlighted ? '#7D2027' : '#1d1d1f' }} />{item}
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))}
+        </div>
+
+        <div style={{ marginTop: '0.35rem', padding: '0.9rem 1rem', borderRadius: '12px', background: isSelected ? '#fbf4f2' : '#f7f7f8', border: isSelected ? '1px solid #ead3d0' : '1px solid #eeeeef' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '0.75rem' }}>
+            <div>
+              <p style={{ fontSize: '0.63rem', letterSpacing: '0.13em', textTransform: 'uppercase', color: '#86868b', fontWeight: 700 }}>Partnership scope</p>
+              <p style={{ marginTop: '0.25rem', fontSize: '0.85rem', fontWeight: 650, color: '#1d1d1f' }}>{scopeLabel}</p>
+            </div>
+            <div aria-hidden="true" style={{ display: 'flex', alignItems: 'flex-end', gap: '4px', height: '30px' }}>
+              {[1, 2, 3].map((step) => (
+                <motion.span key={step} initial={false} animate={{ scaleY: reduceMotion || isSelected ? (step <= scopeLevel ? 1 : 0.22) : 0.22, opacity: step <= scopeLevel ? 1 : 0.4 }} transition={reduceMotion ? { duration: 0 } : { type: 'spring', stiffness: 190, damping: 20, delay: isSelected ? step * 0.09 : 0 }} style={{ display: 'block', width: '8px', height: `${12 + step * 5}px`, borderRadius: '8px', background: step <= scopeLevel ? '#7D2027' : '#d9d9dc', transformOrigin: 'bottom' }} />
+              ))}
+            </div>
+          </div>
+          <button type="button" aria-pressed={isSelected} onClick={() => onSelect(isSelected ? null : title)} style={{ marginTop: '0.75rem', border: 0, padding: 0, background: 'none', color: '#7D2027', fontSize: '0.75rem', fontWeight: 650, cursor: 'pointer' }}>
+            {isSelected ? 'Previewing this tier · change' : `Preview ${title}`}
+          </button>
+          <AnimatePresence>
+            {isSelected && <motion.p initial={reduceMotion ? false : { opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -4 }} transition={{ duration: reduceMotion ? 0 : 0.28 }} style={{ marginTop: '0.55rem', color: '#6e6e73', fontSize: '0.75rem', lineHeight: 1.45 }}>A quick sense of the team, production, and support included in {title}.</motion.p>}
+          </AnimatePresence>
+        </div>
+
+        {/* Full feature list — expandable */}
         <div style={{ marginTop: '1.5rem' }}>
-          <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            {features.slice(0, visibleCount).map((f, i) => (
-              <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', fontSize: '0.9rem', color: '#1d1d1f', lineHeight: 1.4 }}>
-                <div style={{ marginTop: '2px', color: isHighlighted ? '#7D2027' : '#1d1d1f' }}>
-                  {useSparkles || f.includes('Calma') ? <Sparkles size={16} /> : <Diamond size={16} />}
-                </div>
-                <span>{f}</span>
-              </li>
-            ))}
-          </ul>
-
           <AnimatePresence>
             {expanded && (
               <motion.ul
@@ -115,27 +135,23 @@ function PricingCard({ title, price, priceDescription, desc, features, isHighlig
                 transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                 style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '1rem', overflow: 'hidden' }}
               >
-                {features.slice(visibleCount).map((f, i) => (
-                  <motion.li
-                    key={i}
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 8 }}
-                    transition={{ delay: i * 0.04 }}
-                    style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', fontSize: '0.9rem', color: '#1d1d1f', lineHeight: 1.4 }}
-                  >
-                    <div style={{ marginTop: '2px', color: isHighlighted ? '#7D2027' : '#1d1d1f' }}>
-                      {useSparkles || f.includes('Calma') ? <Sparkles size={16} /> : <Diamond size={16} />}
-                    </div>
-                    <span>{f}</span>
-                  </motion.li>
-                ))}
+                {[...features, ...inheritedFeatures].flatMap((group) => [
+                  <li key={`${group.title}-heading`} style={{ listStyle: 'none', marginTop: '0.5rem', fontSize: '0.76rem', color: '#7D2027', fontWeight: 700 }}>{group.title}</li>,
+                  ...group.items.map((item, itemIndex) => {
+                    const isPreviewed = group === features[0] && itemIndex < 3
+                    if (isPreviewed) return null
+                    return <motion.li key={`${group.title}-${item}`} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 8 }} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', fontSize: '0.9rem', color: '#1d1d1f', lineHeight: 1.4 }}><Diamond size={15} style={{ flex: '0 0 auto', marginTop: '2px', color: isHighlighted ? '#7D2027' : '#1d1d1f' }} /><span>{item}</span></motion.li>
+                  })
+                ])}
               </motion.ul>
             )}
           </AnimatePresence>
 
           {hasMore && (
             <button
+              type="button"
+              aria-expanded={expanded}
+              aria-label={expanded ? `Show fewer ${title} inclusions` : `See everything included in ${title}`}
               onClick={() => setExpanded(!expanded)}
               style={{
                 background: 'none', border: 'none', cursor: 'pointer',
@@ -146,7 +162,7 @@ function PricingCard({ title, price, priceDescription, desc, features, isHighlig
               onMouseEnter={(e) => e.currentTarget.style.color = '#1d1d1f'}
               onMouseLeave={(e) => e.currentTarget.style.color = '#86868b'}
             >
-              <motion.div
+              <span style={{ fontSize: '0.78rem', fontWeight: 600, marginRight: '0.4rem' }}>{expanded ? 'Show less' : 'See everything included'}</span><motion.div
                 animate={{ rotate: expanded ? 180 : 0 }}
                 transition={{ duration: 0.3 }}
               >
@@ -159,8 +175,7 @@ function PricingCard({ title, price, priceDescription, desc, features, isHighlig
       
       {/* Card Footer with Button */}
       <div style={{ marginTop: '2.5rem' }}>
-        <Link to="/contact" style={{ display: 'block', textDecoration: 'none' }}>
-          <button 
+          <button type="button" onClick={onInquiry}
             style={{
               width: '100%', padding: '0.75rem 1rem', borderRadius: '8px',
               background: isHighlighted ? '#1d1d1f' : '#f5f5f7',
@@ -172,71 +187,79 @@ function PricingCard({ title, price, priceDescription, desc, features, isHighlig
             onMouseEnter={(e) => { if(!isHighlighted) e.currentTarget.style.background = '#e8e8ed' }}
             onMouseLeave={(e) => { if(!isHighlighted) e.currentTarget.style.background = '#f5f5f7' }}
           >
-            Let's Talk
+            {cta}
           </button>
-        </Link>
       </div>
     </motion.div>
   )
 }
 
 export default function Pricing() {
+  const [billing, setBilling] = useState('monthly')
+  const [selectedPlan, setSelectedPlan] = useState('Prime')
+  const [inquiryPlan, setInquiryPlan] = useState(null)
   const plans = [
     {
-      title: "Starter",
-      price: "₹25,000",
-      priceDescription: "Starting from",
-      desc: "For emerging brands establishing a refined digital presence.",
+      title: "Core",
+      scopeLevel: 1,
+      scopeLabel: "Creative foundation",
+      monthlyPrice: "₹25,000",
+      annualPrice: "₹2,70,000",
+      annualSavings: "₹30,000",
+      tagline: "Build your brand on a strong foundation.",
+      desc: "For businesses establishing a premium digital presence through consistent creative execution and strategic direction.",
+      cta: "Start Your Partnership",
       features: [
-        "6 signature reels & 1 shoot day",
-        "8 Social media posters",
-        "Content strategy & Monthly calendar",
-        "Story design & brand themes",
-        "Captions & Color grading",
-        "AI-powered content research"
+        { title: "Creative Production", items: ["6 Signature Cinematic Reels", "8 Premium Brand Creatives", "1 Professional Production Day", "Creative Direction", "Premium Color Grading", "Platform-Optimized Delivery", "Content Copywriting"] },
+        { title: "Brand Strategy", items: ["Monthly Growth Strategy", "Content Planning", "Monthly Content Calendar", "Trend & Competitor Research", "Brand Positioning Guidance"] },
+        { title: "Digital Presence", items: ["Google Business Profile Optimization", "Basic Search Visibility (SEO)", "Profile Optimization", "Monthly Performance Report"] },
+        { title: "Partnership", items: ["Dedicated Account Manager", "WhatsApp Business Support", "Monthly Strategy Review", "Priority Project Management"] }
       ],
-      imageSrc: "https://www.thiings.co/_next/image?url=https%3A%2F%2Flftz25oez4aqbxpq.public.blob.vercel-storage.com%2Fimage-gyoxLFpXzRRzVsgPJOKvB2r4tvzpcy.png&w=320&q=75",
-      imageAlt: "Pink cherry blossom tree",
-      useSparkles: false
     },
     {
-      title: "Growth",
-      price: "₹50,000",
-      priceDescription: "Starting from",
-      desc: "Scale your brand and command authority. Our most popular package.",
+      title: "Prime",
+      scopeLevel: 2,
+      scopeLabel: "Integrated growth support",
+      monthlyPrice: "₹50,000",
+      annualPrice: "₹5,40,000",
+      annualSavings: "₹60,000",
+      tagline: "Scale with confidence.",
+      desc: "For businesses ready to accelerate growth through premium content, strategic marketing, and consistent brand execution.",
+      cta: "Apply for Prime",
       isHighlighted: true,
       features: [
-        "12 signature reels & 2 shoot days",
-        "16 Social media posters",
-        "Creator partnership & on-camera talent",
-        "Story design & brand themes",
-        "Professional photography & Ad creatives",
-        "Social media management & Monthly analytics",
-        "Priority delivery",
-        "AI-powered competitor analysis"
+        { title: "Creative Production", items: ["12 Signature Cinematic Reels", "16 Premium Brand Creatives", "2 Professional Production Days", "Creative Campaign Planning", "Advanced Color Grading", "Motion Graphics & Visual Effects", "Premium Thumbnail & Cover Design", "Multi-Platform Content Optimization"] },
+        { title: "Brand Growth", items: ["Advanced Content Strategy", "Campaign Planning", "Brand Positioning Sessions", "Trend & Competitor Intelligence", "Monthly Growth Roadmap", "Content Performance Analysis"] },
+        { title: "Digital Growth", items: ["Paid Growth Campaigns", "Google Business Profile Management", "Advanced Search Visibility (SEO)", "Local Search Optimization", "Monthly Business Insights", "Reputation Monitoring"] },
+        { title: "Partnership", items: ["Priority Account Manager", "Priority WhatsApp Support", "Bi-Weekly Strategy Sessions", "Faster Turnaround Time", "Quarterly Brand Review"] },
+        { title: "Exclusive Benefits", items: ["Priority Production Scheduling", "Premium Asset Library", "Early Access to New thenightera Features", "Preferred Client Support"] }
       ],
-      imageSrc: "https://www.thiings.co/_next/image?url=https%3A%2F%2Flftz25oez4aqbxpq.public.blob.vercel-storage.com%2Fimage-v98BP3EQdx0Yd0NkjHPnWx33WvzwGP.png&w=320&q=75",
-      imageAlt: "Yellow autumn tree",
-      useSparkles: true
+      inheritedFeatures: [
+        { title: "Core inclusions", items: ["Brand Strategy", "6 Signature Reels", "8 Brand Creatives", "1 Production Day", "Monthly Content Calendar", "Copywriting", "Search Visibility (Basic SEO)", "Monthly Performance Report", "Dedicated Support"] },
+      ],
     },
     {
-      title: "Elite",
-      price: "₹90,000+",
-      priceDescription: "Starting from",
-      desc: "Your dedicated in-house content team. Everything handled, nothing missed.",
+      title: "Vertex",
+      scopeLevel: 3,
+      scopeLabel: "Dedicated growth partnership",
+      monthlyPrice: "₹90,000",
+      annualPrice: "₹9,72,000",
+      annualSavings: "₹1,08,000",
+      tagline: "Lead your market with strategy, creative excellence, and AI-powered growth.",
+      desc: "For ambitious brands seeking a dedicated creative, marketing, and AI growth partner.",
+      cta: "Request a Consultation",
       features: [
-        "20 signature reels & up to 6 shoot days",
-        "25 Social media posters",
-        "Calma access included",
-        "Full content team & Brand strategy",
-        "Creator partnerships & styled talent",
-        "Paid ads creatives & Website support",
-        "Monthly strategy meetings",
-        "Trend prediction & performance reports"
+        { title: "Creative Production", items: ["20+ Signature Cinematic Reels", "Unlimited Premium Brand Creatives", "Up to 6 Professional Production Days", "Creative Campaign Direction", "High-End Cinematic Editing", "Advanced Motion Graphics", "Premium Brand Storytelling", "Multi-Platform Content Production"] },
+        { title: "Brand Leadership", items: ["Dedicated Brand Manager", "Quarterly Brand Strategy Workshops", "Business Growth Consultation", "Creative Direction", "Brand Positioning & Expansion", "Competitor Intelligence"] },
+        { title: "Digital Growth", items: ["Advanced Search Visibility (SEO)", "Google Business Profile Management", "Website Content Management", "Reputation Management", "Performance Analytics Dashboard", "Quarterly Growth Reports"] },
+        { title: "AI Intelligence", items: ["CALMA AI Reputation Intelligence", "AI Review Monitoring", "Intelligent Business Insights", "AI-Powered Performance Reports", "Workflow Automation Consultation", "Early Access to thenightera AI Features"] },
+        { title: "Partnership", items: ["Priority Creative Team", "Founder Strategy Sessions", "VIP WhatsApp Support", "Fastest Turnaround", "Priority Production Scheduling", "Dedicated Success Manager"] },
+        { title: "Exclusive Benefits", items: ["Custom Growth Roadmap", "Exclusive Partner Benefits", "Enterprise-Level Support", "Access to Beta AI Solutions"] }
       ],
-      imageSrc: "https://www.thiings.co/_next/image?url=https%3A%2F%2Flftz25oez4aqbxpq.public.blob.vercel-storage.com%2Fimage-gyoxLFpXzRRzVsgPJOKvB2r4tvzpcy.png&w=320&q=75",
-      imageAlt: "Pink cherry blossom tree",
-      useSparkles: true
+      inheritedFeatures: [
+        { title: "Core inclusions", items: ["Brand Strategy", "6 Signature Reels", "8 Brand Creatives", "1 Production Day", "Monthly Content Calendar", "Copywriting", "Basic Search Visibility (SEO)", "Monthly Performance Report", "Dedicated Support"] },
+        { title: "Prime inclusions", items: ["12 Signature Reels", "16 Brand Creatives", "2 Production Days", "Paid Growth Campaigns", "Google Business Profile Management", "Advanced SEO", "Social Media Management", "Monthly Strategy Session", "Priority Support"] },
+      ],
     }
   ]
 
@@ -248,24 +271,53 @@ export default function Pricing() {
         path="/pricing"
       />
       <PageHeader
-        label="Pricing Plans"
-        title="Transparent Pricing, No Surprises"
-        sub="We build your brand, plan your content, produce it, analyze what works, and help you grow."
+        label="Partnerships"
+        title="Growth, considered."
+        sub="Thoughtful creative. Consistent momentum. A partnership shaped around your ambition."
       />
 
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '4rem 2.5rem 8rem' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem', alignItems: 'stretch' }}>
+        <div role="group" aria-label="Billing frequency" style={{ display: 'flex', justifyContent: 'center', marginBottom: '2.5rem' }}>
+          <div style={{ display: 'inline-flex', padding: '4px', borderRadius: '999px', background: '#e9e9ec', gap: '3px' }}>
+            {['monthly', 'annual'].map((option) => (
+              <button key={option} type="button" aria-pressed={billing === option} onClick={() => setBilling(option)} style={{ border: 0, borderRadius: '999px', padding: '0.7rem 1.1rem', background: billing === option ? '#fff' : 'transparent', color: '#1d1d1f', boxShadow: billing === option ? '0 1px 5px rgba(0,0,0,.12)' : 'none', cursor: 'pointer', font: 'inherit', fontSize: '0.82rem', fontWeight: 650 }}>
+                {option === 'monthly' ? 'Monthly' : 'Annual · save 10%'}
+              </button>
+            ))}
+          </div>
+        </div>
+        <div style={{ marginBottom: '2rem' }}>
+          <PricingExperience3D plan={selectedPlan || 'Prime'} />
+          <p style={{ margin: '0.7rem 0 0', textAlign: 'center', color: '#85807a', fontSize: '0.76rem' }}>Choose a tier below to see its partnership take shape.</p>
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 290px), 1fr))', gap: '1.25rem', alignItems: 'stretch' }}>
           {plans.map((plan, i) => (
             <FadeUp key={plan.title} delay={i * 0.1}>
-              <PricingCard {...plan} />
+              <PricingCard {...plan} billing={billing} selectedPlan={selectedPlan} onSelect={setSelectedPlan} onInquiry={() => setInquiryPlan(plan.title)} />
             </FadeUp>
           ))}
         </div>
 
+        <p style={{ textAlign: 'center', fontSize: '0.82rem', color: '#6e6e73', marginTop: '1.25rem' }}>
+          Annual plans are billed upfront. GST, if applicable, is additional. Paid media spend, if required, is separate.
+        </p>
+
+        <FadeUp delay={0.2}>
+          <section style={{ marginTop: '5rem', padding: '3rem', borderRadius: '20px', background: '#1d1d1f', color: '#fff' }}>
+            <p style={{ fontSize: '0.68rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: '#c7bca1', fontWeight: 700 }}>For the long view</p>
+            <h2 style={{ marginTop: '0.8rem', fontSize: 'clamp(1.7rem, 3vw, 2.5rem)', letterSpacing: '-0.04em', fontWeight: 600 }}>Annual partnership benefits</h2>
+            <p style={{ marginTop: '0.65rem', color: 'rgba(255,255,255,.68)', lineHeight: 1.6 }}>Every annual partnership includes a steadier foundation for long-term growth.</p>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(190px, 1fr))', gap: '0.75rem', marginTop: '1.75rem' }}>
+              {["Locked pricing for 12 months", "Priority onboarding", "Dedicated strategic planning", "Annual growth roadmap", "Savings versus monthly billing"].map((item) => <div key={item} style={{ padding: '0.9rem 1rem', border: '1px solid rgba(255,255,255,.16)', borderRadius: '10px', color: 'rgba(255,255,255,.9)', fontSize: '0.88rem' }}>{item}</div>)}
+            </div>
+          </section>
+        </FadeUp>
+        <p style={{ textAlign: 'center', marginTop: '1.5rem', color: '#6e6e73', fontSize: '0.88rem' }}>Enterprise solutions are available for multi-location brands and organizations.</p>
+
         {/* Retainer Disclaimer */}
         <FadeUp delay={0.25}>
           <p style={{ textAlign: 'center', fontSize: '0.8rem', color: '#86868b', marginTop: '2rem', letterSpacing: '0.03em' }}>
-            Ad spend not included. Minimum 3-month commitment on all retainers.
+          Final deliverables and billing terms are confirmed in your proposal.
           </p>
         </FadeUp>
 
@@ -274,7 +326,7 @@ export default function Pricing() {
           <div style={{ marginTop: '4rem', background: '#ffffff', borderRadius: '16px', padding: '2rem', border: '1px solid #E5E5EA', boxShadow: '0 5px 15px rgba(0,0,0,0.02)' }}>
             <h3 style={{ fontSize: '1.25rem', fontWeight: 600, color: '#1d1d1f' }}>Unique Request</h3>
             <p style={{ marginTop: '0.5rem', fontSize: '0.9rem', color: '#86868b', maxWidth: '600px' }}>
-              Are you looking for something custom? Don't hesitate to contact us, and we'll help brainstorm your product to success.
+              Need a different mix of services or scope? Tell us what you’re building and we’ll shape a proposal around it.
             </p>
             <div style={{ marginTop: '1.5rem' }}>
               <Link to="/contact" style={{ display: 'inline-block', textDecoration: 'none' }}>
@@ -300,10 +352,8 @@ export default function Pricing() {
             </h2>
             <div style={{ display: 'grid', gap: '1.5rem', maxWidth: '800px' }}>
               <div>
-                <h3 style={{ fontSize: '1.05rem', fontWeight: 600, color: '#1d1d1f' }}>What is the cost of social media marketing?</h3>
-                <p style={{ marginTop: '0.5rem', fontSize: '0.95rem', color: '#6e6e73', lineHeight: 1.6 }}>
-                  Our social media management packages start at ₹25,000 per month. This cost includes content strategy, design, copywriting, and monthly performance tracking. Prices shown are in INR. International projects are quoted according to scope, production location, and payment requirements.
-                </p>
+                <h3 style={{ fontSize: '1.05rem', fontWeight: 600, color: '#1d1d1f' }}>How does annual billing work?</h3>
+                <p style={{ marginTop: '0.5rem', fontSize: '0.95rem', color: '#6e6e73', lineHeight: 1.6 }}>Annual plans are billed upfront and save 10% compared with twelve monthly payments. We confirm final scope and terms in your proposal before work begins.</p>
               </div>
               <div>
                 <h3 style={{ fontSize: '1.05rem', fontWeight: 600, color: '#1d1d1f' }}>How much does a custom website cost?</h3>
@@ -315,6 +365,7 @@ export default function Pricing() {
           </div>
         </FadeUp>
       </div>
+      <AnimatePresence>{inquiryPlan && <PricingInquiryModal plan={inquiryPlan} onClose={() => setInquiryPlan(null)} />}</AnimatePresence>
     </div>
   )
 }

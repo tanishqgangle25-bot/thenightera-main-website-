@@ -62,12 +62,9 @@ export default function PageHeader({ label, title, sub }) {
         }}>
           {lines.map((line, li) => (
             <span key={li} style={{ display: 'block', overflow: 'hidden', paddingBottom: '0.08em' }}>
-              {line.split(' ').map((word, wi, words) => (
-                <span key={wi} className="ph-word" style={{
-                  display: 'inline-block',
-                  willChange: 'transform',
-                }}>
-                  {word}{wi < words.length - 1 ? ' ' : null}
+              {line.split(' ').map((word, wi) => (
+                <span key={wi} style={{ whiteSpace: 'pre' }}>
+                  <span className="ph-word" style={{ display: 'inline-block', willChange: 'transform' }}>{word}</span>{wi < line.split(' ').length - 1 ? ' ' : ''}
                 </span>
               ))}
             </span>

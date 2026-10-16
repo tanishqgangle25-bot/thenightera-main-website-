@@ -20,6 +20,7 @@ const ServiceLanding = lazy(() => import('./pages/ServiceLanding'))
 const Legal = lazy(() => import('./pages/Legal'))
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'))
 const Terms = lazy(() => import('./pages/Terms'))
+const CookiePolicy = lazy(() => import('./pages/CookiePolicy'))
 const CaseStudies = lazy(() => import('./pages/CaseStudies'))
 const NotFound = lazy(() => import('./pages/NotFound'))
 
@@ -90,6 +91,7 @@ export default function App() {
             <Route path="/case-studies" element={<PageWrapper><CaseStudies /></PageWrapper>} />
             <Route path="/privacy" element={<PageWrapper><PrivacyPolicy /></PageWrapper>} />
             <Route path="/terms" element={<PageWrapper><Terms /></PageWrapper>} />
+            <Route path="/cookies" element={<PageWrapper><CookiePolicy /></PageWrapper>} />
             <Route path="/:serviceSlug" element={<PageWrapper><ServiceLanding /></PageWrapper>} />
             <Route path="*"            element={<PageWrapper><NotFound /></PageWrapper>} />
           </Routes>

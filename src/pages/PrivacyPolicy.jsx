@@ -121,7 +121,7 @@ export default function PrivacyPolicy() {
             <p>For CALMA product questions, you can also visit <a className="text-[#7D2027] underline" href="https://heycalma.in">heycalma.in</a>. This policy is governed by the laws of India, without limiting rights that apply to you under mandatory local law.</p>
           </Section>
 
-          <p className="border-t border-black/10 pt-6 text-sm text-[#8a847e]">© 2026 thenightera. All rights reserved. · <Link className="text-[#7D2027]" to="/terms">Terms of Service</Link></p>
+          <p className="border-t border-black/10 pt-6 text-sm text-[#8a847e]">© 2026 thenightera. All rights reserved. · <Link className="text-[#7D2027]" to="/terms">Terms & Conditions</Link> · <Link className="text-[#7D2027]" to="/cookies">Cookie Policy</Link></p>
         </article>
       </div>
     </main>

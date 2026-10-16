@@ -81,7 +81,7 @@ export default function Founder() {
           <p className="mt-6 max-w-2xl text-base leading-7 text-white/65 md:text-lg">The mission is to make branding, automation, marketing, customer intelligence, and AI work together as one practical growth system.</p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link to="/contact" className="inline-flex rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#1d1d1f] no-underline transition hover:bg-white/90">Work with thenightera</Link>
-            <Link to="/calma" className="inline-flex rounded-full border border-white/25 px-6 py-3 text-sm font-semibold text-white no-underline transition hover:bg-white/10">Explore CALMA</Link>
+            <a href="https://heycalma.in/" target="_blank" rel="noreferrer" className="inline-flex rounded-full border border-white/25 px-6 py-3 text-sm font-semibold text-white no-underline transition hover:bg-white/10">Explore CALMA</a>
           </div>
         </div>
       </section>

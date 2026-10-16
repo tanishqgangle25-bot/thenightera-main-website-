@@ -19,7 +19,7 @@ export const ORGANIZATION_SCHEMA = {
   foundingDate: '2024',
   founder: {
     '@type': 'Person',
-    '@id': `${SITE_URL}/about#founder`,
+    '@id': `${SITE_URL}/founder#tanishq-gangle`,
     name: 'Tanishq Gangle',
     jobTitle: 'Founder and Creative Director',
   },

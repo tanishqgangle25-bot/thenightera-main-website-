@@ -24,6 +24,7 @@ export default function Footer() {
         <div style={{ display: 'flex', gap: '1.5rem' }}>
           {[
             { label: 'About', href: '/about' },
+            { label: 'Founder story', href: '/founder' },
             { label: 'Email', href: 'mailto:hello@thenightera.tech' },
             { label: 'WhatsApp', href: 'https://wa.me/918251000525' },
             { label: 'Instagram', href: 'https://instagram.com/thenightera' },

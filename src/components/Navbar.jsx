@@ -6,6 +6,7 @@ import { LiquidMetalButton } from './ui/liquid-metal-button';
 const NAV_LINKS = [
   { label: 'work', href: '/portfolio' },
   { label: 'about', href: '/about' },
+  { label: 'founder', href: '/founder' },
   { label: 'calma', href: '/calma' },
   { label: 'services', href: '/#services' },
   { label: 'testimonials', href: '/#testimonials' },

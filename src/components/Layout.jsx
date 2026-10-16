@@ -270,6 +270,7 @@ export default function Layout({ children }) {
               <Link to="/privacy" style={{ fontSize: '0.75rem', color: '#A39670', textDecoration: 'none' }}>privacy</Link>
               <Link to="/terms" style={{ fontSize: '0.75rem', color: '#A39670', textDecoration: 'none' }}>terms</Link>
               <Link to="/cookies" style={{ fontSize: '0.75rem', color: '#A39670', textDecoration: 'none' }}>cookies</Link>
+              <Link to="/refunds" style={{ fontSize: '0.75rem', color: '#A39670', textDecoration: 'none' }}>refunds</Link>
             </div>
 
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem 2rem' }}>

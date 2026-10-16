@@ -18,6 +18,7 @@ const About = lazy(() => import('./pages/About'))
 const Founder = lazy(() => import('./pages/Founder'))
 const ServiceLanding = lazy(() => import('./pages/ServiceLanding'))
 const Legal = lazy(() => import('./pages/Legal'))
+const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'))
 const CaseStudies = lazy(() => import('./pages/CaseStudies'))
 const NotFound = lazy(() => import('./pages/NotFound'))
 
@@ -86,7 +87,7 @@ export default function App() {
             <Route path="/about"       element={<PageWrapper><About /></PageWrapper>} />
             <Route path="/founder"     element={<PageWrapper><Founder /></PageWrapper>} />
             <Route path="/case-studies" element={<PageWrapper><CaseStudies /></PageWrapper>} />
-            <Route path="/privacy" element={<PageWrapper><Legal type="privacy" /></PageWrapper>} />
+            <Route path="/privacy" element={<PageWrapper><PrivacyPolicy /></PageWrapper>} />
             <Route path="/terms" element={<PageWrapper><Legal type="terms" /></PageWrapper>} />
             <Route path="/:serviceSlug" element={<PageWrapper><ServiceLanding /></PageWrapper>} />
             <Route path="*"            element={<PageWrapper><NotFound /></PageWrapper>} />
